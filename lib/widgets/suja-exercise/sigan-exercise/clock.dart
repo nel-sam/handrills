@@ -21,7 +21,7 @@ class Clock extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               time,
-              style: TextStyle(fontSize: 75, color: ACCENT_COLOR),
+              style: TextStyle(fontSize: 65, color: ACCENT_COLOR),
             ),
           ),
         ],

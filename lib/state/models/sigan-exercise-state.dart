@@ -5,9 +5,9 @@ class SiganExerciseState {
   String userMin = '';
   String correctSec;
   String userSec = '';
-  int hour;
-  int min;
-  int sec;
+  String hour;
+  String min;
+  String sec;
 
   SiganExerciseState({
     required this.hour,

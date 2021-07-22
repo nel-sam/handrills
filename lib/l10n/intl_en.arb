@@ -1,6 +1,8 @@
 {
   "numbers": "Numbers",
   "typeTheTime": "Write the time in hangul",
+  "nativeNumbers": "Native Numbers",
+  "sinoNumbers": "Sino-Korean Numbers",
   "numberChart": "Number chart",
   "timeDesc": "For the hour use Native numbers (하나, 둘, 셋) and for minutes and seconds use Sino numbers (일, 이, 삼 )"
 }

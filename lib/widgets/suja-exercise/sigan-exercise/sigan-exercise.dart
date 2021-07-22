@@ -37,127 +37,130 @@ class _SiganExerciseState extends State<SiganExercise> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Clock(
-            time:
-                '${widget.siganExerciseState.hour}:${widget.siganExerciseState.min}:${widget.siganExerciseState.sec}'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 18.0),
-              child: Text(AppLocalizations.of(context)!.typeTheTime),
-            ),
-            InfoButton(
-              onPressed: () {
-                setState(() {
-                  showInfo = !showInfo;
-                });
-              },
-            ),
-          ],
-        ),
-        if (showInfo) Text(AppLocalizations.of(context)!.timeDesc),
-        Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+    var s = widget.siganExerciseState;
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Clock(time: '${s.hour}:${s.min}:${s.sec}'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Container(
-                      width: textFieldWidth,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                          enabledBorder: getBorder(
-                              widget.siganExerciseState.correctHour,
-                              widget.siganExerciseState.userHour),
-                          focusedBorder: getBorder(
-                              widget.siganExerciseState.correctHour,
-                              widget.siganExerciseState.userHour),
-                        ),
-                        onChanged: (String? newVal) {
-                          if (newVal != null) {
-                            setState(() {
-                              widget.onUserHourSet(
-                                  widget.siganExerciseState, newVal);
-                            });
-                          }
-                        },
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('시'),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: Text(AppLocalizations.of(context)!.typeTheTime),
               ),
-              Row(
-                children: [
-                  Container(
-                      width: textFieldWidth,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                          enabledBorder: getBorder(
-                              widget.siganExerciseState.correctMin,
-                              widget.siganExerciseState.userMin),
-                          focusedBorder: getBorder(
-                              widget.siganExerciseState.correctMin,
-                              widget.siganExerciseState.userMin),
-                        ),
-                        onChanged: (String? newVal) {
-                          if (newVal != null) {
-                            setState(() {
-                              widget.onUserMinSet(
-                                  widget.siganExerciseState, newVal);
-                            });
-                          }
-                        },
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('분'),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                      width: textFieldWidth,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                          enabledBorder: getBorder(
-                              widget.siganExerciseState.correctSec,
-                              widget.siganExerciseState.userSec),
-                          focusedBorder: getBorder(
-                              widget.siganExerciseState.correctSec,
-                              widget.siganExerciseState.userSec),
-                        ),
-                        onChanged: (String? newVal) {
-                          if (newVal != null) {
-                            setState(() {
-                              widget.onUserSecSet(
-                                  widget.siganExerciseState, newVal);
-                            });
-                          }
-                        },
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('초'),
-                  ),
-                ],
+              InfoButton(
+                onPressed: () {
+                  setState(() {
+                    showInfo = !showInfo;
+                  });
+                },
               ),
             ],
           ),
-        ),
-      ],
+          if (showInfo) Text(AppLocalizations.of(context)!.timeDesc),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                        width: textFieldWidth,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
+                            enabledBorder: getBorder(
+                                widget.siganExerciseState.correctHour,
+                                widget.siganExerciseState.userHour),
+                            focusedBorder: getBorder(
+                                widget.siganExerciseState.correctHour,
+                                widget.siganExerciseState.userHour),
+                          ),
+                          onChanged: (String? newVal) {
+                            if (newVal != null) {
+                              setState(() {
+                                widget.onUserHourSet(
+                                    widget.siganExerciseState, newVal);
+                              });
+                            }
+                          },
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('시'),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                        width: textFieldWidth,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
+                            enabledBorder: getBorder(
+                                widget.siganExerciseState.correctMin,
+                                widget.siganExerciseState.userMin),
+                            focusedBorder: getBorder(
+                                widget.siganExerciseState.correctMin,
+                                widget.siganExerciseState.userMin),
+                          ),
+                          onChanged: (String? newVal) {
+                            if (newVal != null) {
+                              setState(() {
+                                widget.onUserMinSet(
+                                    widget.siganExerciseState, newVal);
+                              });
+                            }
+                          },
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('분'),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                        width: textFieldWidth,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
+                            enabledBorder: getBorder(
+                                widget.siganExerciseState.correctSec,
+                                widget.siganExerciseState.userSec),
+                            focusedBorder: getBorder(
+                                widget.siganExerciseState.correctSec,
+                                widget.siganExerciseState.userSec),
+                          ),
+                          onChanged: (String? newVal) {
+                            if (newVal != null) {
+                              setState(() {
+                                widget.onUserSecSet(
+                                    widget.siganExerciseState, newVal);
+                              });
+                            }
+                          },
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('초'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

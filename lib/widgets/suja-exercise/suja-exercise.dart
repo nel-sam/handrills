@@ -3,16 +3,56 @@ import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
-import 'package:handrills/widgets/suja-exercise/number-chart.dart';
+import 'package:handrills/widgets/suja-exercise/number-chart-button.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
 import 'package:provider/provider.dart';
 
-class SujaExercise extends StatelessWidget {
+class SujaExercise extends StatefulWidget {
   const SujaExercise({Key? key}) : super(key: key);
 
   @override
+  _SujaExerciseState createState() => _SujaExerciseState();
+}
+
+class _SujaExerciseState extends State<SujaExercise> {
+  int _index = 0;
+
+  @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+
+    getCarousel(BuildContext context, SujaExerciseNotifier sujaModel) {
+      return Center(
+        child: SizedBox(
+          height: screenSize.height - 250,
+          width: screenSize.width,
+          child: PageView.builder(
+            itemCount: sujaModel.sujaExerciseState.siganExercises.length,
+            controller: PageController(viewportFraction: 0.9),
+            onPageChanged: (int index) => setState(() => _index = index),
+            itemBuilder: (_, i) {
+              return Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                child: Center(
+                  child: SiganExercise(
+                    siganExerciseState:
+                        sujaModel.sujaExerciseState.siganExercises[_index],
+                    onUserHourSet: sujaModel.setUserHour,
+                    onUserMinSet: sujaModel.setUserMin,
+                    onUserSecSet: sujaModel.setUserSec,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: Builder(builder: (BuildContext context) => BackButton()),
           elevation: APPBAR_ELEVATION,
@@ -26,33 +66,11 @@ class SujaExercise extends StatelessWidget {
           create: (context) => SujaExerciseNotifier(),
           child: Consumer<SujaExerciseNotifier>(
             builder: (context, sujaModel, child) => Center(
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NumberChart()),
-                            );
-                          },
-                          child:
-                              Text(AppLocalizations.of(context)!.numberChart)),
-                    ),
-                    ...sujaModel.sujaExerciseState.siganExercises
-                        .map((e) => SiganExercise(
-                              siganExerciseState: e,
-                              onUserHourSet: sujaModel.setUserHour,
-                              onUserMinSet: sujaModel.setUserMin,
-                              onUserSecSet: sujaModel.setUserSec,
-                            ))
-                  ],
-                ),
+              child: Column(
+                children: [
+                  NumberChartButton(),
+                  getCarousel(context, sujaModel),
+                ],
               ),
             ),
           ),

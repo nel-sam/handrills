@@ -6,15 +6,24 @@ class SujaExerciseNotifier with ChangeNotifier {
   late SujaExerciseState sujaExerciseState;
 
   SujaExerciseNotifier() {
-    final sijanExerciseState = SiganExerciseState(
-      hour: 5,
-      min: 43,
-      sec: 99,
-      correctHour: '다섯',
-      correctMin: '사십삼',
-      correctSec: '구십구',
-    );
-    List<SiganExerciseState> siganExercises = [sijanExerciseState];
+    List<SiganExerciseState> siganExercises = [
+      SiganExerciseState(
+        hour: '05',
+        min: '43',
+        sec: '99',
+        correctHour: '다섯',
+        correctMin: '사십삼',
+        correctSec: '구십구',
+      ),
+      SiganExerciseState(
+        hour: '02',
+        min: '09',
+        sec: '30',
+        correctHour: '두',
+        correctMin: '구',
+        correctSec: '삼십',
+      )
+    ];
     sujaExerciseState = SujaExerciseState(siganExercises: siganExercises);
   }
 
