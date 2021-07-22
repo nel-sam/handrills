@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
+import 'package:handrills/widgets/shared/info-button.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -32,6 +33,8 @@ OutlineInputBorder getBorder(String correct, String userInput) {
 
 class _SiganExerciseState extends State<SiganExercise> {
   final double textFieldWidth = 70;
+  bool showInfo = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,10 +42,23 @@ class _SiganExerciseState extends State<SiganExercise> {
         Clock(
             time:
                 '${widget.siganExerciseState.hour}:${widget.siganExerciseState.min}:${widget.siganExerciseState.sec}'),
-        Padding(
-          padding: const EdgeInsets.only(top: 18.0),
-          child: Text(AppLocalizations.of(context)!.typeTheTime),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Text(AppLocalizations.of(context)!.typeTheTime),
+            ),
+            InfoButton(
+              onPressed: () {
+                setState(() {
+                  showInfo = !showInfo;
+                });
+              },
+            ),
+          ],
         ),
+        if (showInfo) Text(AppLocalizations.of(context)!.timeDesc),
         Padding(
           padding: const EdgeInsets.all(18.0),
           child: Row(

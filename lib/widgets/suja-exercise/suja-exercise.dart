@@ -3,6 +3,7 @@ import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
+import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,19 @@ class SujaExercise extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NumberChart()),
+                            );
+                          },
+                          child:
+                              Text(AppLocalizations.of(context)!.numberChart)),
+                    ),
                     ...sujaModel.sujaExerciseState.siganExercises
                         .map((e) => SiganExercise(
                               siganExerciseState: e,
