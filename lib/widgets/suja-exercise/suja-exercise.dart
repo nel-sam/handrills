@@ -31,7 +31,12 @@ class SujaExercise extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ...sujaModel.sujaExerciseState.siganExercises
-                        .map((e) => SiganExercise(e, sujaModel.sujaExerciseState.setUserHourSet))
+                        .map((e) => SiganExercise(
+                              siganExerciseState: e,
+                              onUserHourSet: sujaModel.setUserHour,
+                              onUserMinSet: sujaModel.setUserMin,
+                              onUserSecSet: sujaModel.setUserSec,
+                            ))
                   ],
                 ),
               ),

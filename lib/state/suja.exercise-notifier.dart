@@ -17,4 +17,19 @@ class SujaExerciseNotifier with ChangeNotifier {
     List<SiganExerciseState> siganExercises = [sijanExerciseState];
     sujaExerciseState = SujaExerciseState(siganExercises: siganExercises);
   }
+
+  setUserHour(SiganExerciseState siganExerciseState, String userHour) {
+    siganExerciseState.userHour = userHour;
+    notifyListeners();
+  }
+
+  setUserMin(SiganExerciseState siganExerciseState, String userMin) {
+    siganExerciseState.userMin = userMin;
+    notifyListeners();
+  }
+
+  setUserSec(SiganExerciseState siganExerciseState, String userSec) {
+    siganExerciseState.userSec = userSec;
+    notifyListeners();
+  }
 }
