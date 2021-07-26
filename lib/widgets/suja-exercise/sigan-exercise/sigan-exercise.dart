@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/widgets/shared/info-button.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
@@ -21,14 +21,6 @@ class SiganExercise extends StatefulWidget {
 
   @override
   _SiganExerciseState createState() => _SiganExerciseState();
-}
-
-OutlineInputBorder getBorder(String correct, String userInput) {
-  return OutlineInputBorder(
-    borderSide: BorderSide(
-      color: correct == userInput ? CORRECT_COLOR : WRONG_COLOR,
-    ),
-  );
 }
 
 class _SiganExerciseState extends State<SiganExercise> {
@@ -74,10 +66,10 @@ class _SiganExerciseState extends State<SiganExercise> {
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: getBorder(
+                            enabledBorder: HD.getTextFieldBorder(
                                 widget.siganExerciseState.correctHour,
                                 widget.siganExerciseState.userHour),
-                            focusedBorder: getBorder(
+                            focusedBorder: HD.getTextFieldBorder(
                                 widget.siganExerciseState.correctHour,
                                 widget.siganExerciseState.userHour),
                           ),
@@ -104,10 +96,10 @@ class _SiganExerciseState extends State<SiganExercise> {
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: getBorder(
+                            enabledBorder: HD.getTextFieldBorder(
                                 widget.siganExerciseState.correctMin,
                                 widget.siganExerciseState.userMin),
-                            focusedBorder: getBorder(
+                            focusedBorder: HD.getTextFieldBorder(
                                 widget.siganExerciseState.correctMin,
                                 widget.siganExerciseState.userMin),
                           ),
@@ -134,10 +126,10 @@ class _SiganExerciseState extends State<SiganExercise> {
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: getBorder(
+                            enabledBorder: HD.getTextFieldBorder(
                                 widget.siganExerciseState.correctSec,
                                 widget.siganExerciseState.userSec),
-                            focusedBorder: getBorder(
+                            focusedBorder: HD.getTextFieldBorder(
                                 widget.siganExerciseState.correctSec,
                                 widget.siganExerciseState.userSec),
                           ),

@@ -21,4 +21,13 @@ class HD {
         ? APP_BAR_ICONTHEME_DARK
         : APP_BAR_ICONTHEME_LIGHT;
   }
+
+  static OutlineInputBorder getTextFieldBorder(
+      String correct, String userInput) {
+    return OutlineInputBorder(
+      borderSide: BorderSide(
+        color: correct == userInput ? CORRECT_COLOR : WRONG_COLOR,
+      ),
+    );
+  }
 }

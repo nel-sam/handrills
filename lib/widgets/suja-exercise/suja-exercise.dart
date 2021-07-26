@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:handrills/state/models/count-exercise-state.dart';
+import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
+import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart-button.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +30,7 @@ class _SujaExerciseState extends State<SujaExercise> {
           height: screenSize.height - 250,
           width: screenSize.width,
           child: PageView.builder(
-            itemCount: sujaModel.sujaExerciseState.siganExercises.length,
+            itemCount: sujaModel.sujaExerciseState.getAll().length,
             controller: PageController(viewportFraction: 0.9),
             onPageChanged: (int index) => setState(() => _index = index),
             itemBuilder: (_, i) {
@@ -36,13 +39,7 @@ class _SujaExerciseState extends State<SujaExercise> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Center(
-                  child: SiganExercise(
-                    siganExerciseState:
-                        sujaModel.sujaExerciseState.siganExercises[_index],
-                    onUserHourSet: sujaModel.setUserHour,
-                    onUserMinSet: sujaModel.setUserMin,
-                    onUserSecSet: sujaModel.setUserSec,
-                  ),
+                  child: getExerciseWidget(sujaModel, _index),
                 ),
               );
             },
@@ -75,5 +72,23 @@ class _SujaExerciseState extends State<SujaExercise> {
             ),
           ),
         ));
+  }
+
+  dynamic getExerciseWidget(SujaExerciseNotifier sujaModel, int indx) {
+    final itemfromList = sujaModel.sujaExerciseState.getAll()[indx];
+
+    if (itemfromList is SiganExerciseState)
+      return SiganExercise(
+        siganExerciseState: itemfromList,
+        onUserHourSet: sujaModel.setUserHour,
+        onUserMinSet: sujaModel.setUserMin,
+        onUserSecSet: sujaModel.setUserSec,
+      );
+
+    if (itemfromList is CountExerciseState)
+      return CountingExercise(
+        state: itemfromList,
+        onUserCountSet: sujaModel.onUserCountSet,
+      );
   }
 }
