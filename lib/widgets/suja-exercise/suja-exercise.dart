@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
+import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart-button.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
@@ -89,6 +91,12 @@ class _SujaExerciseState extends State<SujaExercise> {
       return CountingExercise(
         state: itemfromList,
         onUserCountSet: sujaModel.onUserCountSet,
+      );
+
+    if (itemfromList is AgeExerciseState)
+      return AgeExercise(
+        state: itemfromList,
+        onAgeSet: sujaModel.onAgeSet,
       );
   }
 }

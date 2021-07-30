@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/state/models/suja-exercise-state.dart';
@@ -42,9 +43,14 @@ class SujaExerciseNotifier with ChangeNotifier {
       ),
     ];
 
+    List<AgeExerciseState> ageExerciseState = [
+      AgeExerciseState(age: 37, correctAnswer: '서른 일곱')
+    ];
+
     sujaExerciseState = SujaExerciseState(
       siganExercises: siganExercises,
       countExercises: countExerciseState,
+      ageExercises: ageExerciseState,
     );
 
     sujaExerciseState.siganExercises.shuffle();
@@ -67,6 +73,11 @@ class SujaExerciseNotifier with ChangeNotifier {
   }
 
   onUserCountSet(CountExerciseState state, String userInput) {
+    state.userInput = userInput;
+    notifyListeners();
+  }
+
+  onAgeSet(AgeExerciseState state, String userInput) {
     state.userInput = userInput;
     notifyListeners();
   }

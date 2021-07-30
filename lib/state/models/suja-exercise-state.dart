@@ -1,14 +1,18 @@
+import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
 
 class SujaExerciseState {
   List<SiganExerciseState> siganExercises;
   List<CountExerciseState> countExercises;
+  List<AgeExerciseState> ageExercises;
+
   late List<dynamic> _all = [];
 
   SujaExerciseState({
     required this.siganExercises,
     required this.countExercises,
+    required this.ageExercises,
   });
 
   List<dynamic> getAll() {
@@ -16,6 +20,7 @@ class SujaExerciseState {
 
     _all.addAll(siganExercises);
     _all.addAll(countExercises);
+    _all.addAll(ageExercises);
     _all.shuffle();
     return _all;
   }
