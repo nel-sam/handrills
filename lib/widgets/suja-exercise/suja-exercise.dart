@@ -34,14 +34,22 @@ class _SujaExerciseState extends State<SujaExercise> {
           child: PageView.builder(
             itemCount: sujaModel.sujaExerciseState.getAll().length,
             controller: PageController(viewportFraction: 0.9),
-            onPageChanged: (int index) => setState(() => _index = index),
+            onPageChanged: (int index) => setState(() {
+              // TODO: Fix swipe bug after clicking next button
+              _index = index > _index ? _index++ : _index--;
+            }),
             itemBuilder: (_, i) {
               return Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Center(
-                  child: getExerciseWidget(sujaModel, _index),
+                  child: getExerciseWidget(
+                      sujaModel,
+                      _index,
+                      () => setState(() {
+                            _index++;
+                          })),
                 ),
               );
             },
@@ -76,7 +84,11 @@ class _SujaExerciseState extends State<SujaExercise> {
         ));
   }
 
-  dynamic getExerciseWidget(SujaExerciseNotifier sujaModel, int indx) {
+  dynamic getExerciseWidget(
+    SujaExerciseNotifier sujaModel,
+    int indx,
+    Function() onNextButtonPressed,
+  ) {
     final itemfromList = sujaModel.sujaExerciseState.getAll()[indx];
 
     if (itemfromList is SiganExerciseState)
@@ -85,6 +97,7 @@ class _SujaExerciseState extends State<SujaExercise> {
         onUserHourSet: sujaModel.setUserHour,
         onUserMinSet: sujaModel.setUserMin,
         onUserSecSet: sujaModel.setUserSec,
+        onNextButtonPressed: onNextButtonPressed,
       );
 
     if (itemfromList is CountExerciseState)

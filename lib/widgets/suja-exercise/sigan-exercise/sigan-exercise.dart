@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
+import 'package:handrills/widgets/shared/answer-status-button.dart';
 import 'package:handrills/widgets/shared/info-button.dart';
+import 'package:handrills/widgets/shared/next-button.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SiganExercise extends StatefulWidget {
   final SiganExerciseState siganExerciseState;
+  final Function() onNextButtonPressed;
   final Function(SiganExerciseState, String) onUserHourSet;
   final Function(SiganExerciseState, String) onUserMinSet;
   final Function(SiganExerciseState, String) onUserSecSet;
@@ -14,6 +17,7 @@ class SiganExercise extends StatefulWidget {
   const SiganExercise({
     Key? key,
     required this.siganExerciseState,
+    required this.onNextButtonPressed,
     required this.onUserHourSet,
     required this.onUserMinSet,
     required this.onUserSecSet,
@@ -29,6 +33,12 @@ class _SiganExerciseState extends State<SiganExercise> {
 
   @override
   Widget build(BuildContext context) {
+    var isHourCorrect = widget.siganExerciseState.correctHour ==
+        widget.siganExerciseState.userHour;
+    var isMinCorrect = widget.siganExerciseState.correctMin ==
+        widget.siganExerciseState.userMin;
+    var isSecCorrect = widget.siganExerciseState.correctSec ==
+        widget.siganExerciseState.userSec;
     var s = widget.siganExerciseState;
 
     return Padding(
@@ -56,22 +66,19 @@ class _SiganExerciseState extends State<SiganExercise> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
+                Column(
                   children: [
+                    AnswerStatusButton(isCorrect: isHourCorrect),
                     Container(
                         width: textFieldWidth,
                         child: TextField(
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: HD.getTextFieldBorder(
-                                widget.siganExerciseState.correctHour,
-                                widget.siganExerciseState.userHour),
-                            focusedBorder: HD.getTextFieldBorder(
-                                widget.siganExerciseState.correctHour,
-                                widget.siganExerciseState.userHour),
+                            enabledBorder: HD.getTextFieldBorder(isHourCorrect),
+                            focusedBorder: HD.getTextFieldBorder(isHourCorrect),
                           ),
                           onChanged: (String? newVal) {
                             if (newVal != null) {
@@ -88,20 +95,17 @@ class _SiganExerciseState extends State<SiganExercise> {
                     ),
                   ],
                 ),
-                Row(
+                Column(
                   children: [
+                    AnswerStatusButton(isCorrect: isMinCorrect),
                     Container(
                         width: textFieldWidth,
                         child: TextField(
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: HD.getTextFieldBorder(
-                                widget.siganExerciseState.correctMin,
-                                widget.siganExerciseState.userMin),
-                            focusedBorder: HD.getTextFieldBorder(
-                                widget.siganExerciseState.correctMin,
-                                widget.siganExerciseState.userMin),
+                            enabledBorder: HD.getTextFieldBorder(isMinCorrect),
+                            focusedBorder: HD.getTextFieldBorder(isMinCorrect),
                           ),
                           onChanged: (String? newVal) {
                             if (newVal != null) {
@@ -118,20 +122,17 @@ class _SiganExerciseState extends State<SiganExercise> {
                     ),
                   ],
                 ),
-                Row(
+                Column(
                   children: [
+                    AnswerStatusButton(isCorrect: isSecCorrect),
                     Container(
                         width: textFieldWidth,
                         child: TextField(
                           decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: HD.getTextFieldBorder(
-                                widget.siganExerciseState.correctSec,
-                                widget.siganExerciseState.userSec),
-                            focusedBorder: HD.getTextFieldBorder(
-                                widget.siganExerciseState.correctSec,
-                                widget.siganExerciseState.userSec),
+                            enabledBorder: HD.getTextFieldBorder(isSecCorrect),
+                            focusedBorder: HD.getTextFieldBorder(isSecCorrect),
                           ),
                           onChanged: (String? newVal) {
                             if (newVal != null) {
@@ -151,6 +152,9 @@ class _SiganExerciseState extends State<SiganExercise> {
               ],
             ),
           ),
+          NextButton(
+              enabled: widget.siganExerciseState.getIsCorrect(),
+              onPressed: widget.onNextButtonPressed),
         ],
       ),
     );

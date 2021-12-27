@@ -12,3 +12,5 @@ const APP_BAR_ICONTHEME_DARK = IconThemeData();
 const APP_BAR_ICONTHEME_LIGHT = IconThemeData(color: ACCENT_COLOR);
 const CORRECT_COLOR = Colors.green;
 const WRONG_COLOR = Colors.deepOrange;
+const CORRECT_ANSWER_ICON = Icons.check_circle_outline;
+const WRONG_ANSWER_ICON = Icons.error_outline_outlined;

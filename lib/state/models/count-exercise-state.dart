@@ -13,4 +13,8 @@ class CountExerciseState {
     required this.counter,
     required this.correctAnswer,
   });
+
+  bool getIsCorrect() {
+    return this.userInput == this.correctAnswer;
+  }
 }

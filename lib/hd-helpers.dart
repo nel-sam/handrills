@@ -22,11 +22,10 @@ class HD {
         : APP_BAR_ICONTHEME_LIGHT;
   }
 
-  static OutlineInputBorder getTextFieldBorder(
-      String correct, String userInput) {
+  static OutlineInputBorder getTextFieldBorder(bool isCorrect) {
     return OutlineInputBorder(
       borderSide: BorderSide(
-        color: correct == userInput ? CORRECT_COLOR : WRONG_COLOR,
+        color: isCorrect ? CORRECT_COLOR : WRONG_COLOR,
       ),
     );
   }

@@ -17,4 +17,10 @@ class SiganExerciseState {
     required this.correctMin,
     required this.correctSec,
   });
+
+  bool getIsCorrect() {
+    return this.userHour == this.correctHour &&
+        this.userMin == this.correctMin &&
+        this.userSec == this.correctSec;
+  }
 }

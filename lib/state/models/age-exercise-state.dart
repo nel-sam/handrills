@@ -7,4 +7,8 @@ class AgeExerciseState {
     required this.age,
     required this.correctAnswer,
   });
+
+  bool getIsCorrect() {
+    return userInput == correctAnswer;
+  }
 }

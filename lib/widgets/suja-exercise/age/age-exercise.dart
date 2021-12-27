@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/models/age-exercise-state.dart';
+import 'package:handrills/widgets/shared/answer-status-button.dart';
 
 class AgeExercise extends StatefulWidget {
   final AgeExerciseState state;
@@ -19,6 +20,8 @@ class AgeExercise extends StatefulWidget {
 class _AgeExerciseState extends State<AgeExercise> {
   @override
   Widget build(BuildContext context) {
+    var isCorrect = this.widget.state.getIsCorrect();
+
     return Padding(
         padding: EdgeInsets.all(8),
         child: Column(
@@ -29,16 +32,15 @@ class _AgeExerciseState extends State<AgeExercise> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                AnswerStatusButton(isCorrect: isCorrect),
                 Container(
                   width: 150,
                   child: TextField(
                     decoration: InputDecoration(
                       isDense: true,
                       contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                      enabledBorder: HD.getTextFieldBorder(
-                          widget.state.correctAnswer, widget.state.userInput),
-                      focusedBorder: HD.getTextFieldBorder(
-                          widget.state.correctAnswer, widget.state.userInput),
+                      enabledBorder: HD.getTextFieldBorder(isCorrect),
+                      focusedBorder: HD.getTextFieldBorder(isCorrect),
                     ),
                     onChanged: (String? newVal) {
                       if (newVal != null) {

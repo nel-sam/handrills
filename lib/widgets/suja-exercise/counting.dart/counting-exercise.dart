@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
+import 'package:handrills/widgets/shared/answer-status-button.dart';
 
 class CountingExercise extends StatefulWidget {
   final CountExerciseState state;
@@ -19,6 +20,8 @@ class CountingExercise extends StatefulWidget {
 class _CountingExerciseState extends State<CountingExercise> {
   @override
   Widget build(BuildContext context) {
+    var isCorrect = widget.state.getIsCorrect();
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -41,15 +44,17 @@ class _CountingExerciseState extends State<CountingExercise> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                  child: AnswerStatusButton(
+                isCorrect: isCorrect,
+              )),
+              Container(
                 width: 50,
                 child: TextField(
                   decoration: InputDecoration(
                     isDense: true,
                     contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                    enabledBorder: HD.getTextFieldBorder(
-                        widget.state.correctAnswer, widget.state.userInput),
-                    focusedBorder: HD.getTextFieldBorder(
-                        widget.state.correctAnswer, widget.state.userInput),
+                    enabledBorder: HD.getTextFieldBorder(isCorrect),
+                    focusedBorder: HD.getTextFieldBorder(isCorrect),
                   ),
                   onChanged: (String? newVal) {
                     if (newVal != null) {
