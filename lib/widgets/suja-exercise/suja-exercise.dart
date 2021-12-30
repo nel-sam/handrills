@@ -35,8 +35,7 @@ class _SujaExerciseState extends State<SujaExercise> {
             itemCount: sujaModel.sujaExerciseState.getAll().length,
             controller: PageController(viewportFraction: 0.9),
             onPageChanged: (int index) => setState(() {
-              // TODO: Fix swipe bug after clicking next button
-              _index = index > _index ? _index++ : _index--;
+              _index = index > _index ? _index + 1 : _index - 1;
             }),
             itemBuilder: (_, i) {
               return Card(
@@ -104,12 +103,14 @@ class _SujaExerciseState extends State<SujaExercise> {
       return CountingExercise(
         state: itemfromList,
         onUserCountSet: sujaModel.onUserCountSet,
+        onNextButtonPressed: onNextButtonPressed,
       );
 
     if (itemfromList is AgeExerciseState)
       return AgeExercise(
         state: itemfromList,
         onAgeSet: sujaModel.onAgeSet,
+        onNextButtonPressed: onNextButtonPressed,
       );
   }
 }

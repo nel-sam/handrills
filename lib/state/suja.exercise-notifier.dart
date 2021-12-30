@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:handrills/constants.dart';
+import 'package:handrills/lang_data/numbers.dart';
 import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
@@ -9,52 +13,123 @@ class SujaExerciseNotifier with ChangeNotifier {
   late SujaExerciseState sujaExerciseState;
 
   SujaExerciseNotifier() {
-    List<SiganExerciseState> siganExercises = [
-      SiganExerciseState(
-        hour: '05',
-        min: '43',
-        sec: '99',
-        correctHour: '다섯',
-        correctMin: '사십삼',
-        correctSec: '구십구',
-      ),
-      SiganExerciseState(
-        hour: '02',
-        min: '09',
-        sec: '30',
-        correctHour: '두',
-        correctMin: '구',
-        correctSec: '삼십',
-      )
-    ];
-
-    List<CountExerciseState> countExerciseState = [
-      CountExerciseState(
-        icon: Icons.person,
-        count: 5,
-        correctAnswer: '다섯',
-        counter: '명',
-      ),
-      CountExerciseState(
-        icon: Icons.pets,
-        count: 3,
-        correctAnswer: '세',
-        counter: '마리',
-      ),
-    ];
-
-    List<AgeExerciseState> ageExerciseState = [
-      AgeExerciseState(age: 37, correctAnswer: '서른 일곱')
-    ];
-
     sujaExerciseState = SujaExerciseState(
-      siganExercises: siganExercises,
-      countExercises: countExerciseState,
-      ageExercises: ageExerciseState,
+      siganExercises: createSiganExercises(),
+      countExercises: createCountingExercises(),
+      ageExercises: createAgeExercises(),
     );
 
     sujaExerciseState.siganExercises.shuffle();
     sujaExerciseState.countExercises.shuffle();
+  }
+
+  List<SiganExerciseState> createSiganExercises() {
+    List<SiganExerciseState> siganExercises = [];
+
+    for (int i = 0; i < SIGAN_EXERCISE_COUNT; i++) {
+      var hour = getRandomNativeNumber(max: 12);
+      var min = getRandomSinoNumber(min: 1, max: 59);
+      var sec = getRandomSinoNumber(min: 1, max: 59);
+
+      siganExercises.add(SiganExerciseState(
+        hour: hour.digit < 10 ? '0${hour.digit}' : hour.digit.toString(),
+        min: min.digit < 10 ? '0${min.digit}' : min.digit.toString(),
+        sec: sec.digit < 10 ? '0${sec.digit}' : sec.digit.toString(),
+        correctHour: hour.alternate,
+        correctMin: min.written,
+        correctSec: sec.written,
+      ));
+    }
+
+    return siganExercises;
+  }
+
+  List<CountExerciseState> createCountingExercises() {
+    List<CountExerciseState> countExerciseState = [];
+
+    for (int i = 0; i < COUNTING_EXERCISE_NATIVE_COUNT; i++) {
+      var random = new Random();
+      var hanNumb = getRandomNativeNumber();
+      int coinFlip = random.nextInt(2);
+
+      switch (coinFlip) {
+        case 0:
+          countExerciseState.add(
+            CountExerciseState(
+              icon: Icons.person,
+              count: hanNumb.digit,
+              correctAnswer: hanNumb.alternate,
+              counter: '명',
+            ),
+          );
+          break;
+        case 1:
+        default:
+          countExerciseState.add(
+            CountExerciseState(
+              icon: Icons.pets,
+              count: hanNumb.digit,
+              correctAnswer: hanNumb.alternate,
+              counter: '마리',
+            ),
+          );
+      }
+    }
+
+    return countExerciseState;
+  }
+
+  List<AgeExerciseState> createAgeExercises() {
+    List<AgeExerciseState> ageExerciseState = [];
+
+    for (int i = 0; i < AGE_EXERCISE_COUNT; i++) {
+      HanNumber number = getRandomNativeNumber();
+
+      ageExerciseState.add(
+        AgeExerciseState(
+          age: number.digit,
+          correctAnswer: number.alternate,
+        ),
+      );
+    }
+    return ageExerciseState;
+  }
+
+  HanNumber getRandomSinoNumber({int min = 0, int max = 99}) {
+    var random = new Random();
+    var digit = random.nextInt(max - min) + min;
+    var written = '';
+
+    var hundredsPlace = (digit / 100).floor();
+    var hundredsValue = hundredsPlace * 100;
+    var tensPlace = ((digit - hundredsValue) / 10).floor();
+    var tensValue = tensPlace * 10;
+    var onesPlace = digit - hundredsValue - tensValue;
+
+    if (hundredsPlace > 0) {
+      if (hundredsPlace > 1)
+        written += '${sinoNumberBank[hundredsPlace].written}백';
+      else
+        written += '백';
+    }
+
+    if (tensPlace > 0) {
+      if (tensPlace > 1)
+        written += '${sinoNumberBank[tensPlace].written}십';
+      else
+        written += '십';
+    }
+
+    if (onesPlace > 0) {
+      written += sinoNumberBank[onesPlace].written;
+    }
+
+    return HanNumber(digit: digit, written: written);
+  }
+
+  HanNumber getRandomNativeNumber({int min = 0, int max = 99}) {
+    var random = new Random();
+    return nativeNumberBank[random.nextInt(max - min) + min];
   }
 
   setUserHour(SiganExerciseState siganExerciseState, String userHour) {

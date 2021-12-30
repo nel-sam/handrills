@@ -42,7 +42,7 @@ class _SiganExerciseState extends State<SiganExercise> {
     var s = widget.siganExerciseState;
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
           Clock(time: '${s.hour}:${s.min}:${s.sec}'),
@@ -153,8 +153,9 @@ class _SiganExerciseState extends State<SiganExercise> {
             ),
           ),
           NextButton(
-              enabled: widget.siganExerciseState.getIsCorrect(),
-              onPressed: widget.onNextButtonPressed),
+            enabled: widget.siganExerciseState.getIsCorrect(),
+            onPressed: widget.onNextButtonPressed,
+          ),
         ],
       ),
     );

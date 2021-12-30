@@ -14,3 +14,7 @@ const CORRECT_COLOR = Colors.green;
 const WRONG_COLOR = Colors.deepOrange;
 const CORRECT_ANSWER_ICON = Icons.check_circle_outline;
 const WRONG_ANSWER_ICON = Icons.error_outline_outlined;
+
+const AGE_EXERCISE_COUNT = 4;
+const SIGAN_EXERCISE_COUNT = 4;
+const COUNTING_EXERCISE_NATIVE_COUNT = 4;

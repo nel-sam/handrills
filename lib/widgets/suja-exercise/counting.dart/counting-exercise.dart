@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
+import 'package:handrills/widgets/shared/next-button.dart';
 
 class CountingExercise extends StatefulWidget {
   final CountExerciseState state;
   final Function onUserCountSet;
+  final Function() onNextButtonPressed;
 
   const CountingExercise({
     Key? key,
     required this.state,
     required this.onUserCountSet,
+    required this.onNextButtonPressed,
   }) : super(key: key);
 
   @override
@@ -23,7 +26,7 @@ class _CountingExerciseState extends State<CountingExercise> {
     var isCorrect = widget.state.getIsCorrect();
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
           Column(
@@ -71,7 +74,11 @@ class _CountingExerciseState extends State<CountingExercise> {
                     Text(widget.state.counter, style: TextStyle(fontSize: 28)),
               ),
             ],
-          )
+          ),
+          NextButton(
+            enabled: widget.state.getIsCorrect(),
+            onPressed: widget.onNextButtonPressed,
+          ),
         ],
       ),
     );
