@@ -2,9 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:handrills/lang_data/numbers.dart';
+import 'package:handrills/widgets/shared/hd-sub-header.dart';
 
 class NumberChart extends StatelessWidget {
-  const NumberChart({Key? key}) : super(key: key);
+  NumberChart({Key? key}) : super(key: key) {
+    boldStyle = TextStyle(fontWeight: FontWeight.bold);
+  }
+  late TextStyle boldStyle;
+
+  getSinoNumberChart(BuildContext context) {
+    List<HanNumber> numbers = [];
+    var maxNum = 100;
+
+    for (int i = 0; i <= maxNum; i++) {
+      var hn = HD.getSinoNumber(i);
+      var written = hn.alternate == hn.written
+          ? hn.written
+          : '${hn.written}/${hn.alternate}';
+      numbers.add(HanNumber(digit: hn.digit, written: written));
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              HdSubHeader(AppLocalizations.of(context)!.nativeNumbers),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...numbers.getRange(0, 34).map((e) => Text(
+                      '${e.digit} ${e.written}',
+                      style: boldStyle,
+                    ))
+              ]),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...numbers
+                    .getRange(34, 67)
+                    .map((e) => Text('${e.digit} ${e.written}'))
+              ]),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...numbers.getRange(67, 101).map((e) => Text(
+                      '${e.digit} ${e.written}',
+                      style: boldStyle,
+                    ))
+              ]),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   getNativeNumberChart(BuildContext context) {
     return Padding(
@@ -13,74 +67,32 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(AppLocalizations.of(context)!.nativeNumbers),
+              HdSubHeader(AppLocalizations.of(context)!.sinoNumbers),
             ],
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                children: [
-                  Text('0'),
-                  Text('1'),
-                  Text('2'),
-                  Text('3'),
-                  Text('4'),
-                  // Text('5'),
-                  // Text('6'),
-                  // Text('7'),
-                  // Text('8'),
-                  // Text('9'),
-                  // Text('10'),
-                  // Text('11'),
-                  // Text('12'),
-                ],
-              ),
-              Column(
-                children: [
-                  Text('영'),
-                  Text('하나/한'),
-                  Text('들/들'),
-                  Text('셋/세'),
-                  Text('셋/세'),
-                ],
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  getSinoNumberChart(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text(AppLocalizations.of(context)!.sinoNumbers),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...nativeNumberBank.getRange(1, 34).map((e) => Text(
+                      '${e.digit} ${e.written}',
+                      style: boldStyle,
+                    ))
+              ]),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...nativeNumberBank
+                    .getRange(34, 67)
+                    .map((e) => Text('${e.digit} ${e.written}'))
+              ]),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...nativeNumberBank.getRange(67, 100).map((e) => Text(
+                      '${e.digit} ${e.written}',
+                      style: boldStyle,
+                    ))
+              ]),
             ],
           ),
-          Row(
-            children: [
-              Column(
-                children: [
-                  Text('0'),
-                  Text('1'),
-                  Text('2'),
-                  Text('3'),
-                ],
-              ),
-              Column(
-                children: [
-                  Text('영'),
-                  Text('일'),
-                  Text('이'),
-                  Text('삼'),
-                ],
-              ),
-            ],
-          )
         ],
       ),
     );

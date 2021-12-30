@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
 import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
@@ -18,9 +19,6 @@ class SujaExerciseNotifier with ChangeNotifier {
       countExercises: createCountingExercises(),
       ageExercises: createAgeExercises(),
     );
-
-    sujaExerciseState.siganExercises.shuffle();
-    sujaExerciseState.countExercises.shuffle();
   }
 
   List<SiganExerciseState> createSiganExercises() {
@@ -98,33 +96,7 @@ class SujaExerciseNotifier with ChangeNotifier {
   HanNumber getRandomSinoNumber({int min = 0, int max = 99}) {
     var random = new Random();
     var digit = random.nextInt(max - min) + min;
-    var written = '';
-
-    var hundredsPlace = (digit / 100).floor();
-    var hundredsValue = hundredsPlace * 100;
-    var tensPlace = ((digit - hundredsValue) / 10).floor();
-    var tensValue = tensPlace * 10;
-    var onesPlace = digit - hundredsValue - tensValue;
-
-    if (hundredsPlace > 0) {
-      if (hundredsPlace > 1)
-        written += '${sinoNumberBank[hundredsPlace].written}백';
-      else
-        written += '백';
-    }
-
-    if (tensPlace > 0) {
-      if (tensPlace > 1)
-        written += '${sinoNumberBank[tensPlace].written}십';
-      else
-        written += '십';
-    }
-
-    if (onesPlace > 0) {
-      written += sinoNumberBank[onesPlace].written;
-    }
-
-    return HanNumber(digit: digit, written: written);
+    return HD.getSinoNumber(digit);
   }
 
   HanNumber getRandomNativeNumber({int min = 0, int max = 99}) {
