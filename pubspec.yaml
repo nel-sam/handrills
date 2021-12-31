@@ -44,15 +44,15 @@ flutter_icons:
 
 # flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  color: "#1f96f3"
+  color: "#ffffff"
   image: assets/splash.png
-  color_dark: "#2b2b2f"
+  color_dark: "#000000"
   android: true
   ios: true
 
 
-  # Commands:
-  # Build deployable IOS:         flutter build ipa
+  # Build dep
+  # Commands:loyable IOS:         flutter build ipa
   # Build deployable Android:     flutter build appbundle
   # Build debug installable IOS:  flutter build ios
   # Install on phone:             flutter install
