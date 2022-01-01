@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const double APPBAR_ELEVATION = 0;
+const CELL_TEXT_PADDING = 5.0;
 const ACCENT_COLOR = Colors.pink;
 const TextStyle HEADER_TEXT_STYLE =
     TextStyle(fontSize: 20, fontFamily: 'helvetica', color: ACCENT_COLOR);

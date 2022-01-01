@@ -29,6 +29,8 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+  assets:
+    - assets/button-bgs/
 
 flutter_intl:
   enabled: true
