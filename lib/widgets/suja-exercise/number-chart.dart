@@ -29,7 +29,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              HdSubHeader(AppLocalizations.of(context)!.nativeNumbers),
+              HdSubHeader(AppLocalizations.of(context)!.sinoNumbers),
             ],
           ),
           Row(
@@ -67,7 +67,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              HdSubHeader(AppLocalizations.of(context)!.sinoNumbers),
+              HdSubHeader(AppLocalizations.of(context)!.nativeNumbers),
             ],
           ),
           Row(
