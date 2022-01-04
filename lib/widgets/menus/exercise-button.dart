@@ -18,10 +18,8 @@ class ExerciseButton extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+      padding: const EdgeInsets.all(10),
       child: Container(
-        height: 140,
-        width: (screenWidth / 2) - 15,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           image: DecorationImage(
@@ -43,7 +41,7 @@ class ExerciseButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: label.length * 13.0,
+                    width: 100.0,
                     decoration: BoxDecoration(
                       border: Border(
                         bottom: BorderSide(width: 2, color: ACCENT_COLOR),
@@ -54,9 +52,17 @@ class ExerciseButton extends StatelessWidget {
                         top: 30,
                         bottom: 10,
                       ),
-                      child: Text(
-                        label,
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              label,
+                              style: TextStyle(
+                                  fontSize: screenWidth / 21,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   )

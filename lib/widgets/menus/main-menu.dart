@@ -11,20 +11,22 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ExerciseButton(
-              destination: SujaExercise(),
-              imagePath: 'assets/button-bgs/city.jpg',
-              label: AppLocalizations.of(context)!.numbersExercise,
-            ),
-            ExerciseButton(
-              destination: MyHomePage(title: 'HanDrills'),
-              imagePath: 'assets/button-bgs/sakura.jpg',
-              label: AppLocalizations.of(context)!.coming_soon,
-            )
-          ],
+        Expanded(
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: [
+              ExerciseButton(
+                destination: SujaExercise(),
+                imagePath: 'assets/button-bgs/city.jpg',
+                label: AppLocalizations.of(context)!.numbersExercise,
+              ),
+              ExerciseButton(
+                destination: MyHomePage(title: 'HanDrills'),
+                imagePath: 'assets/button-bgs/sakura.jpg',
+                label: AppLocalizations.of(context)!.coming_soon,
+              )
+            ],
+          ),
         ),
       ],
     );
