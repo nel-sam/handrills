@@ -10,7 +10,7 @@ class Clock extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      height: 140,
+      height: 100,
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 10),
           borderRadius: BorderRadius.all(

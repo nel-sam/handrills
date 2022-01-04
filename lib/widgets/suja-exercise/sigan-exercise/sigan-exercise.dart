@@ -63,94 +63,91 @@ class _SiganExerciseState extends State<SiganExercise> {
             ],
           ),
           if (showInfo) Text(AppLocalizations.of(context)!.timeDesc),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    AnswerStatusButton(isCorrect: isHourCorrect),
-                    Container(
-                        width: textFieldWidth,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: HD.getTextFieldBorder(isHourCorrect),
-                            focusedBorder: HD.getTextFieldBorder(isHourCorrect),
-                          ),
-                          onChanged: (String? newVal) {
-                            if (newVal != null) {
-                              setState(() {
-                                widget.onUserHourSet(
-                                    widget.siganExerciseState, newVal);
-                              });
-                            }
-                          },
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('시'),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    AnswerStatusButton(isCorrect: isMinCorrect),
-                    Container(
-                        width: textFieldWidth,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: HD.getTextFieldBorder(isMinCorrect),
-                            focusedBorder: HD.getTextFieldBorder(isMinCorrect),
-                          ),
-                          onChanged: (String? newVal) {
-                            if (newVal != null) {
-                              setState(() {
-                                widget.onUserMinSet(
-                                    widget.siganExerciseState, newVal);
-                              });
-                            }
-                          },
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('분'),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    AnswerStatusButton(isCorrect: isSecCorrect),
-                    Container(
-                        width: textFieldWidth,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                            enabledBorder: HD.getTextFieldBorder(isSecCorrect),
-                            focusedBorder: HD.getTextFieldBorder(isSecCorrect),
-                          ),
-                          onChanged: (String? newVal) {
-                            if (newVal != null) {
-                              setState(() {
-                                widget.onUserSecSet(
-                                    widget.siganExerciseState, newVal);
-                              });
-                            }
-                          },
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('초'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  AnswerStatusButton(isCorrect: isHourCorrect),
+                  Container(
+                      width: textFieldWidth,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
+                          enabledBorder: HD.getTextFieldBorder(isHourCorrect),
+                          focusedBorder: HD.getTextFieldBorder(isHourCorrect),
+                        ),
+                        onChanged: (String? newVal) {
+                          if (newVal != null) {
+                            setState(() {
+                              widget.onUserHourSet(
+                                  widget.siganExerciseState, newVal);
+                            });
+                          }
+                        },
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('시'),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  AnswerStatusButton(isCorrect: isMinCorrect),
+                  Container(
+                      width: textFieldWidth,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
+                          enabledBorder: HD.getTextFieldBorder(isMinCorrect),
+                          focusedBorder: HD.getTextFieldBorder(isMinCorrect),
+                        ),
+                        onChanged: (String? newVal) {
+                          if (newVal != null) {
+                            setState(() {
+                              widget.onUserMinSet(
+                                  widget.siganExerciseState, newVal);
+                            });
+                          }
+                        },
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('분'),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  AnswerStatusButton(isCorrect: isSecCorrect),
+                  Container(
+                      width: textFieldWidth,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
+                          enabledBorder: HD.getTextFieldBorder(isSecCorrect),
+                          focusedBorder: HD.getTextFieldBorder(isSecCorrect),
+                        ),
+                        onChanged: (String? newVal) {
+                          if (newVal != null) {
+                            setState(() {
+                              widget.onUserSecSet(
+                                  widget.siganExerciseState, newVal);
+                            });
+                          }
+                        },
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('초'),
+                  ),
+                ],
+              ),
+            ],
           ),
           NextButton(
             enabled: widget.siganExerciseState.getIsCorrect(),

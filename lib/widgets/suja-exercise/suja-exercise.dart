@@ -6,9 +6,11 @@ import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
+import 'package:handrills/widgets/shared/footer-button.dart';
+import 'package:handrills/widgets/shared/home-button.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
-import 'package:handrills/widgets/suja-exercise/number-chart-button.dart';
+import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
 import 'package:provider/provider.dart';
 
@@ -25,11 +27,12 @@ class _SujaExerciseState extends State<SujaExercise> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+    var footerButtonWidth = (screenSize.width / 2) - 20;
 
     getCarousel(BuildContext context, SujaExerciseNotifier sujaModel) {
       return Center(
         child: SizedBox(
-          height: screenSize.height - 150,
+          height: screenSize.height - 200,
           width: screenSize.width,
           child: PageView.builder(
             itemCount: sujaModel.sujaExerciseState.getAll().length,
@@ -58,29 +61,44 @@ class _SujaExerciseState extends State<SujaExercise> {
     }
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          leading: Builder(builder: (BuildContext context) => BackButton()),
-          elevation: APPBAR_ELEVATION,
-          backgroundColor: HD.getAppBarColor(context),
-          textTheme: HD.getAppBarTextTheme(context),
-          iconTheme: HD.getAppBarIconTheme(context),
-          title: Text(AppLocalizations.of(context)!.numbers,
-              style: HEADER_TEXT_STYLE),
-        ),
-        body: ChangeNotifierProvider<SujaExerciseNotifier>(
-          create: (context) => SujaExerciseNotifier(),
-          child: Consumer<SujaExerciseNotifier>(
-            builder: (context, sujaModel, child) => Center(
-              child: Column(
-                children: [
-                  NumberChartButton(),
-                  getCarousel(context, sujaModel),
-                ],
-              ),
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        leading: Builder(builder: (BuildContext context) => BackButton()),
+        elevation: APPBAR_ELEVATION,
+        backgroundColor: HD.getAppBarColor(context),
+        textTheme: HD.getAppBarTextTheme(context),
+        iconTheme: HD.getAppBarIconTheme(context),
+        title: Text(AppLocalizations.of(context)!.numbers,
+            style: HEADER_TEXT_STYLE),
+      ),
+      body: ChangeNotifierProvider<SujaExerciseNotifier>(
+        create: (context) => SujaExerciseNotifier(),
+        child: Consumer<SujaExerciseNotifier>(
+          builder: (context, sujaModel, child) => Center(
+            child: Column(
+              children: [
+                getCarousel(context, sujaModel),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+      persistentFooterButtons: [
+        HomeButton(width: footerButtonWidth),
+        FooterButton(
+          width: footerButtonWidth,
+          context: context,
+          text: AppLocalizations.of(context)!.numberChart,
+          icon: Icons.list,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NumberChart()),
+            );
+          },
+        ),
+      ],
+    );
   }
 
   dynamic getExerciseWidget(
