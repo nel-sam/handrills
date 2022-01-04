@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/main.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
+import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/suja-exercise/suja-exercise.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -11,6 +12,7 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        AdCard(),
         Expanded(
           child: GridView.count(
             crossAxisCount: 2,
