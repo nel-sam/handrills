@@ -25,7 +25,7 @@ class SujaExerciseNotifier with ChangeNotifier {
     List<SiganExerciseState> siganExercises = [];
 
     for (int i = 0; i < SIGAN_EXERCISE_COUNT; i++) {
-      var hour = getRandomNativeNumber(max: 12);
+      var hour = getRandomNativeNumber(min: 1, max: 23);
       var min = getRandomSinoNumber(min: 1, max: 59);
       var sec = getRandomSinoNumber(min: 1, max: 59);
 

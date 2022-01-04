@@ -71,15 +71,19 @@ class _SujaExerciseState extends State<SujaExercise> {
         title: Text(AppLocalizations.of(context)!.numbers,
             style: HEADER_TEXT_STYLE),
       ),
-      body: ChangeNotifierProvider<SujaExerciseNotifier>(
-        create: (context) => SujaExerciseNotifier(),
-        child: Consumer<SujaExerciseNotifier>(
-          builder: (context, sujaModel, child) => Center(
-            child: Column(
-              children: [
-                getCarousel(context, sujaModel),
-                AdCard(),
-              ],
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: ChangeNotifierProvider<SujaExerciseNotifier>(
+          create: (context) => SujaExerciseNotifier(),
+          child: Consumer<SujaExerciseNotifier>(
+            builder: (context, sujaModel, child) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  getCarousel(context, sujaModel),
+                  AdCard(),
+                ],
+              ),
             ),
           ),
         ),
