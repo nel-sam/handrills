@@ -32,7 +32,7 @@ class _SujaExerciseState extends State<SujaExercise> {
     getCarousel(BuildContext context, SujaExerciseNotifier sujaModel) {
       return Center(
         child: SizedBox(
-          height: screenSize.height - 200,
+          height: screenSize.height - 220,
           width: screenSize.width,
           child: PageView.builder(
             itemCount: sujaModel.sujaExerciseState.getAll().length,

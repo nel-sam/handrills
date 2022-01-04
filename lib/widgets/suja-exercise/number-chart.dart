@@ -6,10 +6,7 @@ import 'package:handrills/lang_data/numbers.dart';
 import 'package:handrills/widgets/shared/hd-sub-header.dart';
 
 class NumberChart extends StatelessWidget {
-  NumberChart({Key? key}) : super(key: key) {
-    boldStyle = TextStyle(fontWeight: FontWeight.bold);
-  }
-  late TextStyle boldStyle;
+  final TextStyle boldStyle = TextStyle(fontWeight: FontWeight.bold);
 
   getSinoNumberChart(BuildContext context) {
     List<HanNumber> numbers = [];
