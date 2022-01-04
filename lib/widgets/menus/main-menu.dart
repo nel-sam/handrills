@@ -12,7 +12,6 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AdCard(),
         Expanded(
           child: GridView.count(
             crossAxisCount: 2,
@@ -30,6 +29,7 @@ class MainMenu extends StatelessWidget {
             ],
           ),
         ),
+        AdCard(),
       ],
     );
   }

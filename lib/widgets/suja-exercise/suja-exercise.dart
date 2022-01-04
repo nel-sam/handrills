@@ -6,6 +6,7 @@ import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
 import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
+import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
@@ -32,7 +33,7 @@ class _SujaExerciseState extends State<SujaExercise> {
     getCarousel(BuildContext context, SujaExerciseNotifier sujaModel) {
       return Center(
         child: SizedBox(
-          height: screenSize.height - 220,
+          height: screenSize.height - 270,
           width: screenSize.width,
           child: PageView.builder(
             itemCount: sujaModel.sujaExerciseState.getAll().length,
@@ -77,6 +78,7 @@ class _SujaExerciseState extends State<SujaExercise> {
             child: Column(
               children: [
                 getCarousel(context, sujaModel),
+                AdCard(),
               ],
             ),
           ),
