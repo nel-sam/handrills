@@ -7,8 +7,10 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      height: 150,
+      height: 140,
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 10),
           borderRadius: BorderRadius.all(
@@ -21,7 +23,7 @@ class Clock extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               time,
-              style: TextStyle(fontSize: 65, color: ACCENT_COLOR),
+              style: TextStyle(fontSize: screenWidth / 8, color: ACCENT_COLOR),
             ),
           ),
         ],
