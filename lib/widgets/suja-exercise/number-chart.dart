@@ -102,7 +102,6 @@ class NumberChart extends StatelessWidget {
           leading: Builder(builder: (BuildContext context) => BackButton()),
           elevation: APPBAR_ELEVATION,
           backgroundColor: HD.getAppBarColor(context),
-          textTheme: HD.getAppBarTextTheme(context),
           iconTheme: HD.getAppBarIconTheme(context),
           title: Text(AppLocalizations.of(context)!.numberChart,
               style: HEADER_TEXT_STYLE),

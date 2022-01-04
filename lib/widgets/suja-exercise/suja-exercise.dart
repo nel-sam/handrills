@@ -66,7 +66,6 @@ class _SujaExerciseState extends State<SujaExercise> {
         leading: Builder(builder: (BuildContext context) => BackButton()),
         elevation: APPBAR_ELEVATION,
         backgroundColor: HD.getAppBarColor(context),
-        textTheme: HD.getAppBarTextTheme(context),
         iconTheme: HD.getAppBarIconTheme(context),
         title: Text(AppLocalizations.of(context)!.numbers,
             style: HEADER_TEXT_STYLE),

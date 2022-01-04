@@ -37,8 +37,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         brightness: Brightness.dark,
         backgroundColor: const Color(0xFF212121),
-        accentColor: Colors.white,
-        accentIconTheme: IconThemeData(color: Colors.black),
         dividerColor: Colors.black12,
       ),
       home: MultiProvider(
