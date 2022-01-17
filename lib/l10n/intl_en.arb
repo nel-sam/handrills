@@ -13,5 +13,11 @@
   "timeDesc": "For the hour use Native numbers (하나, 둘, 셋) and for minutes and seconds use Sino numbers (일, 이, 삼 )",
   "numbersExercise": "Numbers",
   "coming_soon": "Coming soon…",
-  "home": "Home"
+  "home": "Home",
+  "clear": "Clear",
+  "next": "Next",
+  "answers": "Answers",
+  "present": "Present",
+  "past": "Past",
+  "future": "Future"
 }

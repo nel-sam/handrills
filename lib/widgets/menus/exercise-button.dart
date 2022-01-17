@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
+import 'package:handrills/hd-helpers.dart';
 
 class ExerciseButton extends StatelessWidget {
   const ExerciseButton({
@@ -15,7 +16,7 @@ class ExerciseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = HD.getScreenWidth(context);
 
     return Padding(
       padding: const EdgeInsets.all(10),

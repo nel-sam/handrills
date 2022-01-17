@@ -63,4 +63,35 @@ class HD {
 
     return HanNumber(digit: digit, written: written);
   }
+
+  static fontStyleNormal({double fontSize = FONT_SIZE}) {
+    return TextStyle(
+      fontSize: fontSize,
+      fontStyle: FontStyle.normal,
+    );
+  }
+
+  static TextStyle fontStyleBold({double fontSize = FONT_SIZE}) {
+    return TextStyle(
+      color: ACCENT_COLOR,
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle fontStyleItalic({double fontSize = FONT_SIZE}) {
+    return TextStyle(
+      fontSize: fontSize,
+      fontStyle: FontStyle.italic,
+    );
+  }
+
+  static double getScreenWidth(
+    BuildContext context, {
+    bool halfWidth = false,
+  }) {
+    return halfWidth
+        ? (MediaQuery.of(context).size.width / 2).floorToDouble()
+        : MediaQuery.of(context).size.width;
+  }
 }

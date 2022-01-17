@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/main.dart';
 import 'package:handrills/widgets/dongsa-exercise/dongsa-present-exercise.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
