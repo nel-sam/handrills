@@ -1,9 +1,14 @@
 {
+  "meogda": "To eat",
+  "darrida": "To run",
+
   "numbers": "Numbers",
+  "verbs": "Verbs",
   "typeTheTime": "Write the time in hangul",
   "nativeNumbers": "Native Numbers",
   "sinoNumbers": "Sino-Korean Numbers",
   "numberChart": "Number chart",
+  "verbChart": "Verb chart",
   "next_exercise":  "Next Exercise",
   "timeDesc": "For the hour use Native numbers (하나, 둘, 셋) and for minutes and seconds use Sino numbers (일, 이, 삼 )",
   "numbersExercise": "Numbers",

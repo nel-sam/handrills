@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/main.dart';
+import 'package:handrills/widgets/dongsa-exercise/dongsa-present-exercise.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/suja-exercise/suja-exercise.dart';
@@ -22,9 +23,9 @@ class MainMenu extends StatelessWidget {
                 label: AppLocalizations.of(context)!.numbersExercise,
               ),
               ExerciseButton(
-                destination: MyHomePage(title: 'HanDrills'),
+                destination: DongsaPresentExercise(),
                 imagePath: 'assets/button-bgs/sakura.jpg',
-                label: AppLocalizations.of(context)!.coming_soon,
+                label: AppLocalizations.of(context)!.verbs,
               )
             ],
           ),
