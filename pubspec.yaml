@@ -2,7 +2,7 @@ name: handrills
 description: A new Flutter project.
 
 publish_to: 'none'
-version: 1.0.6+1.0.6
+version: 1.0.7+1.0.7
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -54,8 +54,8 @@ flutter_native_splash:
   ios: true
 
 
-  # Build dep
-  # Commands:loyable IOS:         flutter build ipa
+  # Commands:
+  # Build deployable IOS:         flutter build ipa
   # Build deployable Android:     flutter build appbundle
   # Build debug installable IOS:  flutter build ios
   # Install on phone:             flutter install
