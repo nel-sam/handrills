@@ -15,40 +15,54 @@ class VerbInput extends StatefulWidget {
   final Dongsa dongsa;
   final String label;
   final String correctValue;
-  late String activeValue = '';
 
   @override
   State<VerbInput> createState() => _VerbInputState();
 }
 
 class _VerbInputState extends State<VerbInput> {
+  String activeValue = '';
+
   @override
   Widget build(BuildContext context) {
-    var isCorrect = widget.activeValue == widget.correctValue;
+    var isCorrect = activeValue == widget.correctValue;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        HDText(widget.label),
+        Container(
+          width: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              HDText(widget.label),
+            ],
+          ),
+        ),
         Row(
           children: [
-            QuestionFreeForm(
-              activeValue: widget.activeValue,
-              hintValue: widget.dongsa.infinitive,
-              correctValues: [widget.correctValue],
-              onChanged: (String newValue) {
-                setState(() {
-                  widget.activeValue = newValue;
-                });
-              },
-            ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Icon(
-                isCorrect ? CORRECT_ANSWER_ICON : Icons.circle_outlined,
-                color: isCorrect ? CORRECT_COLOR : Colors.grey,
+              padding: const EdgeInsets.only(right: 8.0),
+              child: QuestionFreeForm(
+                activeValue: activeValue,
+                hintValue: widget.dongsa.infinitive,
+                correctValues: [widget.correctValue],
+                onChanged: (String newValue) {
+                  setState(() {
+                    activeValue = newValue;
+                  });
+                },
               ),
             ),
+            isCorrect
+                ? Icon(
+                    CORRECT_ANSWER_ICON,
+                    color: CORRECT_COLOR,
+                  )
+                : Icon(
+                    Icons.circle_outlined,
+                    color: Colors.grey,
+                  ),
           ],
         ),
       ],
