@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/lang_data/numbers.dart';
@@ -93,5 +95,14 @@ class HD {
     return halfWidth
         ? (MediaQuery.of(context).size.width / 2).floorToDouble()
         : MediaQuery.of(context).size.width;
+  }
+
+  static int getRandomNumber({int min = 0, int max = 99999}) {
+    var random = new Random();
+    return random.nextInt(max - min) + min;
+  }
+
+  static bool coinFlip() {
+    return getRandomNumber(max: 1) == 0;
   }
 }

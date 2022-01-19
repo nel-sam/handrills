@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
@@ -24,7 +24,11 @@ class SujaExerciseNotifier with ChangeNotifier {
     List<SiganExerciseState> siganExercises = [];
 
     for (int i = 0; i < SIGAN_EXERCISE_COUNT; i++) {
-      var hour = getRandomNativeNumber(min: 1, max: 23);
+      var hourDigit = HD.getRandomNumber(min: 0, max: 23);
+
+      var hour = hourDigit < 13
+          ? nativeNumberBank[hourDigit]
+          : HD.getSinoNumber(hourDigit);
       var min = getRandomSinoNumber(min: 1, max: 59);
       var sec = getRandomSinoNumber(min: 1, max: 59);
 
@@ -45,11 +49,10 @@ class SujaExerciseNotifier with ChangeNotifier {
     List<CountExerciseState> countExerciseState = [];
 
     for (int i = 0; i < COUNTING_EXERCISE_NATIVE_COUNT; i++) {
-      var random = new Random();
       var hanNumb = getRandomNativeNumber();
-      int coinFlip = random.nextInt(2);
+      var random = HD.getRandomNumber(min: 0, max: 1);
 
-      switch (coinFlip) {
+      switch (random) {
         case 0:
           countExerciseState.add(
             CountExerciseState(
@@ -93,14 +96,17 @@ class SujaExerciseNotifier with ChangeNotifier {
   }
 
   HanNumber getRandomSinoNumber({int min = 0, int max = 99}) {
-    var random = new Random();
-    var digit = random.nextInt(max - min) + min;
-    return HD.getSinoNumber(digit);
+    return HD.getSinoNumber(HD.getRandomNumber(
+      min: min,
+      max: max,
+    ));
   }
 
   HanNumber getRandomNativeNumber({int min = 0, int max = 99}) {
-    var random = new Random();
-    return nativeNumberBank[random.nextInt(max - min) + min];
+    return nativeNumberBank[HD.getRandomNumber(
+      min: min,
+      max: max,
+    )];
   }
 
   setUserHour(SiganExerciseState siganExerciseState, String userHour) {
