@@ -12,8 +12,8 @@ import 'package:handrills/widgets/shared/icon-text-button.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class DongsaPresentExercise extends StatelessWidget {
-  const DongsaPresentExercise({Key? key}) : super(key: key);
+class DongsaExerciseLevel1 extends StatelessWidget {
+  const DongsaExerciseLevel1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,18 +86,24 @@ class DongsaPresentExercise extends StatelessWidget {
           ),
           VerbInput(
             dongsa: dongsa,
+            activeValue: model.state.getUserInput(0),
             label: AppLocalizations.of(context)!.present,
             correctValue: dongsa.banmar.present,
+            onChanged: (String newValue) => model.updateUserInput(0, newValue),
           ),
           VerbInput(
             dongsa: dongsa,
+            activeValue: model.state.getUserInput(1),
             label: AppLocalizations.of(context)!.past,
             correctValue: dongsa.banmar.past,
+            onChanged: (String newValue) => model.updateUserInput(1, newValue),
           ),
           VerbInput(
+            activeValue: model.state.getUserInput(2),
             dongsa: dongsa,
             label: AppLocalizations.of(context)!.future,
-            correctValue: '${dongsa.banmar.futureStem} 거 야',
+            correctValue: '${dongsa.banmar.futureStem} 거야',
+            onChanged: (String newValue) => model.updateUserInput(2, newValue),
           ),
         ],
       ),
@@ -111,13 +117,18 @@ class DongsaPresentExercise extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconTextButton(
+            text: AppLocalizations.of(context)!.previous,
+            onPressed: model.setPreviousVerb,
+            icon: Icons.skip_previous_outlined,
+          ),
+          IconTextButton(
             text: AppLocalizations.of(context)!.clear,
             onPressed: model.clearState,
             icon: Icons.refresh_outlined,
           ),
           IconTextButton(
             text: AppLocalizations.of(context)!.next,
-            onPressed: model.setNewVerb,
+            onPressed: model.setNextVerb,
             icon: Icons.skip_next_outlined,
           ),
         ],

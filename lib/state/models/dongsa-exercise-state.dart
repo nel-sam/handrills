@@ -12,7 +12,11 @@ class DongsaExerciseState {
   }
 
   void fillArray(int index) {
-    while (userInput.length < index) {
+    if (userInput.length == 0) {
+      userInput.add('');
+    }
+
+    while (userInput.length <= index) {
       userInput.add('');
     }
   }

@@ -25,7 +25,18 @@ class DongsaNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  setNewVerb() {
+  setPreviousVerb() {
+    if (dongsaIndex <= 0) {
+      dongsaIndex = dongsaBank.length - 1;
+    } else {
+      dongsaIndex--;
+    }
+
+    state = DongsaExerciseState(dongsa: dongsaBank[dongsaIndex]);
+    notifyListeners();
+  }
+
+  setNextVerb() {
     if (dongsaIndex >= dongsaBank.length - 1) {
       dongsaIndex = 0;
     } else {

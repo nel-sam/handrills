@@ -45,7 +45,7 @@ class VerbChart extends StatelessWidget {
                       ),
                       ChartRow(
                         label: AppLocalizations.of(context)!.future,
-                        conj: '${dongsa.banmar.futureStem} 거 야',
+                        conj: '${dongsa.banmar.futureStem} 거야',
                       ),
                     ],
                   ),

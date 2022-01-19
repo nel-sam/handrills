@@ -4,28 +4,25 @@ import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 
-class VerbInput extends StatefulWidget {
+class VerbInput extends StatelessWidget {
   VerbInput({
     Key? key,
     required this.dongsa,
     required this.label,
     required this.correctValue,
+    required this.activeValue,
+    required this.onChanged,
   }) : super(key: key);
 
   final Dongsa dongsa;
   final String label;
   final String correctValue;
-
-  @override
-  State<VerbInput> createState() => _VerbInputState();
-}
-
-class _VerbInputState extends State<VerbInput> {
-  String activeValue = '';
+  final String activeValue;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
-    var isCorrect = activeValue == widget.correctValue;
+    var isCorrect = activeValue == correctValue;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +32,7 @@ class _VerbInputState extends State<VerbInput> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              HDText(widget.label),
+              HDText(label),
             ],
           ),
         ),
@@ -45,12 +42,10 @@ class _VerbInputState extends State<VerbInput> {
               padding: const EdgeInsets.only(right: 8.0),
               child: QuestionFreeForm(
                 activeValue: activeValue,
-                hintValue: widget.dongsa.infinitive,
-                correctValues: [widget.correctValue],
+                hintValue: dongsa.infinitive,
+                correctValues: [correctValue],
                 onChanged: (String newValue) {
-                  setState(() {
-                    activeValue = newValue;
-                  });
+                  onChanged(newValue);
                 },
               ),
             ),
