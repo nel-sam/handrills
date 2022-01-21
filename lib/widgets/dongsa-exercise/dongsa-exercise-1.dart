@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/models/dongsa-notifier.dart';
+import 'package:handrills/state/models/dongsa/dongsa-notifier.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-chart.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
+import 'package:handrills/widgets/shared/exercise-header.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
 import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
-import 'package:handrills/widgets/shared/icon-text-button.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -39,7 +39,11 @@ class DongsaExerciseLevel1 extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  getHeader(context, model),
+                  ExerciseHeader(
+                    clear: model.clearInput,
+                    setNext: model.setNext,
+                    setPrevious: model.setPrevious,
+                  ),
                   Expanded(child: getExercises(context, model)),
                   AdCard(),
                 ],
@@ -104,32 +108,6 @@ class DongsaExerciseLevel1 extends StatelessWidget {
             label: AppLocalizations.of(context)!.future,
             correctValue: '${dongsa.banmar.futureStem} 거야',
             onChanged: (String newValue) => model.updateUserInput(2, newValue),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget getHeader(BuildContext context, DongsaNotifier model) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 28.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          IconTextButton(
-            text: AppLocalizations.of(context)!.previous,
-            onPressed: model.setPreviousVerb,
-            icon: Icons.skip_previous_outlined,
-          ),
-          IconTextButton(
-            text: AppLocalizations.of(context)!.clear,
-            onPressed: model.clearState,
-            icon: Icons.refresh_outlined,
-          ),
-          IconTextButton(
-            text: AppLocalizations.of(context)!.next,
-            onPressed: model.setNextVerb,
-            icon: Icons.skip_next_outlined,
           ),
         ],
       ),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
@@ -14,42 +12,16 @@ class SujaExerciseNotifier with ChangeNotifier {
 
   SujaExerciseNotifier() {
     sujaExerciseState = SujaExerciseState(
-      siganExercises: createSiganExercises(),
       countExercises: createCountingExercises(),
       ageExercises: createAgeExercises(),
     );
-  }
-
-  List<SiganExerciseState> createSiganExercises() {
-    List<SiganExerciseState> siganExercises = [];
-
-    for (int i = 0; i < SIGAN_EXERCISE_COUNT; i++) {
-      var hourDigit = HD.getRandomNumber(min: 0, max: 23);
-
-      var hour = hourDigit < 13
-          ? nativeNumberBank[hourDigit]
-          : HD.getSinoNumber(hourDigit);
-      var min = getRandomSinoNumber(min: 1, max: 59);
-      var sec = getRandomSinoNumber(min: 1, max: 59);
-
-      siganExercises.add(SiganExerciseState(
-        hour: hour.digit < 10 ? '0${hour.digit}' : hour.digit.toString(),
-        min: min.digit < 10 ? '0${min.digit}' : min.digit.toString(),
-        sec: sec.digit < 10 ? '0${sec.digit}' : sec.digit.toString(),
-        correctHour: hour.alternate,
-        correctMin: min.written,
-        correctSec: sec.written,
-      ));
-    }
-
-    return siganExercises;
   }
 
   List<CountExerciseState> createCountingExercises() {
     List<CountExerciseState> countExerciseState = [];
 
     for (int i = 0; i < COUNTING_EXERCISE_NATIVE_COUNT; i++) {
-      var hanNumb = getRandomNativeNumber();
+      var hanNumb = HD.getRandomNativeNumber();
       var random = HD.getRandomNumber(min: 0, max: 1);
 
       switch (random) {
@@ -83,7 +55,7 @@ class SujaExerciseNotifier with ChangeNotifier {
     List<AgeExerciseState> ageExerciseState = [];
 
     for (int i = 0; i < AGE_EXERCISE_COUNT; i++) {
-      HanNumber number = getRandomNativeNumber();
+      HanNumber number = HD.getRandomNativeNumber();
 
       ageExerciseState.add(
         AgeExerciseState(
@@ -93,20 +65,6 @@ class SujaExerciseNotifier with ChangeNotifier {
       );
     }
     return ageExerciseState;
-  }
-
-  HanNumber getRandomSinoNumber({int min = 0, int max = 99}) {
-    return HD.getSinoNumber(HD.getRandomNumber(
-      min: min,
-      max: max,
-    ));
-  }
-
-  HanNumber getRandomNativeNumber({int min = 0, int max = 99}) {
-    return nativeNumberBank[HD.getRandomNumber(
-      min: min,
-      max: max,
-    )];
   }
 
   setUserHour(SiganExerciseState siganExerciseState, String userHour) {

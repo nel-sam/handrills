@@ -105,4 +105,32 @@ class HD {
   static bool coinFlip() {
     return getRandomNumber(max: 1) == 0;
   }
+
+  static HanNumber getRandomSinoNumber({int min = 0, int max = 99}) {
+    return HD.getSinoNumber(HD.getRandomNumber(
+      min: min,
+      max: max,
+    ));
+  }
+
+  static HanNumber getRandomNativeNumber({int min = 0, int max = 99}) {
+    return nativeNumberBank[HD.getRandomNumber(
+      min: min,
+      max: max,
+    )];
+  }
+
+  // ignore: non_constant_identifier_names
+  static AppBar HanAppBar(BuildContext context, String label) {
+    return AppBar(
+      elevation: APPBAR_ELEVATION,
+      backgroundColor: HD.getAppBarColor(context),
+      iconTheme: HD.getAppBarIconTheme(context),
+      title: Text(
+        label,
+        style: TextStyle(
+            fontSize: 30, fontFamily: 'helvetica', color: ACCENT_COLOR),
+      ),
+    );
+  }
 }

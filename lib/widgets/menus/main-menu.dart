@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
+import 'package:handrills/widgets/menus/numbers-menu.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/suja-exercise/suja-exercise.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainMenu extends StatelessWidget {
@@ -17,7 +17,7 @@ class MainMenu extends StatelessWidget {
             crossAxisCount: 2,
             children: [
               ExerciseButton(
-                destination: SujaExercise(),
+                destination: NumbersMenu(),
                 imagePath: 'assets/button-bgs/city.jpg',
                 label: AppLocalizations.of(context)!.numbersExercise,
               ),

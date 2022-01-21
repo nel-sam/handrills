@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
 import 'package:handrills/widgets/menus/main-menu.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -61,9 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: HD.HanAppBar(context, widget.title),
       body: Center(
         child: MainMenu(),
       ),

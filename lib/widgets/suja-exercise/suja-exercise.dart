@@ -4,7 +4,6 @@ import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/state/models/age-exercise-state.dart';
 import 'package:handrills/state/models/count-exercise-state.dart';
-import 'package:handrills/state/models/sigan-exercise-state.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
@@ -12,7 +11,6 @@ import 'package:handrills/widgets/shared/home-button.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
-import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
 import 'package:provider/provider.dart';
 
 class SujaExercise extends StatefulWidget {
@@ -29,37 +27,6 @@ class _SujaExerciseState extends State<SujaExercise> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     var footerButtonWidth = (screenSize.width / 2) - 20;
-
-    getCarousel(BuildContext context, SujaExerciseNotifier sujaModel) {
-      return Center(
-        child: SizedBox(
-          height: screenSize.height - 270,
-          width: screenSize.width,
-          child: PageView.builder(
-            itemCount: sujaModel.sujaExerciseState.getAll().length,
-            controller: PageController(viewportFraction: 0.9),
-            onPageChanged: (int index) => setState(() {
-              _index = index > _index ? _index + 1 : _index - 1;
-            }),
-            itemBuilder: (_, i) {
-              return Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                child: Center(
-                  child: getExerciseWidget(
-                      sujaModel,
-                      _index,
-                      () => setState(() {
-                            _index++;
-                          })),
-                ),
-              );
-            },
-          ),
-        ),
-      );
-    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -80,7 +47,7 @@ class _SujaExerciseState extends State<SujaExercise> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  getCarousel(context, sujaModel),
+                  //getCarousel(context, sujaModel),
                   AdCard(),
                 ],
               ),
@@ -112,15 +79,6 @@ class _SujaExerciseState extends State<SujaExercise> {
     Function() onNextButtonPressed,
   ) {
     final itemfromList = sujaModel.sujaExerciseState.getAll()[indx];
-
-    if (itemfromList is SiganExerciseState)
-      return SiganExercise(
-        siganExerciseState: itemfromList,
-        onUserHourSet: sujaModel.setUserHour,
-        onUserMinSet: sujaModel.setUserMin,
-        onUserSecSet: sujaModel.setUserSec,
-        onNextButtonPressed: onNextButtonPressed,
-      );
 
     if (itemfromList is CountExerciseState)
       return CountingExercise(

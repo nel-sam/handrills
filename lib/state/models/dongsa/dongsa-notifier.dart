@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/state/models/dongsa-exercise-state.dart';
+import 'package:handrills/state/models/dongsa/dongsa-exercise-state.dart';
 
 class DongsaNotifier with ChangeNotifier {
   late DongsaExerciseState state;
@@ -20,12 +20,12 @@ class DongsaNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  clearState() {
+  clearInput() {
     state = DongsaExerciseState(dongsa: dongsaBank[dongsaIndex]);
     notifyListeners();
   }
 
-  setPreviousVerb() {
+  setPrevious() {
     if (dongsaIndex <= 0) {
       dongsaIndex = dongsaBank.length - 1;
     } else {
@@ -36,7 +36,7 @@ class DongsaNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  setNextVerb() {
+  setNext() {
     if (dongsaIndex >= dongsaBank.length - 1) {
       dongsaIndex = 0;
     } else {
