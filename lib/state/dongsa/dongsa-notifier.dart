@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/state/models/dongsa/dongsa-exercise-state.dart';
+import 'package:handrills/state/dongsa/dongsa-exercise-state.dart';
 
 class DongsaNotifier with ChangeNotifier {
   late DongsaExerciseState state;

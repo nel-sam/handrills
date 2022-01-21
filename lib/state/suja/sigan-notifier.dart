@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
-import 'package:handrills/state/models/sigan-exercise-state.dart';
+import 'package:handrills/state/suja/sigan-exercise-state.dart';
 
 class SiganNotifier extends ChangeNotifier {
   late List<SiganExerciseState> _states;

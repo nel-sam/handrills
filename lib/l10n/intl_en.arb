@@ -9,6 +9,7 @@
 
   "numbers": "Numbers",
   "time": "Time",
+  "age": "Age",
   "verbs": "Verbs",
   "typeTheTime": "Write the time in hangul",
   "nativeNumbers": "Native Numbers",

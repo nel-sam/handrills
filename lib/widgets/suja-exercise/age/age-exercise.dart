@@ -1,68 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/models/age-exercise-state.dart';
+import 'package:handrills/state/suja/age-notifier.dart';
+import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
-import 'package:handrills/widgets/shared/next-button.dart';
+import 'package:handrills/widgets/shared/exercise-header.dart';
+import 'package:handrills/widgets/shared/footer-button.dart';
+import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/question-free-form.dart';
+import 'package:handrills/widgets/suja-exercise/number-chart.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class AgeExercise extends StatefulWidget {
-  final AgeExerciseState state;
-  final Function onAgeSet;
-  final Function() onNextButtonPressed;
-
-  const AgeExercise({
-    Key? key,
-    required this.state,
-    required this.onAgeSet,
-    required this.onNextButtonPressed,
-  }) : super(key: key);
-
-  @override
-  _AgeExerciseState createState() => _AgeExerciseState();
-}
-
-class _AgeExerciseState extends State<AgeExercise> {
+class AgeExercise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var isCorrect = this.widget.state.getIsCorrect();
+    Size screenSize = MediaQuery.of(context).size;
+    var footerButtonWidth = (screenSize.width / 2) - 20;
 
-    return Padding(
-      padding: EdgeInsets.all(24),
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('몇 살이에요?', style: TextStyle(fontSize: 20)),
-          Text(widget.state.age.toString(), style: TextStyle(fontSize: 24)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnswerStatusButton(isCorrect: isCorrect),
-              Container(
-                width: 150,
-                child: TextField(
-                  decoration: InputDecoration(
-                    isDense: true,
-                    contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                    enabledBorder: HD.getTextFieldBorder(isCorrect),
-                    focusedBorder: HD.getTextFieldBorder(isCorrect),
+    Widget getContent(AgeNotifier ageNotifier) {
+      var s = ageNotifier.getActive();
+      var isCorrect = s.getIsCorrect();
+
+      return Padding(
+        padding: EdgeInsets.all(24),
+        child: Column(
+          children: [
+            ExerciseHeader(
+              setPrevious: ageNotifier.setPrevious,
+              setNext: ageNotifier.setNext,
+              clear: ageNotifier.clearInput,
+            ),
+            Text('몇 살이에요?', style: TextStyle(fontSize: 20)),
+            Text(s.age.toString(), style: TextStyle(fontSize: 24)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnswerStatusButton(isCorrect: isCorrect),
+                Container(
+                  width: 150,
+                  child: QuestionFreeForm(
+                    activeValue: s.userInput,
+                    correctValues: [s.correctAnswer],
+                    hintValue: '',
+                    onChanged: (String newVal) => ageNotifier.updateAge(newVal),
                   ),
-                  onChanged: (String? newVal) {
-                    if (newVal != null) {
-                      setState(() {
-                        widget.onAgeSet(widget.state, newVal);
-                      });
-                    }
-                  },
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('살', style: TextStyle(fontSize: 28)),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: Builder(builder: (BuildContext context) => BackButton()),
+          elevation: APPBAR_ELEVATION,
+          backgroundColor: HD.getAppBarColor(context),
+          iconTheme: HD.getAppBarIconTheme(context),
+          title: Text(AppLocalizations.of(context)!.numbers,
+              style: HEADER_TEXT_STYLE),
+        ),
+        body: ChangeNotifierProvider<AgeNotifier>(
+          create: (context) => AgeNotifier(),
+          child: Consumer<AgeNotifier>(
+            builder: (context, model, child) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  getContent(model),
+                  AdCard(),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('살', style: TextStyle(fontSize: 28)),
-              ),
-            ],
+            ),
           ),
-          NextButton(
-            enabled: widget.state.getIsCorrect(),
-            onPressed: widget.onNextButtonPressed,
+        ),
+        persistentFooterButtons: [
+          HomeButton(width: footerButtonWidth),
+          FooterButton(
+            width: footerButtonWidth,
+            context: context,
+            text: AppLocalizations.of(context)!.numberChart,
+            icon: Icons.list,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NumberChart()),
+              );
+            },
           ),
         ],
       ),

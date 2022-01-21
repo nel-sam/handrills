@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/models/count-exercise-state.dart';
+import 'package:handrills/state/count-exercise-state.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
 import 'package:handrills/widgets/shared/next-button.dart';
 

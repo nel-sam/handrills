@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/extensions.dart';
-import 'package:handrills/state/models/enums.dart';
+import 'package:handrills/state/enums.dart';
 
 class QuestionFreeForm extends StatefulWidget {
   final String hintValue;

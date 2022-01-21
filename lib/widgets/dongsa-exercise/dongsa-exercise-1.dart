@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/models/dongsa/dongsa-notifier.dart';
+import 'package:handrills/state/dongsa/dongsa-notifier.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-chart.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';

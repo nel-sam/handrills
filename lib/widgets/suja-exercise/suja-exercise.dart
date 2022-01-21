@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:handrills/state/models/age-exercise-state.dart';
-import 'package:handrills/state/models/count-exercise-state.dart';
+import 'package:handrills/state/count-exercise-state.dart';
 import 'package:handrills/state/suja.exercise-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
-import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +19,6 @@ class SujaExercise extends StatefulWidget {
 }
 
 class _SujaExerciseState extends State<SujaExercise> {
-  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +81,6 @@ class _SujaExerciseState extends State<SujaExercise> {
       return CountingExercise(
         state: itemfromList,
         onUserCountSet: sujaModel.onUserCountSet,
-        onNextButtonPressed: onNextButtonPressed,
-      );
-
-    if (itemfromList is AgeExerciseState)
-      return AgeExercise(
-        state: itemfromList,
-        onAgeSet: sujaModel.onAgeSet,
         onNextButtonPressed: onNextButtonPressed,
       );
   }

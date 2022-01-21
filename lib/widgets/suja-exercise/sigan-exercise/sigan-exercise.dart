@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/models/suja/sigan-notifier.dart';
+import 'package:handrills/state/suja/sigan-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
 import 'package:handrills/widgets/shared/exercise-header.dart';
@@ -14,15 +14,10 @@ import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-class SiganExercise extends StatefulWidget {
-  @override
-  _SiganExerciseState createState() => _SiganExerciseState();
-}
-
-class _SiganExerciseState extends State<SiganExercise> {
+class SiganExercise extends StatelessWidget {
   final double textFieldWidth = 70;
 
-  getContent(SiganNotifier siganNotifier) {
+  getContent(BuildContext context, SiganNotifier siganNotifier) {
     var s = siganNotifier.getActive();
     var isHourCorrect = s.correctHour == s.userHour;
     var isMinCorrect = s.correctMin == s.userMin;
@@ -138,7 +133,7 @@ class _SiganExerciseState extends State<SiganExercise> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  getContent(model),
+                  getContent(context, model),
                   AdCard(),
                 ],
               ),
