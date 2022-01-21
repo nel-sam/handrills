@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/suja/age-exercise-state.dart';
-import 'package:handrills/state/count-exercise-state.dart';
-import 'package:handrills/state/suja-exercise-state.dart';
+import 'package:handrills/state/suja/count-exercise-state.dart';
 
-class SujaExerciseNotifier with ChangeNotifier {
-  late SujaExerciseState sujaExerciseState;
+class CountNotifier with ChangeNotifier {
+  late List<CountExerciseState> _states;
+  int activeStateIndex = 0;
 
-  SujaExerciseNotifier() {
-    sujaExerciseState = SujaExerciseState(
-      countExercises: createCountingExercises(),
-    );
+  CountNotifier() {
+    _states = _createCountingExercises();
   }
 
-  List<CountExerciseState> createCountingExercises() {
+  List<CountExerciseState> _createCountingExercises() {
     List<CountExerciseState> countExerciseState = [];
 
     for (int i = 0; i < COUNTING_EXERCISE_NATIVE_COUNT; i++) {
@@ -48,13 +45,37 @@ class SujaExerciseNotifier with ChangeNotifier {
     return countExerciseState;
   }
 
-  onUserCountSet(CountExerciseState state, String userInput) {
-    state.userInput = userInput;
+  updateCount(String userInput) {
+    _states[activeStateIndex].userInput = userInput;
     notifyListeners();
   }
 
-  onAgeSet(AgeExerciseState state, String userInput) {
-    state.userInput = userInput;
+  setPrevious() {
+    if (activeStateIndex <= 0) {
+      activeStateIndex = _states.length - 1;
+    } else {
+      activeStateIndex--;
+    }
+
+    notifyListeners();
+  }
+
+  setNext() {
+    if (activeStateIndex >= _states.length - 1) {
+      activeStateIndex = 0;
+    } else {
+      activeStateIndex++;
+    }
+
+    notifyListeners();
+  }
+
+  CountExerciseState getActive() {
+    return _states[activeStateIndex];
+  }
+
+  void clearInput() {
+    _states[activeStateIndex].userInput = '';
     notifyListeners();
   }
 }

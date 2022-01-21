@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/suja.exercise-notifier.dart';
+import 'package:handrills/state/suja/count-notifier.dart';
 import 'package:handrills/widgets/menus/main-menu.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => SujaExerciseNotifier())
+          ChangeNotifierProvider(create: (_) => CountNotifier())
         ],
         child: MyHomePage(title: title),
       ),

@@ -1,83 +1,115 @@
 import 'package:flutter/material.dart';
+import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/count-exercise-state.dart';
+import 'package:handrills/state/suja/count-notifier.dart';
+import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
-import 'package:handrills/widgets/shared/next-button.dart';
+import 'package:handrills/widgets/shared/exercise-header.dart';
+import 'package:handrills/widgets/shared/footer-button.dart';
+import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/question-free-form.dart';
+import 'package:handrills/widgets/suja-exercise/number-chart.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class CountingExercise extends StatefulWidget {
-  final CountExerciseState state;
-  final Function onUserCountSet;
-  final Function() onNextButtonPressed;
-
-  const CountingExercise({
-    Key? key,
-    required this.state,
-    required this.onUserCountSet,
-    required this.onNextButtonPressed,
-  }) : super(key: key);
-
-  @override
-  _CountingExerciseState createState() => _CountingExerciseState();
-}
-
-class _CountingExerciseState extends State<CountingExercise> {
+class CountingExercise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var isCorrect = widget.state.getIsCorrect();
+    var footerButtonWidth = HD.getScreenWidth(context, halfWidth: true) - 20;
 
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Column(
-            children: [
-              Icon(
-                widget.state.icon,
-                size: 90,
-              ),
-              Text(
-                '× ${widget.state.count}',
-                style: TextStyle(
-                  fontSize: 70,
+    getContent(CountNotifier model) {
+      var s = model.getActive();
+      var isCorrect = s.getIsCorrect();
+
+      return Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            ExerciseHeader(
+              setPrevious: model.setPrevious,
+              setNext: model.setNext,
+              clear: model.clearInput,
+            ),
+            Column(
+              children: [
+                Icon(
+                  s.icon,
+                  size: 90,
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  child: AnswerStatusButton(
-                isCorrect: isCorrect,
-              )),
-              Container(
-                width: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                    isDense: true,
-                    contentPadding: EdgeInsets.fromLTRB(4, 18, 0, 1),
-                    enabledBorder: HD.getTextFieldBorder(isCorrect),
-                    focusedBorder: HD.getTextFieldBorder(isCorrect),
+                Text(
+                  '× ${s.count}',
+                  style: TextStyle(
+                    fontSize: 70,
                   ),
-                  onChanged: (String? newVal) {
-                    if (newVal != null) {
-                      setState(() {
-                        widget.onUserCountSet(widget.state, newVal);
-                      });
-                    }
-                  },
                 ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    child: AnswerStatusButton(
+                  isCorrect: isCorrect,
+                )),
+                Container(
+                  width: 50,
+                  child: QuestionFreeForm(
+                    activeValue: s.userInput,
+                    hintValue: '',
+                    onChanged: (String newVal) => model.updateCount(newVal),
+                    correctValues: [s.correctAnswer],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.counter, style: TextStyle(fontSize: 28)),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: Builder(builder: (BuildContext context) => BackButton()),
+          elevation: APPBAR_ELEVATION,
+          backgroundColor: HD.getAppBarColor(context),
+          iconTheme: HD.getAppBarIconTheme(context),
+          title: Text(AppLocalizations.of(context)!.numbers,
+              style: HEADER_TEXT_STYLE),
+        ),
+        body: ChangeNotifierProvider<CountNotifier>(
+          create: (context) => CountNotifier(),
+          child: Consumer<CountNotifier>(
+            builder: (context, model, child) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  getContent(model),
+                  AdCard(),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child:
-                    Text(widget.state.counter, style: TextStyle(fontSize: 28)),
-              ),
-            ],
+            ),
           ),
-          NextButton(
-            enabled: widget.state.getIsCorrect(),
-            onPressed: widget.onNextButtonPressed,
+        ),
+        persistentFooterButtons: [
+          HomeButton(width: footerButtonWidth),
+          FooterButton(
+            width: footerButtonWidth,
+            context: context,
+            text: AppLocalizations.of(context)!.numberChart,
+            icon: Icons.list,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NumberChart()),
+              );
+            },
           ),
         ],
       ),
