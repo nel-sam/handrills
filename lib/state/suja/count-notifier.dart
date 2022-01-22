@@ -64,7 +64,7 @@ class CountNotifier with ChangeNotifier {
 
     for (int i = 0; i < COUNTING_EXERCISE_NATIVE_COUNT; i++) {
       var hanNumb = HD.getRandomNativeNumber(min: 1);
-      var random = HD.getRandomNumber(min: 0, max: 6);
+      var random = HD.getRandomNumber(min: 0, max: 7);
 
       switch (random) {
         case 0:
@@ -142,6 +142,19 @@ class CountNotifier with ChangeNotifier {
               count: hanNumb.digit,
               correctAnswer: hanNumb.alternate,
               counter: '조각',
+            ),
+          );
+          break;
+        case 6:
+          countExerciseState.add(
+            CountExerciseState(
+              isSino: false,
+              icon: Icons.car_rental_outlined,
+              getLabel: (BuildContext context) =>
+                  AppLocalizations.of(context)!.cars_machines,
+              count: hanNumb.digit,
+              correctAnswer: hanNumb.alternate,
+              counter: '대',
             ),
           );
           break;
