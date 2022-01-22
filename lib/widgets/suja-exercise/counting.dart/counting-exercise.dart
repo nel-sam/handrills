@@ -6,7 +6,9 @@ import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
 import 'package:handrills/widgets/shared/exercise-header.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
+import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/info-button.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -20,6 +22,13 @@ class CountingExercise extends StatelessWidget {
     getContent(CountNotifier model) {
       var s = model.getActive();
       var isCorrect = s.getIsCorrect();
+      var label = s.getLabel(context);
+
+      var infoText = s.isSino
+          ? AppLocalizations.of(context)!.use_sino
+          : AppLocalizations.of(context)!.use_native;
+
+      infoText += ' ${label.toLowerCase()}: ${s.correctAnswer}${s.isSino ? '': ' '}${s.counter}';
 
       return Padding(
         padding: const EdgeInsets.all(24),
@@ -32,15 +41,17 @@ class CountingExercise extends StatelessWidget {
             ),
             Column(
               children: [
-                Icon(
-                  s.icon,
-                  size: 90,
+                Icon(s.icon, size: 90),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HDText(label, isBold: true),
+                    InfoButton(text: infoText),
+                  ],
                 ),
                 Text(
                   '× ${s.count}',
-                  style: TextStyle(
-                    fontSize: 70,
-                  ),
+                  style: TextStyle(fontSize: 40),
                 ),
               ],
             ),
@@ -52,7 +63,7 @@ class CountingExercise extends StatelessWidget {
                   isCorrect: isCorrect,
                 )),
                 Container(
-                  width: 50,
+                  width: 80,
                   child: QuestionFreeForm(
                     activeValue: s.userInput,
                     hintValue: '',

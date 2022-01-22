@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/suja/count-exercise-state.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
@@ -25,17 +24,17 @@ class NumbersMenu extends StatelessWidget {
                 children: [
                   ExerciseButton(
                     destination: SiganExercise(),
-                    imagePath: 'assets/button-bgs/city.jpg',
+                    imagePath: 'assets/button-bgs/clocks.jpg',
                     label: AppLocalizations.of(context)!.time,
                   ),
                   ExerciseButton(
                     destination: AgeExercise(),
-                    imagePath: 'assets/button-bgs/sakura.jpg',
+                    imagePath: 'assets/button-bgs/old-store.jpg',
                     label: AppLocalizations.of(context)!.age,
                   ),
                   ExerciseButton(
                     destination: CountingExercise(),
-                    imagePath: 'assets/button-bgs/city.jpg',
+                    imagePath: 'assets/button-bgs/tigers.jpg',
                     label: AppLocalizations.of(context)!.counting,
                   ),
                 ],
