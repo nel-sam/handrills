@@ -3,25 +3,32 @@ import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/state/dongsa/dongsa-exercise-state.dart';
 
 class DongsaNotifier with ChangeNotifier {
-  late DongsaExerciseState state;
+  late List<DongsaExerciseState> _states = [];
   late int dongsaIndex = 0;
 
   DongsaNotifier() {
     dongsaBank.shuffle();
-    state = DongsaExerciseState(dongsa: dongsaBank[dongsaIndex]);
+
+    for (int i = 0; i < dongsaBank.length; i++) {
+      _states.add(DongsaExerciseState(dongsa: dongsaBank[i]));
+    }
+  }
+
+  getActive() {
+    return _states[dongsaIndex];
   }
 
   getUserInput(int index) {
-    return state.getUserInput(index);
+    return _states[dongsaIndex].getUserInput(index);
   }
 
   updateUserInput(int index, String newValue) {
-    state.updateUserInput(index, newValue);
+    _states[dongsaIndex].updateUserInput(index, newValue);
     notifyListeners();
   }
 
   clearInput() {
-    state = DongsaExerciseState(dongsa: dongsaBank[dongsaIndex]);
+    _states[dongsaIndex].userInput.clear();
     notifyListeners();
   }
 
@@ -32,7 +39,6 @@ class DongsaNotifier with ChangeNotifier {
       dongsaIndex--;
     }
 
-    state = DongsaExerciseState(dongsa: dongsaBank[dongsaIndex]);
     notifyListeners();
   }
 
@@ -43,7 +49,6 @@ class DongsaNotifier with ChangeNotifier {
       dongsaIndex++;
     }
 
-    state = DongsaExerciseState(dongsa: dongsaBank[dongsaIndex]);
     notifyListeners();
   }
 }

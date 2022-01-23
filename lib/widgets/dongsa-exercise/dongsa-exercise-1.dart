@@ -61,7 +61,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          VerbChart(dongsa: model.state.dongsa),
+                          VerbChart(dongsa: model.getActive().dongsa),
                     ),
                   );
                 },
@@ -74,7 +74,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
   }
 
   Widget getExercises(BuildContext context, DongsaNotifier model) {
-    var dongsa = model.state.dongsa;
+    var dongsa = model.getActive().dongsa;
     var width = HD.getScreenWidth(context, halfWidth: true) + 40;
 
     return Container(
@@ -90,20 +90,20 @@ class DongsaExerciseLevel1 extends StatelessWidget {
           ),
           VerbInput(
             dongsa: dongsa,
-            activeValue: model.state.getUserInput(0),
+            activeValue: model.getUserInput(0),
             label: AppLocalizations.of(context)!.present,
             correctValue: dongsa.banmar.present,
             onChanged: (String newValue) => model.updateUserInput(0, newValue),
           ),
           VerbInput(
             dongsa: dongsa,
-            activeValue: model.state.getUserInput(1),
+            activeValue: model.getUserInput(1),
             label: AppLocalizations.of(context)!.past,
             correctValue: dongsa.banmar.past,
             onChanged: (String newValue) => model.updateUserInput(1, newValue),
           ),
           VerbInput(
-            activeValue: model.state.getUserInput(2),
+            activeValue: model.getUserInput(2),
             dongsa: dongsa,
             label: AppLocalizations.of(context)!.future,
             correctValue: '${dongsa.banmar.futureStem} 거야',

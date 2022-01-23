@@ -17,7 +17,7 @@ const WRONG_COLOR = Colors.deepOrange;
 const CORRECT_ANSWER_ICON = Icons.check_circle_outline;
 const WRONG_ANSWER_ICON = Icons.error_outline_outlined;
 
-const AGE_EXERCISE_COUNT = 30;
-const SIGAN_EXERCISE_COUNT = 30;
-const COUNTING_EXERCISE_NATIVE_COUNT = 10;
-const COUNTING_EXERCISE_SINO_COUNT = 6;
+const AGE_EXERCISE_COUNT = 10;
+const SIGAN_EXERCISE_COUNT = 10;
+const COUNTING_EXERCISE_NATIVE_COUNT = 7;
+const COUNTING_EXERCISE_SINO_COUNT = 3;
