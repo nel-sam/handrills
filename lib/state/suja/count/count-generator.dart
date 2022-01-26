@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/suja/count-exercise-state.dart';
+import 'package:handrills/state/suja/count/count-exercise-state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CountGenerator {

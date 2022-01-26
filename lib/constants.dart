@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const double FONT_SIZE = 16;
+const int DEBOUNCE_TIME = 350;
 const double APPBAR_ELEVATION = 0;
 const CELL_TEXT_PADDING = 5.0;
 const ACCENT_COLOR = Colors.pink;

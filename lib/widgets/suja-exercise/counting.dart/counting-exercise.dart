@@ -3,7 +3,7 @@ import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
-import 'package:handrills/state/suja/count-notifier.dart';
+import 'package:handrills/state/suja/count/count-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
 import 'package:handrills/widgets/shared/exercise-header.dart';
