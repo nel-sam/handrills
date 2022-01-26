@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/suja/count/count-generator.dart';
+import 'package:handrills/state/suja/sigan/sigan-generator.dart';
 
 class ExerciseNavNotifier extends ChangeNotifier {
   Timer _debounce = Timer(const Duration(milliseconds: 0), () {});
@@ -22,7 +23,7 @@ class ExerciseNavNotifier extends ChangeNotifier {
         // TODO: Handle this case.
         break;
       case ExerciseType.Sigan:
-        // TODO: Handle this case.
+        this.states = SiganGenerator.createSiganExercises();
         break;
     }
   }

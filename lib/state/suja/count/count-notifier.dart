@@ -21,7 +21,7 @@ class CountNotifier with ChangeNotifier {
         const Duration(milliseconds: DEBOUNCE_TIME), () => notifyListeners());
   }
 
-  CountExerciseState getStateItem() {
+  getStateItem() {
     return _getStateItem();
   }
 

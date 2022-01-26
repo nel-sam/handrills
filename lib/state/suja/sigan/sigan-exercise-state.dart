@@ -23,4 +23,10 @@ class SiganExerciseState {
         this.userMin == this.correctMin &&
         this.userSec == this.correctSec;
   }
+
+  clear() {
+    this.userHour = '';
+    this.userMin = '';
+    this.userSec = '';
+  }
 }
