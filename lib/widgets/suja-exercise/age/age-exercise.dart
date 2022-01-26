@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
+import 'package:handrills/state/enums.dart';
+import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/age/age-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
@@ -18,41 +20,56 @@ class AgeExercise extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     var footerButtonWidth = (screenSize.width / 2) - 20;
 
-    Widget getContent(AgeNotifier ageNotifier) {
-      var s = ageNotifier.getActive();
-      var isCorrect = s.getIsCorrect();
+    Widget getContent(BuildContext context) {
+      return ChangeNotifierProvider<ExerciseNavNotifier>(
+        create: (context) => ExerciseNavNotifier(ExerciseType.Age),
+        child: Consumer<ExerciseNavNotifier>(
+          builder: (context, navNotifier, child) {
+            var s = navNotifier.getActive();
 
-      return Padding(
-        padding: EdgeInsets.all(24),
-        child: Column(
-          children: [
-            ExerciseHeader(
-              setPrevious: ageNotifier.setPrevious,
-              setNext: ageNotifier.setNext,
-              clear: ageNotifier.clearInput,
-            ),
-            Text('몇 살이에요?', style: TextStyle(fontSize: 20)),
-            Text(s.age.toString(), style: TextStyle(fontSize: 24)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnswerStatusButton(isCorrect: isCorrect),
-                Container(
-                  width: 150,
-                  child: QuestionFreeForm(
-                    activeValue: s.userInput,
-                    correctValues: [s.correctAnswer],
-                    hintValue: '',
-                    onChanged: (String newVal) => ageNotifier.updateAge(newVal),
+            return Padding(
+              padding: EdgeInsets.all(24),
+              child: Column(
+                children: [
+                  ExerciseHeader(
+                    setPrevious: () => navNotifier.setPrevious(),
+                    setNext: () => navNotifier.setNext(),
+                    clear: () => navNotifier.clearInput(),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('살', style: TextStyle(fontSize: 28)),
-                ),
-              ],
-            ),
-          ],
+                  Text('몇 살이에요?', style: TextStyle(fontSize: 20)),
+                  Text(s.age.toString(), style: TextStyle(fontSize: 24)),
+                  ChangeNotifierProvider<AgeNotifier>(
+                    create: (context) => AgeNotifier(navNotifier.getActive),
+                    child: Consumer<AgeNotifier>(
+                      builder: (context, ageNotifier, child) {
+                        var s = ageNotifier.getStateItem();
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AnswerStatusButton(isCorrect: s.getIsCorrect()),
+                            Container(
+                              width: 150,
+                              child: QuestionFreeForm(
+                                activeValue: s.userInput,
+                                correctValues: [s.correctAnswer],
+                                hintValue: '',
+                                onChanged: (String newVal) =>
+                                    ageNotifier.updateAge(newVal),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('살', style: TextStyle(fontSize: 28)),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       );
     }
@@ -69,18 +86,13 @@ class AgeExercise extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.numbers,
               style: HEADER_TEXT_STYLE),
         ),
-        body: ChangeNotifierProvider<AgeNotifier>(
-          create: (context) => AgeNotifier(),
-          child: Consumer<AgeNotifier>(
-            builder: (context, model, child) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  getContent(model),
-                  AdCard(),
-                ],
-              ),
-            ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              getContent(context),
+              AdCard(),
+            ],
           ),
         ),
         persistentFooterButtons: [

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/state/suja/count/count-exercise-state.dart';
 
 class CountNotifier with ChangeNotifier {
   late Function() _getStateItem;

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/state/enums.dart';
+import 'package:handrills/state/suja/age/age-generator.dart';
 import 'package:handrills/state/suja/count/count-generator.dart';
 import 'package:handrills/state/suja/sigan/sigan-generator.dart';
 
@@ -20,7 +21,7 @@ class ExerciseNavNotifier extends ChangeNotifier {
         this.states = CountGenerator.createCountingExercises();
         break;
       case ExerciseType.Age:
-        // TODO: Handle this case.
+        this.states = AgeGenerator.createAgeExercises();
         break;
       case ExerciseType.Sigan:
         this.states = SiganGenerator.createSiganExercises();

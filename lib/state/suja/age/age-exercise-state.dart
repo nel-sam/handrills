@@ -11,4 +11,8 @@ class AgeExerciseState {
   bool getIsCorrect() {
     return userInput == correctAnswer;
   }
+
+  clear() {
+    return this.userInput = '';
+  }
 }
