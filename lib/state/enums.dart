@@ -4,3 +4,10 @@ enum CorrectStatus {
   unstarted,
   inprogressCorrect,
 }
+
+enum ExerciseType {
+  Dongsa,
+  Count,
+  Age,
+  Sigan,
+}

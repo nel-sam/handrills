@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/suja/count-notifier.dart';
 import 'package:handrills/widgets/menus/main-menu.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,36 +15,38 @@ class MyApp extends StatelessWidget {
     final title = 'HanDrills';
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title,
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('es', ''),
-      ],
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: ACCENT_COLOR,
-      ),
-      darkTheme: ThemeData(
-        primarySwatch: ACCENT_COLOR,
-        primaryColor: Colors.black,
-        brightness: Brightness.dark,
-        backgroundColor: const Color(0xFF212121),
-        dividerColor: Colors.black12,
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => CountNotifier())
+        debugShowCheckedModeBanner: false,
+        title: title,
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
-        child: MyHomePage(title: title),
-      ),
-    );
+        supportedLocales: [
+          const Locale('en', ''),
+          const Locale('es', ''),
+        ],
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primarySwatch: ACCENT_COLOR,
+        ),
+        darkTheme: ThemeData(
+          primarySwatch: ACCENT_COLOR,
+          primaryColor: Colors.black,
+          brightness: Brightness.dark,
+          backgroundColor: const Color(0xFF212121),
+          dividerColor: Colors.black12,
+        ),
+        home: MyHomePage(title: title)
+
+        // MultiProvider(
+        //   providers: [
+        //     ChangeNotifierProvider(create: (_) => CountNotifier())
+        //   ],
+        //   child: MyHomePage(title: title),
+        // ),
+        );
   }
 }
 

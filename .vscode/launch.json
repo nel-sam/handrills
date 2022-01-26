@@ -10,7 +10,7 @@
       "type": "dart"
     },
     {
-      "name": "handrills (profile mode)",
+      "name": "Perf profile mode",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"

@@ -21,4 +21,8 @@ class CountExerciseState {
   bool getIsCorrect() {
     return this.userInput == this.correctAnswer;
   }
+
+  clear() {
+    return this.userInput = '';
+  }
 }

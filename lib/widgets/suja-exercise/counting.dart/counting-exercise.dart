@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
+import 'package:handrills/state/enums.dart';
+import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/count-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/answer-status-button.dart';
@@ -19,65 +21,84 @@ class CountingExercise extends StatelessWidget {
   Widget build(BuildContext context) {
     var footerButtonWidth = HD.getScreenWidth(context, halfWidth: true) - 20;
 
-    getContent(CountNotifier model) {
-      var s = model.getActive();
-      var isCorrect = s.getIsCorrect();
-      var label = s.getLabel(context);
+    getContent(BuildContext context) {
+      return ChangeNotifierProvider<ExerciseNavNotifier>(
+        create: (context) => ExerciseNavNotifier(ExerciseType.Count),
+        child: Consumer<ExerciseNavNotifier>(
+          builder: (context, navNotifier, child) {
+            var activeItem = navNotifier.getActive();
+            var label = activeItem.getLabel(context);
 
-      var infoText = s.isSino
-          ? AppLocalizations.of(context)!.use_sino
-          : AppLocalizations.of(context)!.use_native;
+            var infoText = activeItem.isSino
+                ? AppLocalizations.of(context)!.use_sino
+                : AppLocalizations.of(context)!.use_native;
 
-      infoText += ' ${label.toLowerCase()}: ${s.correctAnswer}${s.isSino ? '': ' '}${s.counter}';
+            infoText +=
+                ' ${label.toLowerCase()}: ${activeItem.correctAnswer}${activeItem.isSino ? '' : ' '}${activeItem.counter}';
 
-      return Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            ExerciseHeader(
-              setPrevious: model.setPrevious,
-              setNext: model.setNext,
-              clear: model.clearInput,
-            ),
-            Column(
-              children: [
-                Icon(s.icon, size: 90),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    HDText(label, isBold: true),
-                    InfoButton(text: infoText),
-                  ],
-                ),
-                Text(
-                  '× ${s.count}',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    child: AnswerStatusButton(
-                  isCorrect: isCorrect,
-                )),
-                Container(
-                  width: 80,
-                  child: QuestionFreeForm(
-                    activeValue: s.userInput,
-                    hintValue: '',
-                    onChanged: (String newVal) => model.updateCount(newVal),
-                    correctValues: [s.correctAnswer],
+            return Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                children: [
+                  ExerciseHeader(
+                    setPrevious: () => navNotifier.setPrevious(),
+                    setNext: () => navNotifier.setNext(),
+                    clear: () => navNotifier.clearInput(),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(s.counter, style: TextStyle(fontSize: 28)),
-                ),
-              ],
-            ),
-          ],
+                  Column(
+                    children: [
+                      Icon(navNotifier.getActive().icon, size: 90),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          HDText(label, isBold: true),
+                          InfoButton(text: infoText),
+                        ],
+                      ),
+                      Text(
+                        '× ${navNotifier.getActive().count}',
+                        style: TextStyle(fontSize: 40),
+                      ),
+                    ],
+                  ),
+                  ChangeNotifierProvider<CountNotifier>(
+                    create: (context) => CountNotifier(navNotifier.getActive),
+                    child: Consumer<CountNotifier>(
+                      builder: (context, countNotifier, child) {
+                        var s = countNotifier.getStateItem();
+                        var isCorrect = s.getIsCorrect();
+
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                                child: AnswerStatusButton(
+                              isCorrect: isCorrect,
+                            )),
+                            Container(
+                              width: 80,
+                              child: QuestionFreeForm(
+                                activeValue: s.userInput,
+                                hintValue: '',
+                                onChanged: (String newVal) =>
+                                    countNotifier.updateCount(newVal),
+                                correctValues: [s.correctAnswer],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(navNotifier.getActive().counter,
+                                  style: TextStyle(fontSize: 28)),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       );
     }
@@ -94,18 +115,13 @@ class CountingExercise extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.numbers,
               style: HEADER_TEXT_STYLE),
         ),
-        body: ChangeNotifierProvider<CountNotifier>(
-          create: (context) => CountNotifier(),
-          child: Consumer<CountNotifier>(
-            builder: (context, model, child) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  getContent(model),
-                  AdCard(),
-                ],
-              ),
-            ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              getContent(context),
+              AdCard(),
+            ],
           ),
         ),
         persistentFooterButtons: [
