@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/dongsa/dongsa-notifier.dart';
+import 'package:handrills/state/enums.dart';
+import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-chart.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
@@ -22,10 +24,10 @@ class DongsaExerciseLevel1 extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: ChangeNotifierProvider<DongsaNotifier>(
-        create: (context) => DongsaNotifier(),
-        child: Consumer<DongsaNotifier>(
-          builder: (context, model, child) => Scaffold(
+      child: ChangeNotifierProvider<ExerciseNavNotifier>(
+        create: (context) => ExerciseNavNotifier(ExerciseType.Dongsa),
+        child: Consumer<ExerciseNavNotifier>(
+          builder: (context, navNotifier, child) => Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
               leading: Builder(builder: (BuildContext context) => BackButton()),
@@ -40,11 +42,11 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ExerciseHeader(
-                    clear: model.clearInput,
-                    setNext: model.setNext,
-                    setPrevious: model.setPrevious,
+                    setPrevious: () => navNotifier.setPrevious(),
+                    setNext: () => navNotifier.setNext(),
+                    clear: () => navNotifier.clearInput(),
                   ),
-                  Expanded(child: getExercises(context, model)),
+                  Expanded(child: getExercises(context, navNotifier)),
                   AdCard(),
                 ],
               ),
@@ -61,7 +63,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          VerbChart(dongsa: model.getActive().dongsa),
+                          VerbChart(dongsa: navNotifier.getActive().dongsa),
                     ),
                   );
                 },
@@ -73,43 +75,54 @@ class DongsaExerciseLevel1 extends StatelessWidget {
     );
   }
 
-  Widget getExercises(BuildContext context, DongsaNotifier model) {
-    var dongsa = model.getActive().dongsa;
+  Widget getExercises(BuildContext context, ExerciseNavNotifier navNotifier) {
     var width = HD.getScreenWidth(context, halfWidth: true) + 40;
 
     return Container(
       width: width,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              HDText(dongsa.infinitive, isBold: true),
-              HDText(dongsa.getTranslation(context)),
-            ],
-          ),
-          VerbInput(
-            dongsa: dongsa,
-            activeValue: model.getUserInput(0),
-            label: AppLocalizations.of(context)!.present,
-            correctValue: dongsa.banmar.present,
-            onChanged: (String newValue) => model.updateUserInput(0, newValue),
-          ),
-          VerbInput(
-            dongsa: dongsa,
-            activeValue: model.getUserInput(1),
-            label: AppLocalizations.of(context)!.past,
-            correctValue: dongsa.banmar.past,
-            onChanged: (String newValue) => model.updateUserInput(1, newValue),
-          ),
-          VerbInput(
-            activeValue: model.getUserInput(2),
-            dongsa: dongsa,
-            label: AppLocalizations.of(context)!.future,
-            correctValue: '${dongsa.banmar.futureStem} 거야',
-            onChanged: (String newValue) => model.updateUserInput(2, newValue),
-          ),
-        ],
+      child: ChangeNotifierProvider<DongsaNotifier>(
+        create: (context) => DongsaNotifier(navNotifier.getActive),
+        child: Consumer<DongsaNotifier>(
+          builder: (context, dongsaNotifier, child) {
+            var dongsa = dongsaNotifier.getActive().dongsa;
+
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HDText(dongsa.infinitive, isBold: true),
+                    HDText(dongsa.getTranslation(context)),
+                  ],
+                ),
+                VerbInput(
+                  dongsa: dongsa,
+                  activeValue: dongsaNotifier.getUserInput(0),
+                  label: AppLocalizations.of(context)!.present,
+                  correctValue: dongsa.banmar.present,
+                  onChanged: (String newValue) =>
+                      dongsaNotifier.updateUserInput(0, newValue),
+                ),
+                VerbInput(
+                  dongsa: dongsa,
+                  activeValue: dongsaNotifier.getUserInput(1),
+                  label: AppLocalizations.of(context)!.past,
+                  correctValue: dongsa.banmar.past,
+                  onChanged: (String newValue) =>
+                      dongsaNotifier.updateUserInput(1, newValue),
+                ),
+                VerbInput(
+                  activeValue: dongsaNotifier.getUserInput(2),
+                  dongsa: dongsa,
+                  label: AppLocalizations.of(context)!.future,
+                  correctValue: '${dongsa.banmar.futureStem} 거야',
+                  onChanged: (String newValue) =>
+                      dongsaNotifier.updateUserInput(2, newValue),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

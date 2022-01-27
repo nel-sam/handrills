@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
+import 'package:handrills/state/dongsa/dongs-generator.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/suja/age/age-generator.dart';
 import 'package:handrills/state/suja/count/count-generator.dart';
@@ -15,7 +16,7 @@ class ExerciseNavNotifier extends ChangeNotifier {
   ExerciseNavNotifier(ExerciseType exerciseType) {
     switch (exerciseType) {
       case ExerciseType.Dongsa:
-        // TODO: Handle this case.
+        this.states = DongsaGenerator.createDongsaExercises();
         break;
       case ExerciseType.Count:
         this.states = CountGenerator.createCountingExercises();

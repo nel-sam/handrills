@@ -25,4 +25,8 @@ class DongsaExerciseState {
     fillArray(index);
     userInput[index] = newValue;
   }
+
+  clear() {
+    userInput.clear();
+  }
 }

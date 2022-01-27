@@ -1,54 +1,40 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/state/dongsa/dongsa-exercise-state.dart';
+import 'package:handrills/constants.dart';
 
 class DongsaNotifier with ChangeNotifier {
-  late List<DongsaExerciseState> _states = [];
-  late int dongsaIndex = 0;
+  late Function() _getStateItem;
+  Timer _debounce = Timer(const Duration(milliseconds: 0), () {});
 
-  DongsaNotifier() {
-    dongsaBank.shuffle();
+  DongsaNotifier(Function() getStateItem) {
+    _getStateItem = getStateItem;
+  }
 
-    for (int i = 0; i < dongsaBank.length; i++) {
-      _states.add(DongsaExerciseState(dongsa: dongsaBank[i]));
+  deboucedNotifyListeners() {
+    if (!_debounce.isActive) {
+      _debounce.cancel();
     }
+
+    _debounce = Timer(
+        const Duration(milliseconds: DEBOUNCE_TIME), () => notifyListeners());
   }
 
   getActive() {
-    return _states[dongsaIndex];
+    return _getStateItem();
   }
 
   getUserInput(int index) {
-    return _states[dongsaIndex].getUserInput(index);
+    return _getStateItem().getUserInput(index);
   }
 
   updateUserInput(int index, String newValue) {
-    _states[dongsaIndex].updateUserInput(index, newValue);
-    notifyListeners();
+    _getStateItem().updateUserInput(index, newValue);
+    deboucedNotifyListeners();
   }
 
   clearInput() {
-    _states[dongsaIndex].userInput.clear();
-    notifyListeners();
-  }
-
-  setPrevious() {
-    if (dongsaIndex <= 0) {
-      dongsaIndex = dongsaBank.length - 1;
-    } else {
-      dongsaIndex--;
-    }
-
-    notifyListeners();
-  }
-
-  setNext() {
-    if (dongsaIndex >= dongsaBank.length - 1) {
-      dongsaIndex = 0;
-    } else {
-      dongsaIndex++;
-    }
-
-    notifyListeners();
+    _getStateItem().userInput.clear();
+    deboucedNotifyListeners();
   }
 }
