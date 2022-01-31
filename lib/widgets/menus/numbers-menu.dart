@@ -23,19 +23,28 @@ class NumbersMenu extends StatelessWidget {
                 crossAxisCount: 2,
                 children: [
                   ExerciseButton(
+                    halfWidth: true,
                     destination: SiganExercise(),
                     imagePath: 'assets/button-bgs/clocks.jpg',
+                    icon: Icons.timer_outlined,
                     label: AppLocalizations.of(context)!.time,
+                    hanLabel: '시간',
                   ),
                   ExerciseButton(
+                    halfWidth: true,
                     destination: AgeExercise(),
                     imagePath: 'assets/button-bgs/old-store.jpg',
+                    icon: Icons.elderly_outlined,
                     label: AppLocalizations.of(context)!.age,
+                    hanLabel: '나이',
                   ),
                   ExerciseButton(
+                    halfWidth: true,
                     destination: CountingExercise(),
                     imagePath: 'assets/button-bgs/tigers.jpg',
+                    icon: Icons.widgets_outlined,
                     label: AppLocalizations.of(context)!.counting,
+                    hanLabel: '계산',
                   ),
                 ],
               ),

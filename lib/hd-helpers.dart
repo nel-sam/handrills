@@ -10,7 +10,9 @@ class HD {
   }
 
   static Color getAppBarColor(BuildContext context) {
-    return isDarkTheme(context) ? const Color(0xFF212121) : Colors.white;
+    return isDarkTheme(context)
+        ? Color.fromARGB(255, 48, 48, 48)
+        : Color.fromARGB(255, 250, 250, 250);
   }
 
   static TextTheme getAppBarTextTheme(BuildContext context) {
@@ -95,6 +97,10 @@ class HD {
     return halfWidth
         ? (MediaQuery.of(context).size.width / 2).floorToDouble()
         : MediaQuery.of(context).size.width;
+  }
+
+  static double getScreenHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
   }
 
   static int getRandomNumber({int min = 0, int max = 99999}) {

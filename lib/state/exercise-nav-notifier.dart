@@ -10,22 +10,22 @@ import 'package:handrills/state/suja/sigan/sigan-generator.dart';
 
 class ExerciseNavNotifier extends ChangeNotifier {
   Timer _debounce = Timer(const Duration(milliseconds: 0), () {});
-  int activeStateIndex = 0;
-  List states = [];
+  int _activeIndex = 0;
+  List _states = [];
 
   ExerciseNavNotifier(ExerciseType exerciseType) {
     switch (exerciseType) {
       case ExerciseType.Dongsa:
-        this.states = DongsaGenerator.createDongsaExercises();
+        this._states = DongsaGenerator.createDongsaExercises();
         break;
       case ExerciseType.Count:
-        this.states = CountGenerator.createCountingExercises();
+        this._states = CountGenerator.createCountingExercises();
         break;
       case ExerciseType.Age:
-        this.states = AgeGenerator.createAgeExercises();
+        this._states = AgeGenerator.createAgeExercises();
         break;
       case ExerciseType.Sigan:
-        this.states = SiganGenerator.createSiganExercises();
+        this._states = SiganGenerator.createSiganExercises();
         break;
     }
   }
@@ -40,29 +40,29 @@ class ExerciseNavNotifier extends ChangeNotifier {
   }
 
   getActive() {
-    return states[activeStateIndex];
+    return _states[_activeIndex];
   }
 
   void clearInput() {
-    states[activeStateIndex].clear();
+    _states[_activeIndex].clear();
     deboucedNotifyListeners();
   }
 
   setPrevious() {
-    if (activeStateIndex <= 0) {
-      activeStateIndex = states.length - 1;
+    if (_activeIndex <= 0) {
+      _activeIndex = _states.length - 1;
     } else {
-      activeStateIndex--;
+      _activeIndex--;
     }
 
     deboucedNotifyListeners();
   }
 
   setNext() {
-    if (activeStateIndex >= states.length - 1) {
-      activeStateIndex = 0;
+    if (_activeIndex >= _states.length - 1) {
+      _activeIndex = 0;
     } else {
-      activeStateIndex++;
+      _activeIndex++;
     }
 
     deboucedNotifyListeners();

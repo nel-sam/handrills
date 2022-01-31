@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/widgets/menus/main-menu.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,11 +11,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final title = 'HanDrills';
-
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: title,
+        title: APP_NAME,
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -38,21 +35,12 @@ class MyApp extends StatelessWidget {
           backgroundColor: const Color(0xFF212121),
           dividerColor: Colors.black12,
         ),
-        home: MyHomePage(title: title)
-
-        // MultiProvider(
-        //   providers: [
-        //     ChangeNotifierProvider(create: (_) => CountNotifier())
-        //   ],
-        //   child: MyHomePage(title: title),
-        // ),
-        );
+        home: MyHomePage());
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -62,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HD.HanAppBar(context, widget.title),
       body: Center(
         child: MainMenu(),
       ),

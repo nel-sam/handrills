@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const String APP_NAME = "HanDrills";
 const double FONT_SIZE = 16;
 const int DEBOUNCE_TIME = 350;
 const double APPBAR_ELEVATION = 0;
