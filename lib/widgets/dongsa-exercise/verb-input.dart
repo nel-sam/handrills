@@ -5,7 +5,7 @@ import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 
 class VerbInput extends StatelessWidget {
-  VerbInput({
+  const VerbInput({
     Key? key,
     required this.dongsa,
     required this.label,

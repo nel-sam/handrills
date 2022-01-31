@@ -8,6 +8,7 @@ class QuestionFreeForm extends StatelessWidget {
   final String activeValue;
   final List<String> correctValues;
   final Function(String) onChanged;
+  final controller = TextEditingController();
 
   QuestionFreeForm({
     Key? key,
@@ -16,8 +17,6 @@ class QuestionFreeForm extends StatelessWidget {
     required this.activeValue,
     required this.correctValues,
   }) : super(key: key);
-
-  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

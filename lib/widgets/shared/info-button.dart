@@ -3,7 +3,11 @@ import 'package:handrills/constants.dart';
 
 class InfoButton extends StatelessWidget {
   final String text;
-  const InfoButton({Key? key, required this.text}) : super(key: key);
+
+  const InfoButton({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
