@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
@@ -135,14 +134,7 @@ class SiganExercise extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          leading: Builder(builder: (BuildContext context) => BackButton()),
-          elevation: APPBAR_ELEVATION,
-          backgroundColor: HD.getAppBarColor(context),
-          iconTheme: HD.getAppBarIconTheme(context),
-          title: Text(AppLocalizations.of(context)!.numbers,
-              style: HEADER_TEXT_STYLE),
-        ),
+        appBar: HD.HanAppBar(context, AppLocalizations.of(context)!.numbers),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

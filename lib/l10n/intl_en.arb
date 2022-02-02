@@ -6,6 +6,7 @@
   "oda": "To come",
   "gada": "To go",
   "boda": "To see",
+  "dudda": "To listen",
 
   "days": "Days",
   "months": "Months",
@@ -40,5 +41,7 @@
   "answers": "Answers",
   "present": "Present",
   "past": "Past",
-  "future": "Future"
+  "future": "Future",
+  "conditional": "Conditional",
+  "propositive": "Propositive"
 }

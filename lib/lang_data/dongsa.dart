@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Dongsa {
+  final String stem;
   final String infinitive;
   final DongsaConj banmar;
   final String Function(BuildContext) getTranslation;
 
   Dongsa({
+    required this.stem,
     required this.infinitive,
     required this.banmar,
     required this.getTranslation,
@@ -29,6 +31,7 @@ class DongsaConj {
 
 var dongsaBank = [
   Dongsa(
+    stem: '먹',
     infinitive: '먹다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.meogda,
@@ -40,6 +43,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
+    stem: '달리',
     infinitive: '달리다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.darrida,
@@ -51,6 +55,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
+    stem: '하',
     infinitive: '하다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.hada,
@@ -62,6 +67,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
+    stem: '지',
     infinitive: '지다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.jida,
@@ -73,6 +79,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
+    stem: '오',
     infinitive: '오다',
     getTranslation: (BuildContext context) => AppLocalizations.of(context)!.oda,
     banmar: DongsaConj(
@@ -83,6 +90,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
+    stem: '가',
     infinitive: '가다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.gada,
@@ -94,6 +102,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
+    stem: '보',
     infinitive: '보다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.boda,
@@ -102,6 +111,18 @@ var dongsaBank = [
       past: '봤어',
       futureStem: '볼',
       pastStem: '봤',
+    ),
+  ),
+  Dongsa(
+    stem: '들',
+    infinitive: '듣다',
+    getTranslation: (BuildContext context) =>
+        AppLocalizations.of(context)!.dudda,
+    banmar: DongsaConj(
+      present: '들어',
+      past: '들었어',
+      futureStem: '들',
+      pastStem: '들었',
     ),
   ),
 ];

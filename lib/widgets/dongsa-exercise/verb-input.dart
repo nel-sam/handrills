@@ -27,19 +27,16 @@ class VerbInput extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              HDText(label),
-            ],
+        Expanded(
+          child: HDText(
+            label,
+            textAlign: TextAlign.end,
           ),
         ),
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: QuestionFreeForm(
                 activeValue: activeValue,
                 hintValue: dongsa.infinitive,

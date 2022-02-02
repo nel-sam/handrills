@@ -135,7 +135,7 @@ class HD {
       title: Text(
         label,
         style: TextStyle(
-            fontSize: 30, fontFamily: 'helvetica', color: ACCENT_COLOR),
+            fontSize: 20, fontFamily: 'helvetica', color: ACCENT_COLOR),
       ),
     );
   }

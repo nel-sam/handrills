@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/lang_data/numbers.dart';
@@ -98,14 +97,8 @@ class NumberChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: Builder(builder: (BuildContext context) => BackButton()),
-          elevation: APPBAR_ELEVATION,
-          backgroundColor: HD.getAppBarColor(context),
-          iconTheme: HD.getAppBarIconTheme(context),
-          title: Text(AppLocalizations.of(context)!.numberChart,
-              style: HEADER_TEXT_STYLE),
-        ),
+        appBar:
+            HD.HanAppBar(context, AppLocalizations.of(context)!.numberChart),
         body: Padding(
           padding: EdgeInsets.all(18),
           child: SingleChildScrollView(

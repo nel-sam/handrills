@@ -6,6 +6,7 @@
   "oda": "Venir",
   "gada": "Ir",
   "boda": "Ver/Mirar",
+  "dudda": "Oír",
 
   "days": "Días",
   "months": "Meses",
@@ -40,5 +41,7 @@
   "answers": "Repuestas",
   "present": "Presente",
   "past": "Pasado",
-  "future": "Futuro"
+  "future": "Futuro",
+  "conditional": "Condicional",
+  "propositive": "Propositivo"
 }

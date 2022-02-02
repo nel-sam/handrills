@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
@@ -18,13 +17,7 @@ class VerbChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: Builder(builder: (BuildContext context) => BackButton()),
-        elevation: APPBAR_ELEVATION,
-        backgroundColor: HD.getAppBarColor(context),
-        iconTheme: HD.getAppBarIconTheme(context),
-        title: Text(dongsa.infinitive, style: HEADER_TEXT_STYLE),
-      ),
+      appBar: HD.HanAppBar(context, dongsa.infinitive),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,6 +39,14 @@ class VerbChart extends StatelessWidget {
                       ChartRow(
                         label: AppLocalizations.of(context)!.future,
                         conj: '${dongsa.banmar.futureStem} 거야',
+                      ),
+                      ChartRow(
+                        label: AppLocalizations.of(context)!.conditional,
+                        conj: '${dongsa.stem}겠어',
+                      ),
+                      ChartRow(
+                        label: AppLocalizations.of(context)!.propositive,
+                        conj: '${dongsa.stem}자',
                       ),
                     ],
                   ),
@@ -75,7 +76,7 @@ class ChartRow extends StatelessWidget {
     return Row(
       children: [
         Container(
-            width: 70,
+            width: HD.getScreenWidth(context) / 3,
             child: HDText(
               label,
               textAlign: TextAlign.end,

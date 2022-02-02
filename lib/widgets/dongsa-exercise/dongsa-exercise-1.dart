@@ -29,14 +29,8 @@ class DongsaExerciseLevel1 extends StatelessWidget {
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) => Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              leading: Builder(builder: (BuildContext context) => BackButton()),
-              elevation: APPBAR_ELEVATION,
-              backgroundColor: HD.getAppBarColor(context),
-              iconTheme: HD.getAppBarIconTheme(context),
-              title: Text('${AppLocalizations.of(context)!.verbs} 1 (반말)',
-                  style: HEADER_TEXT_STYLE),
-            ),
+            appBar: HD.HanAppBar(
+                context, '${AppLocalizations.of(context)!.verbs} 1 (반말)'),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +70,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
   }
 
   Widget getExercises(BuildContext context, ExerciseNavNotifier navNotifier) {
-    var width = HD.getScreenWidth(context, halfWidth: true) + 40;
+    var width = HD.getScreenWidth(context, halfWidth: true) + 80;
 
     return Container(
       width: width,
@@ -91,7 +85,12 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    HDText(dongsa.infinitive, isBold: true),
+                    HDText(
+                      dongsa.infinitive,
+                      isBold: true,
+                      textAlign: TextAlign.end,
+                    ),
+                    SizedBox(width: FONT_SIZE),
                     HDText(dongsa.getTranslation(context)),
                   ],
                 ),
@@ -118,6 +117,22 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                   correctValue: '${dongsa.banmar.futureStem} 거야',
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(2, newValue),
+                ),
+                VerbInput(
+                  activeValue: dongsaNotifier.getUserInput(3),
+                  dongsa: dongsa,
+                  label: AppLocalizations.of(context)!.conditional,
+                  correctValue: '${dongsa.stem}겠어',
+                  onChanged: (String newValue) =>
+                      dongsaNotifier.updateUserInput(3, newValue),
+                ),
+                VerbInput(
+                  activeValue: dongsaNotifier.getUserInput(4),
+                  dongsa: dongsa,
+                  label: AppLocalizations.of(context)!.propositive,
+                  correctValue: '${dongsa.stem}자',
+                  onChanged: (String newValue) =>
+                      dongsaNotifier.updateUserInput(4, newValue),
                 ),
               ],
             );
