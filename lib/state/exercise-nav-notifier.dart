@@ -11,23 +11,31 @@ import 'package:handrills/state/suja/sigan/sigan-generator.dart';
 class ExerciseNavNotifier extends ChangeNotifier {
   Timer _debounce = Timer(const Duration(milliseconds: 0), () {});
   int _activeIndex = 0;
+  int _maxIndex = 0;
   List _states = [];
+  late Function(int) createExercise;
 
   ExerciseNavNotifier(ExerciseType exerciseType) {
     switch (exerciseType) {
       case ExerciseType.Dongsa:
-        this._states = DongsaGenerator.createDongsaExercises();
+        this._maxIndex = DongsaGenerator.getMaxIndex();
+        this.createExercise = DongsaGenerator.createExercise;
         break;
       case ExerciseType.Count:
-        this._states = CountGenerator.createCountingExercises();
+        this._maxIndex = CountGenerator.getMaxIndex();
+        this.createExercise = CountGenerator.createExercise;
         break;
       case ExerciseType.Age:
-        this._states = AgeGenerator.createAgeExercises();
+        this._maxIndex = AgeGenerator.getMaxIndex();
+        this.createExercise = AgeGenerator.createExercise;
         break;
       case ExerciseType.Sigan:
-        this._states = SiganGenerator.createSiganExercises();
+        this._maxIndex = SiganGenerator.getMaxIndex();
+        this.createExercise = SiganGenerator.createExercise;
         break;
     }
+
+    this._states.add(this.createExercise(this._activeIndex));
   }
 
   deboucedNotifyListeners() {
@@ -49,6 +57,8 @@ class ExerciseNavNotifier extends ChangeNotifier {
   }
 
   setPrevious() {
+    if (_states.length <= 1) return;
+
     if (_activeIndex <= 0) {
       _activeIndex = _states.length - 1;
     } else {
@@ -59,10 +69,14 @@ class ExerciseNavNotifier extends ChangeNotifier {
   }
 
   setNext() {
-    if (_activeIndex >= _states.length - 1) {
+    if (_activeIndex >= _maxIndex - 1) {
       _activeIndex = 0;
     } else {
       _activeIndex++;
+    }
+
+    if (_activeIndex > _states.length - 1) {
+      this._states.add(this.createExercise(this._activeIndex));
     }
 
     deboucedNotifyListeners();

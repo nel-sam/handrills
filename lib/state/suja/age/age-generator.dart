@@ -4,19 +4,16 @@ import 'package:handrills/lang_data/numbers.dart';
 import 'package:handrills/state/suja/age/age-exercise-state.dart';
 
 class AgeGenerator {
-  static List<AgeExerciseState> createAgeExercises() {
-    List<AgeExerciseState> ageExerciseState = [];
+  static createExercise(int index) {
+    HanNumber number = HD.getRandomNativeNumber();
 
-    for (int i = 0; i < AGE_EXERCISE_COUNT; i++) {
-      HanNumber number = HD.getRandomNativeNumber();
+    return AgeExerciseState(
+      age: number.digit,
+      correctAnswer: number.alternate,
+    );
+  }
 
-      ageExerciseState.add(
-        AgeExerciseState(
-          age: number.digit,
-          correctAnswer: number.alternate,
-        ),
-      );
-    }
-    return ageExerciseState;
+  static int getMaxIndex() {
+    return AGE_EXERCISE_COUNT;
   }
 }

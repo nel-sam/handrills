@@ -2,14 +2,11 @@ import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/state/dongsa/dongsa-exercise-state.dart';
 
 class DongsaGenerator {
-  static createDongsaExercises() {
-    List<DongsaExerciseState> states = [];
+  static createExercise(int index) {
+    return DongsaExerciseState(dongsa: dongsaBank[index]);
+  }
 
-    for (int i = 0; i < dongsaBank.length; i++) {
-      states.add(DongsaExerciseState(dongsa: dongsaBank[i]));
-    }
-
-    states.shuffle();
-    return states;
+  static int getMaxIndex() {
+    return dongsaBank.length - 1;
   }
 }
