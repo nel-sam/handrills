@@ -31,7 +31,7 @@
   "numberChart": "Tabla de números",
   "verbChart": "Tabla de verbos",
   "next_exercise":  "Siguiente Ejercicio",
-  "timeDesc": "Para la hora 0-12 usa números nativos (하나, 둘, 셋) y para horas 13-24, minutos y segundos usa números coreano-sinos (일, 이, 삼 )",
+  "timeDesc": "Para la hora 0-12 usa la forma corta de números nativos (한시, 두시, 세시) y para horas 13-24, minutos y segundos usa números coreano-sinos (일, 이, 삼 )",
   "numbersExercise": "Números",
   "coming_soon": "Próximamente…",
   "home": "Inicio",

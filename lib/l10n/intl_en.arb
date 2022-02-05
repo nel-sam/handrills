@@ -31,7 +31,7 @@
   "numberChart": "Number chart",
   "verbChart": "Verb chart",
   "next_exercise":  "Next Exercise",
-  "timeDesc": "For hours up to 12 use Native numbers (하나, 둘, 셋), Sino numbers (일, 이, 삼 ) for hours 13 and up and for minutes and seconds",
+  "timeDesc": "For hours up to 12 use short form of Native numbers (한시, 두시, 세시), Sino numbers (일, 이, 삼 ) for hours 13 and up and for minutes and seconds",
   "numbersExercise": "Numbers",
   "coming_soon": "Coming soon…",
   "home": "Home",
