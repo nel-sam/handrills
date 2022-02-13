@@ -22,13 +22,13 @@ class ExerciseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = HD.getScreenWidth(context);
+    double screenWidth = HD.getScreenWidth();
     double buttonWidth =
         this.halfWidth ? (screenWidth / 2) - 20 : screenWidth - 30;
     double buttonHeight = halfWidth ? 130 : 130;
     var appBarColor = HD.isDarkTheme(context)
         ? Color.fromARGB(255, 58, 58, 58)
-        : HD.getAppBarColor(context);
+        : HD.getAppBarColor();
     double radius = 10;
 
     return Padding(

@@ -70,7 +70,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
   }
 
   Widget getExercises(BuildContext context, ExerciseNavNotifier navNotifier) {
-    var width = HD.getScreenWidth(context, halfWidth: true) + 80;
+    var width = HD.getScreenWidth(halfWidth: true) + 80;
 
     return Container(
       width: width,

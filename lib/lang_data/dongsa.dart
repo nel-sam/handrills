@@ -5,6 +5,7 @@ class Dongsa {
   final String stem;
   final String infinitive;
   final DongsaConj banmar;
+  final bool isIrregular;
   final String Function(BuildContext) getTranslation;
 
   Dongsa({
@@ -12,6 +13,7 @@ class Dongsa {
     required this.infinitive,
     required this.banmar,
     required this.getTranslation,
+    required this.isIrregular,
   });
 }
 
@@ -31,7 +33,34 @@ class DongsaConj {
 
 var dongsaBank = [
   Dongsa(
+    stem: '걷',
+    isIrregular: true,
+    infinitive: '걷다',
+    getTranslation: (BuildContext context) =>
+        AppLocalizations.of(context)!.keodda,
+    banmar: DongsaConj(
+      present: '걸어',
+      past: '걸었어',
+      futureStem: '걸을',
+      pastStem: '걸었',
+    ),
+  ),
+  Dongsa(
+    stem: '들',
+    isIrregular: true,
+    infinitive: '들다',
+    getTranslation: (BuildContext context) =>
+        AppLocalizations.of(context)!.turda,
+    banmar: DongsaConj(
+      present: '들어',
+      past: '들었어',
+      futureStem: '들',
+      pastStem: '들었',
+    ),
+  ),
+  Dongsa(
     stem: '먹',
+    isIrregular: false,
     infinitive: '먹다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.meogda,
@@ -44,6 +73,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '달리',
+    isIrregular: false,
     infinitive: '달리다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.darrida,
@@ -56,6 +86,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '하',
+    isIrregular: false,
     infinitive: '하다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.hada,
@@ -68,6 +99,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '지',
+    isIrregular: false,
     infinitive: '지다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.jida,
@@ -80,6 +112,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '오',
+    isIrregular: false,
     infinitive: '오다',
     getTranslation: (BuildContext context) => AppLocalizations.of(context)!.oda,
     banmar: DongsaConj(
@@ -91,6 +124,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '가',
+    isIrregular: false,
     infinitive: '가다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.gada,
@@ -103,6 +137,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '보',
+    isIrregular: false,
     infinitive: '보다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.boda,
@@ -115,6 +150,7 @@ var dongsaBank = [
   ),
   Dongsa(
     stem: '들',
+    isIrregular: false,
     infinitive: '듣다',
     getTranslation: (BuildContext context) =>
         AppLocalizations.of(context)!.dudda,

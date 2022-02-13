@@ -32,7 +32,7 @@ class MainMenu extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: HD.getScreenHeight(context) / 3.5,
+          height: HD.getScreenHeight() / 3.5,
           decoration: BoxDecoration(
             image: DecorationImage(
               opacity: HD.isDarkTheme(context) ? 0.7 : 0.9,

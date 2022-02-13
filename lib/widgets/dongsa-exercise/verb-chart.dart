@@ -76,7 +76,7 @@ class ChartRow extends StatelessWidget {
     return Row(
       children: [
         Container(
-            width: HD.getScreenWidth(context) / 3,
+            width: HD.getScreenWidth() / 3,
             child: HDText(
               label,
               textAlign: TextAlign.end,

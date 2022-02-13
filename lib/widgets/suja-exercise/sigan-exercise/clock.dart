@@ -8,7 +8,7 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = HD.getScreenWidth(context);
+    double screenWidth = HD.getScreenWidth();
 
     return Container(
       height: 100,

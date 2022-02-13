@@ -128,7 +128,7 @@ class SiganExercise extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var footerButtonWidth = HD.getScreenWidth(context, halfWidth: true) - 20;
+    var footerButtonWidth = HD.getScreenWidth(halfWidth: true) - 20;
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

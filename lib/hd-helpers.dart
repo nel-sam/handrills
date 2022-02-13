@@ -9,8 +9,11 @@ class HD {
     return MediaQuery.of(context).platformBrightness == Brightness.dark;
   }
 
-  static Color getAppBarColor(BuildContext context) {
-    return isDarkTheme(context)
+  static Color getAppBarColor() {
+    var brightness = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+        .platformBrightness;
+    bool darkModeOn = brightness == Brightness.dark;
+    return darkModeOn
         ? Color.fromARGB(255, 48, 48, 48)
         : Color.fromARGB(255, 250, 250, 250);
   }
@@ -90,17 +93,16 @@ class HD {
     );
   }
 
-  static double getScreenWidth(
-    BuildContext context, {
-    bool halfWidth = false,
-  }) {
-    return halfWidth
-        ? (MediaQuery.of(context).size.width / 2).floorToDouble()
-        : MediaQuery.of(context).size.width;
+  static double getScreenWidth({bool halfWidth = false, int reduction = 0}) {
+    final width =
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width;
+    return (halfWidth ? width / 2 : width) - reduction;
   }
 
-  static double getScreenHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height;
+  static double getScreenHeight({int reduction = 0}) {
+    final height =
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height;
+    return height - reduction;
   }
 
   static int getRandomNumber({int min = 0, int max = 99999}) {
@@ -130,7 +132,7 @@ class HD {
   static AppBar HanAppBar(BuildContext context, String label) {
     return AppBar(
       elevation: APPBAR_ELEVATION,
-      backgroundColor: HD.getAppBarColor(context),
+      backgroundColor: HD.getAppBarColor(),
       iconTheme: HD.getAppBarIconTheme(context),
       title: Text(
         label,
