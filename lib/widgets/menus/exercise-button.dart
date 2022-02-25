@@ -7,7 +7,6 @@ class ExerciseButton extends StatelessWidget {
   final IconData icon;
   final String label;
   final String hanLabel;
-  final String imagePath;
   final bool halfWidth;
 
   const ExerciseButton({
@@ -15,7 +14,6 @@ class ExerciseButton extends StatelessWidget {
     required this.destination,
     required this.label,
     required this.hanLabel,
-    required this.imagePath,
     required this.icon,
     this.halfWidth = false,
   }) : super(key: key);
@@ -64,10 +62,6 @@ class ExerciseButton extends StatelessWidget {
                           topRight: Radius.circular(radius),
                           topLeft: Radius.circular(radius),
                         ),
-                        image: DecorationImage(
-                          image: AssetImage(imagePath),
-                          fit: BoxFit.cover,
-                        ),
                       ),
                     ),
                     Padding(
@@ -105,10 +99,6 @@ class ExerciseButton extends StatelessWidget {
                               topRight: Radius.circular(radius),
                               bottomRight: Radius.circular(radius),
                             ),
-                            image: DecorationImage(
-                              image: AssetImage(imagePath),
-                              fit: BoxFit.cover,
-                            ),
                           ),
                           child: getIcon(),
                         ),
@@ -129,14 +119,12 @@ class ExerciseButton extends StatelessWidget {
           hanLabel,
           style: TextStyle(
             fontSize: 24,
-            color: ACCENT_COLOR,
           ),
         ),
         Text(
           label,
           style: TextStyle(
             fontSize: halfWidth ? 12 : 14,
-            color: ACCENT_COLOR,
           ),
         ),
       ],
@@ -147,7 +135,6 @@ class ExerciseButton extends StatelessWidget {
     return Icon(
       icon,
       size: 50,
-      color: ACCENT_COLOR,
     );
   }
 }

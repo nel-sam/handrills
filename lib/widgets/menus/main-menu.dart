@@ -12,23 +12,6 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var buttons = [
-      ExerciseButton(
-        destination: NumbersMenu(),
-        imagePath: 'assets/button-bgs/city.jpg',
-        icon: Icons.onetwothree,
-        label: AppLocalizations.of(context)!.numbersExercise,
-        hanLabel: '수자',
-      ),
-      ExerciseButton(
-        destination: DongsaExerciseLevel1(),
-        imagePath: 'assets/button-bgs/sakura.jpg',
-        icon: Icons.nordic_walking_outlined,
-        label: AppLocalizations.of(context)!.verbs,
-        hanLabel: '동사',
-      ),
-    ];
-
     return Column(
       children: [
         Container(
@@ -58,7 +41,20 @@ class MainMenu extends StatelessWidget {
         ),
         Expanded(
           child: Column(
-            children: buttons,
+            children: [
+              ExerciseButton(
+                destination: NumbersMenu(),
+                icon: Icons.onetwothree,
+                label: AppLocalizations.of(context)!.numbersExercise,
+                hanLabel: '수자',
+              ),
+              ExerciseButton(
+                destination: DongsaExerciseLevel1(),
+                icon: Icons.nordic_walking_outlined,
+                label: AppLocalizations.of(context)!.verbs,
+                hanLabel: '동사',
+              ),
+            ],
           ),
         ),
         AdCard(),
