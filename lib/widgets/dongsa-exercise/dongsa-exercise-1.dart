@@ -8,10 +8,10 @@ import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-chart.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/footer-button.dart';
-import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/home-button-wrapper.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
 import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
 import 'package:provider/provider.dart';
 
@@ -20,9 +20,6 @@ class DongsaExerciseLevel1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    var footerButtonWidth = (screenSize.width / 2) - 20;
-
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: ChangeNotifierProvider<ExerciseNavNotifier>(
@@ -44,10 +41,8 @@ class DongsaExerciseLevel1 extends StatelessWidget {
               ),
             ),
             persistentFooterButtons: [
-              HomeButton(width: footerButtonWidth),
-              FooterButton(
-                width: footerButtonWidth,
-                context: context,
+              HomeButtonWrapper(),
+              NFooterButton(
                 text: AppLocalizations.of(context)!.verbChart,
                 icon: Icons.list,
                 onPressed: () {

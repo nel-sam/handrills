@@ -4,8 +4,7 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/sigan/sigan-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/footer-button.dart';
-import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/home-button-wrapper.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
@@ -13,6 +12,7 @@ import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
 import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
+import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
 import 'package:nrs_flutter_lib/widgets/n-info-button.dart';
 import 'package:provider/provider.dart';
 
@@ -39,10 +39,8 @@ class SiganExercise extends StatelessWidget {
           ),
         ),
         persistentFooterButtons: [
-          HomeButton(width: footerButtonWidth),
-          FooterButton(
-            width: footerButtonWidth,
-            context: context,
+          HomeButtonWrapper(),
+          NFooterButton(
             text: AppLocalizations.of(context)!.numberChart,
             icon: Icons.list,
             onPressed: () {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
-import 'package:handrills/widgets/shared/hd-sub-header.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-sub-header.dart';
 
 class NumberChart extends StatelessWidget {
   final TextStyle boldStyle = TextStyle(fontWeight: FontWeight.bold);
@@ -33,7 +33,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              HdSubHeader(AppLocalizations.of(context)!.nativeNumbers),
+              NSubHeader(AppLocalizations.of(context)!.nativeNumbers),
             ],
           ),
           Row(
@@ -82,7 +82,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              HdSubHeader(AppLocalizations.of(context)!.sinoNumbers),
+              NSubHeader(AppLocalizations.of(context)!.sinoNumbers),
             ],
           ),
           Row(

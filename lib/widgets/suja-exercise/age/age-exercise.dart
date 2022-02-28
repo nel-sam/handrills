@@ -4,22 +4,19 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/age/age-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/footer-button.dart';
-import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/home-button-wrapper.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
+import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
 import 'package:provider/provider.dart';
 
 class AgeExercise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    var footerButtonWidth = (screenSize.width / 2) - 20;
-
     Widget getContent(BuildContext context) {
       return ChangeNotifierProvider<ExerciseNavNotifier>(
         create: (context) => ExerciseNavNotifier(ExerciseType.Age),
@@ -90,10 +87,8 @@ class AgeExercise extends StatelessWidget {
           ),
         ),
         persistentFooterButtons: [
-          HomeButton(width: footerButtonWidth),
-          FooterButton(
-            width: footerButtonWidth,
-            context: context,
+          HomeButtonWrapper(),
+          NFooterButton(
             text: AppLocalizations.of(context)!.numberChart,
             icon: Icons.list,
             onPressed: () {
