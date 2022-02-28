@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class ExerciseButton extends StatelessWidget {
   final Widget destination;
@@ -20,13 +20,13 @@ class ExerciseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = HD.getScreenWidth();
+    double screenWidth = Nrs.getScreenWidth();
     double buttonWidth =
         this.halfWidth ? (screenWidth / 2) - 20 : screenWidth - 30;
     double buttonHeight = halfWidth ? 130 : 130;
-    var appBarColor = HD.isDarkTheme(context)
+    var appBarColor = Nrs.isDarkTheme(context)
         ? Color.fromARGB(255, 58, 58, 58)
-        : HD.getAppBarColor();
+        : Nrs.getAppBarColor();
     double radius = 10;
 
     return Padding(
@@ -111,6 +111,13 @@ class ExerciseButton extends StatelessWidget {
     );
   }
 
+  Icon getIcon() {
+    return Icon(
+      icon,
+      size: 50,
+    );
+  }
+
   Widget getLabel() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,13 +135,6 @@ class ExerciseButton extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Icon getIcon() {
-    return Icon(
-      icon,
-      size: 50,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class Clock extends StatelessWidget {
   final String time;
@@ -8,7 +8,7 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = HD.getScreenWidth();
+    double screenWidth = Nrs.getScreenWidth();
 
     return Container(
       height: 100,

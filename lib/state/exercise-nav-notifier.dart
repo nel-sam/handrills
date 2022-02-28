@@ -38,6 +38,11 @@ class ExerciseNavNotifier extends ChangeNotifier {
     this._states.add(this.createExercise(this._activeIndex));
   }
 
+  void clearInput() {
+    _states[_activeIndex].clear();
+    deboucedNotifyListeners();
+  }
+
   deboucedNotifyListeners() {
     if (!_debounce.isActive) {
       _debounce.cancel();
@@ -51,21 +56,8 @@ class ExerciseNavNotifier extends ChangeNotifier {
     return _states[_activeIndex];
   }
 
-  void clearInput() {
-    _states[_activeIndex].clear();
-    deboucedNotifyListeners();
-  }
-
-  setPrevious() {
-    if (_states.length <= 1) return;
-
-    if (_activeIndex <= 0) {
-      _activeIndex = _states.length - 1;
-    } else {
-      _activeIndex--;
-    }
-
-    deboucedNotifyListeners();
+  String getCounter() {
+    return '${_activeIndex + 1}/$_maxIndex';
   }
 
   setNext() {
@@ -77,6 +69,18 @@ class ExerciseNavNotifier extends ChangeNotifier {
 
     if (_activeIndex > _states.length - 1) {
       this._states.add(this.createExercise(this._activeIndex));
+    }
+
+    deboucedNotifyListeners();
+  }
+
+  setPrevious() {
+    if (_states.length <= 1) return;
+
+    if (_activeIndex <= 0) {
+      _activeIndex = _states.length - 1;
+    } else {
+      _activeIndex--;
     }
 
     deboucedNotifyListeners();

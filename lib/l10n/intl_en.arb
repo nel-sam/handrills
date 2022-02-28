@@ -45,5 +45,6 @@
   "past": "Past",
   "future": "Future",
   "conditional": "Conditional",
-  "propositive": "Propositive"
+  "propositive": "Propositive",
+  "exercise": "Exercise"
 }

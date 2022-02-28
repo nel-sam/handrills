@@ -2,11 +2,12 @@ import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
 import 'package:handrills/state/suja/sigan/sigan-exercise-state.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class SiganGenerator {
   static createExercise(int index) {
     for (int i = 0; i < SIGAN_EXERCISE_COUNT; i++) {
-      var hourDigit = HD.getRandomNumber(min: 0, max: 23);
+      var hourDigit = Nrs.getRandomNumber(min: 0, max: 23);
 
       var hour = hourDigit < 13
           ? nativeNumberBank[hourDigit]

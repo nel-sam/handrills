@@ -1,22 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/sigan/sigan-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/answer-status-button.dart';
-import 'package:handrills/widgets/shared/exercise-header.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
-import 'package:handrills/widgets/shared/info-button.dart';
+import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/enums.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
+import 'package:nrs_flutter_lib/widgets/n-info-button.dart';
 import 'package:provider/provider.dart';
 
 class SiganExercise extends StatelessWidget {
   final double textFieldWidth = 70;
+
+  @override
+  Widget build(BuildContext context) {
+    var footerButtonWidth = Nrs.getScreenWidth(halfWidth: true) - 20;
+
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: Nrs.NrsAppBar(
+            title: AppLocalizations.of(context)!.numbers, context: context),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              getContent(context),
+              AdCard(),
+            ],
+          ),
+        ),
+        persistentFooterButtons: [
+          HomeButton(width: footerButtonWidth),
+          FooterButton(
+            width: footerButtonWidth,
+            context: context,
+            text: AppLocalizations.of(context)!.numberChart,
+            icon: Icons.list,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NumberChart()),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
   getContent(BuildContext context) {
     return ChangeNotifierProvider<ExerciseNavNotifier>(
@@ -29,17 +68,13 @@ class SiganExercise extends StatelessWidget {
             padding: const EdgeInsets.only(left: 24, right: 24),
             child: Column(
               children: [
-                ExerciseHeader(
-                  setPrevious: () => navNotifier.setPrevious(),
-                  setNext: () => navNotifier.setNext(),
-                  clear: () => navNotifier.clearInput(),
-                ),
+                NavHeaderWrapper(navNotifier: navNotifier),
                 Clock(time: '${s.hour}:${s.min}:${s.sec}'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(AppLocalizations.of(context)!.typeTheTime),
-                    InfoButton(
+                    NInfoButton(
                       text: AppLocalizations.of(context)!.timeDesc,
                     ),
                   ],
@@ -49,16 +84,23 @@ class SiganExercise extends StatelessWidget {
                   child: Consumer<SiganNotifier>(
                     builder: (context, siganNotifier, child) {
                       var s = siganNotifier.getStateItem();
-                      var isHourCorrect = s.correctHour == s.userHour;
-                      var isMinCorrect = s.correctMin == s.userMin;
-                      var isSecCorrect = s.correctSec == s.userSec;
+                      // TODO: Make status 3d
+                      var isHourCorrect = s.correctHour == s.userHour
+                          ? CorrectStatus.correct
+                          : CorrectStatus.unstarted;
+                      var isMinCorrect = s.correctMin == s.userMin
+                          ? CorrectStatus.correct
+                          : CorrectStatus.unstarted;
+                      var isSecCorrect = s.correctSec == s.userSec
+                          ? CorrectStatus.correct
+                          : CorrectStatus.unstarted;
 
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
                             children: [
-                              AnswerStatusButton(isCorrect: isHourCorrect),
+                              NAnswerStatusIcon(status: isHourCorrect),
                               Container(
                                 width: textFieldWidth,
                                 child: QuestionFreeForm(
@@ -77,7 +119,7 @@ class SiganExercise extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              AnswerStatusButton(isCorrect: isMinCorrect),
+                              NAnswerStatusIcon(status: isMinCorrect),
                               Container(
                                 width: textFieldWidth,
                                 child: QuestionFreeForm(
@@ -96,7 +138,7 @@ class SiganExercise extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              AnswerStatusButton(isCorrect: isSecCorrect),
+                              NAnswerStatusIcon(status: isSecCorrect),
                               Container(
                                 width: textFieldWidth,
                                 child: QuestionFreeForm(
@@ -122,43 +164,6 @@ class SiganExercise extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var footerButtonWidth = HD.getScreenWidth(halfWidth: true) - 20;
-
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: HD.HanAppBar(context, AppLocalizations.of(context)!.numbers),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              getContent(context),
-              AdCard(),
-            ],
-          ),
-        ),
-        persistentFooterButtons: [
-          HomeButton(width: footerButtonWidth),
-          FooterButton(
-            width: footerButtonWidth,
-            context: context,
-            text: AppLocalizations.of(context)!.numberChart,
-            icon: Icons.list,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NumberChart()),
-              );
-            },
-          ),
-        ],
       ),
     );
   }

@@ -1,9 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/hd-text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
+
+class ChartRow extends StatelessWidget {
+  final String label;
+
+  final String conj;
+  const ChartRow({
+    Key? key,
+    required this.label,
+    required this.conj,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+            width: Nrs.getScreenWidth() / 3,
+            child: NTextSpan(
+              label,
+              textAlign: TextAlign.end,
+            )),
+        NTextSpan(
+          conj,
+          textStyle: HD.fontStyleBold(context),
+        ),
+      ],
+    );
+  }
+}
 
 class VerbChart extends StatelessWidget {
   final Dongsa dongsa;
@@ -17,7 +47,7 @@ class VerbChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: HD.HanAppBar(context, dongsa.infinitive),
+      appBar: Nrs.NrsAppBar(title: dongsa.infinitive, context: context),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,32 +87,6 @@ class VerbChart extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ChartRow extends StatelessWidget {
-  const ChartRow({
-    Key? key,
-    required this.label,
-    required this.conj,
-  }) : super(key: key);
-
-  final String label;
-  final String conj;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-            width: HD.getScreenWidth() / 3,
-            child: HDText(
-              label,
-              textAlign: TextAlign.end,
-            )),
-        HDText(conj, isBold: true),
-      ],
     );
   }
 }

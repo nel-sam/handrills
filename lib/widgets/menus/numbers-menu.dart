@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class NumbersMenu extends StatelessWidget {
   const NumbersMenu({Key? key}) : super(key: key);
@@ -14,7 +14,8 @@ class NumbersMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: HD.HanAppBar(context, AppLocalizations.of(context)!.numbers),
+      appBar: Nrs.NrsAppBar(
+          title: AppLocalizations.of(context)!.numbers, context: context),
       body: Center(
         child: Column(
           children: [

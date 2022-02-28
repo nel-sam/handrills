@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/age/age-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/answer-status-button.dart';
-import 'package:handrills/widgets/shared/exercise-header.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/enums.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
 import 'package:provider/provider.dart';
 
 class AgeExercise extends StatelessWidget {
@@ -30,11 +31,7 @@ class AgeExercise extends StatelessWidget {
               padding: EdgeInsets.all(24),
               child: Column(
                 children: [
-                  ExerciseHeader(
-                    setPrevious: () => navNotifier.setPrevious(),
-                    setNext: () => navNotifier.setNext(),
-                    clear: () => navNotifier.clearInput(),
-                  ),
+                  NavHeaderWrapper(navNotifier: navNotifier),
                   Text('몇 살이에요?', style: TextStyle(fontSize: 20)),
                   Text(s.age.toString(), style: TextStyle(fontSize: 24)),
                   ChangeNotifierProvider<AgeNotifier>(
@@ -45,7 +42,11 @@ class AgeExercise extends StatelessWidget {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            AnswerStatusButton(isCorrect: s.getIsCorrect()),
+                            // TODO: Make 3d
+                            NAnswerStatusIcon(
+                                status: s.getIsCorrect()
+                                    ? CorrectStatus.correct
+                                    : CorrectStatus.unstarted),
                             Container(
                               width: 150,
                               child: QuestionFreeForm(
@@ -77,7 +78,8 @@ class AgeExercise extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: HD.HanAppBar(context, AppLocalizations.of(context)!.numbers),
+        appBar: Nrs.NrsAppBar(
+            title: AppLocalizations.of(context)!.numbers, context: context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

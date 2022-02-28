@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/extensions.dart';
-import 'package:handrills/state/enums.dart';
+import 'package:nrs_flutter_lib/enums.dart';
+import 'package:nrs_flutter_lib/extensions.dart';
 
 class QuestionFreeForm extends StatelessWidget {
   final String hintValue;
@@ -52,22 +52,6 @@ class QuestionFreeForm extends StatelessWidget {
     );
   }
 
-  CorrectStatus getCorrectStatus(String userInput) {
-    if (userInput.length == 0) {
-      return CorrectStatus.unstarted;
-    }
-
-    if (correctValues.containsCaseInsensitive(userInput)) {
-      return CorrectStatus.correct;
-    }
-
-    if (correctValues.containsSubCaseInsensitive(userInput)) {
-      return CorrectStatus.inprogressCorrect;
-    }
-
-    return CorrectStatus.wrong;
-  }
-
   OutlineInputBorder getBorder() {
     var status = getCorrectStatus(activeValue);
 
@@ -93,5 +77,21 @@ class QuestionFreeForm extends StatelessWidget {
         color: color,
       ),
     );
+  }
+
+  CorrectStatus getCorrectStatus(String userInput) {
+    if (userInput.length == 0) {
+      return CorrectStatus.unstarted;
+    }
+
+    if (correctValues.containsCaseInsensitive(userInput)) {
+      return CorrectStatus.correct;
+    }
+
+    if (correctValues.containsSubCaseInsensitive(userInput)) {
+      return CorrectStatus.inprogressCorrect;
+    }
+
+    return CorrectStatus.wrong;
   }
 }

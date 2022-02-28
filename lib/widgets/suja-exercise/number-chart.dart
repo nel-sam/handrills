@@ -1,11 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
 import 'package:handrills/widgets/shared/hd-sub-header.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class NumberChart extends StatelessWidget {
   final TextStyle boldStyle = TextStyle(fontWeight: FontWeight.bold);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: Nrs.NrsAppBar(
+            title: AppLocalizations.of(context)!.numberChart, context: context),
+        body: Padding(
+          padding: EdgeInsets.all(18),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                getNativeNumberChart(context),
+                getSinoNumberChart(context),
+              ],
+            ),
+          ),
+        ));
+  }
+
+  getNativeNumberChart(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              HdSubHeader(AppLocalizations.of(context)!.nativeNumbers),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...nativeNumberBank.getRange(1, 34).map((e) => Text(
+                      '${e.digit} ${e.written}',
+                      style: boldStyle,
+                    ))
+              ]),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...nativeNumberBank
+                    .getRange(34, 67)
+                    .map((e) => Text('${e.digit} ${e.written}'))
+              ]),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                ...nativeNumberBank.getRange(67, 100).map((e) => Text(
+                      '${e.digit} ${e.written}',
+                      style: boldStyle,
+                    ))
+              ]),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   getSinoNumberChart(BuildContext context) {
     List<HanNumber> numbers = [];
@@ -54,61 +111,5 @@ class NumberChart extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  getNativeNumberChart(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              HdSubHeader(AppLocalizations.of(context)!.nativeNumbers),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...nativeNumberBank.getRange(1, 34).map((e) => Text(
-                      '${e.digit} ${e.written}',
-                      style: boldStyle,
-                    ))
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...nativeNumberBank
-                    .getRange(34, 67)
-                    .map((e) => Text('${e.digit} ${e.written}'))
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...nativeNumberBank.getRange(67, 100).map((e) => Text(
-                      '${e.digit} ${e.written}',
-                      style: boldStyle,
-                    ))
-              ]),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar:
-            HD.HanAppBar(context, AppLocalizations.of(context)!.numberChart),
-        body: Padding(
-          padding: EdgeInsets.all(18),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                getNativeNumberChart(context),
-                getSinoNumberChart(context),
-              ],
-            ),
-          ),
-        ));
   }
 }

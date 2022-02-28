@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/suja/count/count-exercise-state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class CountGenerator {
   static createExercise(int index) {
-    var countType = HD.getRandomNumber(max: 2);
+    var countType = Nrs.getRandomNumber(max: 2);
 
     if (countType == 0) {
       var sinoNumb = HD.getRandomSinoNumber(min: 1);
-      var random = HD.getRandomNumber(min: 0, max: 3);
+      var random = Nrs.getRandomNumber(min: 0, max: 3);
 
       switch (random) {
         case 0:
@@ -49,7 +50,7 @@ class CountGenerator {
     }
 
     var hanNumb = HD.getRandomNativeNumber(min: 1);
-    var random = HD.getRandomNumber(min: 0, max: 7);
+    var random = Nrs.getRandomNumber(min: 0, max: 7);
 
     switch (random) {
       case 0:

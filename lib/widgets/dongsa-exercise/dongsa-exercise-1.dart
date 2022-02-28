@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/dongsa/dongsa-notifier.dart';
@@ -7,12 +8,12 @@ import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-chart.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/exercise-header.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
-import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
+import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DongsaExerciseLevel1 extends StatelessWidget {
   const DongsaExerciseLevel1({Key? key}) : super(key: key);
@@ -29,17 +30,14 @@ class DongsaExerciseLevel1 extends StatelessWidget {
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) => Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: HD.HanAppBar(
-                context, '${AppLocalizations.of(context)!.verbs} 1 (반말)'),
+            appBar: Nrs.NrsAppBar(
+                title: '${AppLocalizations.of(context)!.verbs} 1 (반말)',
+                context: context),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ExerciseHeader(
-                    setPrevious: () => navNotifier.setPrevious(),
-                    setNext: () => navNotifier.setNext(),
-                    clear: () => navNotifier.clearInput(),
-                  ),
+                  NavHeaderWrapper(navNotifier: navNotifier),
                   Expanded(child: getExercises(context, navNotifier)),
                   AdCard(),
                 ],
@@ -70,7 +68,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
   }
 
   Widget getExercises(BuildContext context, ExerciseNavNotifier navNotifier) {
-    var width = HD.getScreenWidth(halfWidth: true) + 80;
+    var width = Nrs.getScreenWidth(halfWidth: true) + 80;
 
     return Container(
       width: width,
@@ -85,13 +83,13 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    HDText(
+                    NTextSpan(
                       dongsa.infinitive,
-                      isBold: true,
+                      textStyle: HD.fontStyleBold(context),
                       textAlign: TextAlign.end,
                     ),
                     SizedBox(width: FONT_SIZE),
-                    HDText(dongsa.getTranslation(context)),
+                    NTextSpan(dongsa.getTranslation(context)),
                   ],
                 ),
                 VerbInput(

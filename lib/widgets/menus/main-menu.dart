@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/menus/numbers-menu.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -15,10 +15,10 @@ class MainMenu extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: HD.getScreenHeight() / 3.5,
+          height: Nrs.getScreenHeight() / 3.5,
           decoration: BoxDecoration(
             image: DecorationImage(
-              opacity: HD.isDarkTheme(context) ? 0.7 : 0.9,
+              opacity: Nrs.isDarkTheme(context) ? 0.7 : 0.9,
               image: AssetImage('assets/banners/stairs.jpg'),
               fit: BoxFit.cover,
             ),

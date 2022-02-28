@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/count/count-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/answer-status-button.dart';
-import 'package:handrills/widgets/shared/exercise-header.dart';
 import 'package:handrills/widgets/shared/footer-button.dart';
-import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/home-button.dart';
-import 'package:handrills/widgets/shared/info-button.dart';
+import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nrs_flutter_lib/enums.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
+import 'package:nrs_flutter_lib/widgets/n-info-button.dart';
+import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
 import 'package:provider/provider.dart';
 
 class CountingExercise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var footerButtonWidth = HD.getScreenWidth(halfWidth: true) - 20;
+    var footerButtonWidth = Nrs.getScreenWidth(halfWidth: true) - 20;
 
     getContent(BuildContext context) {
       return ChangeNotifierProvider<ExerciseNavNotifier>(
@@ -39,19 +41,16 @@ class CountingExercise extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               child: Column(
                 children: [
-                  ExerciseHeader(
-                    setPrevious: () => navNotifier.setPrevious(),
-                    setNext: () => navNotifier.setNext(),
-                    clear: () => navNotifier.clearInput(),
-                  ),
+                  NavHeaderWrapper(navNotifier: navNotifier),
                   Column(
                     children: [
                       Icon(navNotifier.getActive().icon, size: 90),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          HDText(label, isBold: true),
-                          InfoButton(text: infoText),
+                          NTextSpan(label,
+                              textStyle: HD.fontStyleBold(context)),
+                          NInfoButton(text: infoText),
                         ],
                       ),
                       Text(
@@ -65,14 +64,17 @@ class CountingExercise extends StatelessWidget {
                     child: Consumer<CountNotifier>(
                       builder: (context, countNotifier, child) {
                         var s = countNotifier.getStateItem();
-                        var isCorrect = s.getIsCorrect();
+                        // TODO: Make 3d
+                        var isCorrect = s.getIsCorrect()
+                            ? CorrectStatus.correct
+                            : CorrectStatus.unstarted;
 
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                                child: AnswerStatusButton(
-                              isCorrect: isCorrect,
+                                child: NAnswerStatusIcon(
+                              status: isCorrect,
                             )),
                             Container(
                               width: 80,
@@ -106,7 +108,8 @@ class CountingExercise extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: HD.HanAppBar(context, AppLocalizations.of(context)!.numbers),
+        appBar: Nrs.NrsAppBar(
+            title: AppLocalizations.of(context)!.numbers, context: context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

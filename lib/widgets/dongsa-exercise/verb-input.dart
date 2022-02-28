@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/widgets/shared/hd-text.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
+import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
 
 class VerbInput extends StatelessWidget {
+  final Dongsa dongsa;
+
+  final String label;
+  final String correctValue;
+  final String activeValue;
+  final Function(String) onChanged;
   const VerbInput({
     Key? key,
     required this.dongsa,
@@ -14,12 +20,6 @@ class VerbInput extends StatelessWidget {
     required this.onChanged,
   }) : super(key: key);
 
-  final Dongsa dongsa;
-  final String label;
-  final String correctValue;
-  final String activeValue;
-  final Function(String) onChanged;
-
   @override
   Widget build(BuildContext context) {
     var isCorrect = activeValue == correctValue;
@@ -28,7 +28,7 @@ class VerbInput extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: HDText(
+          child: NTextSpan(
             label,
             textAlign: TextAlign.end,
           ),
