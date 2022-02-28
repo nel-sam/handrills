@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 
 class DongsaNotifier with ChangeNotifier {
   late Function() _getStateItem;
@@ -9,6 +9,11 @@ class DongsaNotifier with ChangeNotifier {
 
   DongsaNotifier(Function() getStateItem) {
     _getStateItem = getStateItem;
+  }
+
+  clearInput() {
+    _getStateItem().userInput.clear();
+    deboucedNotifyListeners();
   }
 
   deboucedNotifyListeners() {
@@ -30,11 +35,6 @@ class DongsaNotifier with ChangeNotifier {
 
   updateUserInput(int index, String newValue) {
     _getStateItem().updateUserInput(index, newValue);
-    deboucedNotifyListeners();
-  }
-
-  clearInput() {
-    _getStateItem().userInput.clear();
     deboucedNotifyListeners();
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/widgets/menus/main-menu.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +11,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Colors.pink;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: APP_NAME,
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
         ],
         theme: ThemeData(
           brightness: Brightness.light,
-          primarySwatch: ACCENT_COLOR,
+          primarySwatch: primaryColor,
         ),
         darkTheme: ThemeData(
-          primarySwatch: ACCENT_COLOR,
+          primarySwatch: primaryColor,
           primaryColor: Colors.black,
           brightness: Brightness.dark,
           backgroundColor: const Color(0xFF212121),

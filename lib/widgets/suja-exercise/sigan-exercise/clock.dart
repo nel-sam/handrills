@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class Clock extends StatelessWidget {
@@ -24,7 +23,9 @@ class Clock extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               time,
-              style: TextStyle(fontSize: screenWidth / 8, color: ACCENT_COLOR),
+              style: TextStyle(
+                  fontSize: screenWidth / 8,
+                  color: Nrs.getPrimaryColor(context)),
             ),
           ),
         ],

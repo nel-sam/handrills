@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 
 class SiganNotifier extends ChangeNotifier {
   late Function() _getStateItem;
@@ -9,6 +9,11 @@ class SiganNotifier extends ChangeNotifier {
 
   SiganNotifier(Function() getStateItem) {
     _getStateItem = getStateItem;
+  }
+
+  void clearInput() {
+    _getStateItem().clear();
+    deboucedNotifyListeners();
   }
 
   deboucedNotifyListeners() {
@@ -22,11 +27,6 @@ class SiganNotifier extends ChangeNotifier {
 
   getStateItem() {
     return _getStateItem();
-  }
-
-  void clearInput() {
-    _getStateItem().clear();
-    deboucedNotifyListeners();
   }
 
   updateHour(String input) {

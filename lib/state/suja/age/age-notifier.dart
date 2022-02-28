@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 
 class AgeNotifier extends ChangeNotifier {
   late Function() _getStateItem;

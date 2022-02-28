@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class ExerciseButton extends StatelessWidget {

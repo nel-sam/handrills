@@ -5,6 +5,7 @@ import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
 import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/menus/numbers-menu.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class MainMenu extends StatelessWidget {

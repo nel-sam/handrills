@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/constants.dart';
 import 'package:handrills/lang_data/numbers.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class HD {

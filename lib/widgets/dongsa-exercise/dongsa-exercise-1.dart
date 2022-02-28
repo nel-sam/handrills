@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/dongsa/dongsa-notifier.dart';
 import 'package:handrills/state/enums.dart';
@@ -10,6 +9,7 @@ import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/home-button-wrapper.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
+import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
 import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
