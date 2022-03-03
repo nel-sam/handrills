@@ -13,6 +13,7 @@ import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
 import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
+import 'package:nrs_flutter_lib/widgets/n-footer-menu.dart';
 import 'package:nrs_flutter_lib/widgets/n-info-button.dart';
 import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
 import 'package:provider/provider.dart';
@@ -118,17 +119,19 @@ class CountingExercise extends StatelessWidget {
           ),
         ),
         persistentFooterButtons: [
-          HomeButtonWrapper(),
-          NFooterButton(
-            text: AppLocalizations.of(context)!.numberChart,
-            icon: Icons.list,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NumberChart()),
-              );
-            },
-          ),
+          NFooterMenu(buttons: [
+            HomeButtonWrapper(),
+            NFooterButton(
+              text: AppLocalizations.of(context)!.numberChart,
+              icon: Icons.list,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NumberChart()),
+                );
+              },
+            ),
+          ])
         ],
       ),
     );
