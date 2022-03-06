@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-menu-button.dart';
+import 'package:nrs_flutter_lib/widgets/n-menu-header.dart';
 
 class NumbersMenu extends StatelessWidget {
   const NumbersMenu({Key? key}) : super(key: key);
@@ -14,40 +15,36 @@ class NumbersMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: Nrs.NrsAppBar(
-          title: AppLocalizations.of(context)!.numbers, context: context),
+      appBar: Nrs.NrsAppBar(context: context),
       body: Center(
         child: Column(
           children: [
+            const AdCard(),
+            NMenuHeader(
+                icon: Icons.widgets_outlined,
+                transLabel: AppLocalizations.of(context)!.numbers,
+                label: '수자'),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
+              child: Column(
                 children: [
-                  ExerciseButton(
-                    halfWidth: true,
+                  NMenuButton(
                     destination: SiganExercise(),
-                    icon: Icons.timer_outlined,
                     label: AppLocalizations.of(context)!.time,
-                    hanLabel: '시간',
+                    transLabel: '시간',
                   ),
-                  ExerciseButton(
-                    halfWidth: true,
+                  NMenuButton(
                     destination: AgeExercise(),
-                    icon: Icons.elderly_outlined,
                     label: AppLocalizations.of(context)!.age,
-                    hanLabel: '나이',
+                    transLabel: '나이',
                   ),
-                  ExerciseButton(
-                    halfWidth: true,
+                  NMenuButton(
                     destination: CountingExercise(),
-                    icon: Icons.widgets_outlined,
                     label: AppLocalizations.of(context)!.counting,
-                    hanLabel: '계산',
+                    transLabel: '계산',
                   ),
                 ],
               ),
             ),
-            AdCard(),
           ],
         ),
       ),

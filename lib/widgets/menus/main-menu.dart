@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
-import 'package:handrills/widgets/menus/exercise-button.dart';
 import 'package:handrills/widgets/menus/numbers-menu.dart';
-import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
+import 'package:nrs_flutter_lib/widgets/n-menu-button.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -43,22 +42,19 @@ class MainMenu extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              ExerciseButton(
+              NMenuButton(
                 destination: NumbersMenu(),
-                icon: Icons.onetwothree,
                 label: AppLocalizations.of(context)!.numbersExercise,
-                hanLabel: '수자',
+                transLabel: '수자',
               ),
-              ExerciseButton(
+              NMenuButton(
                 destination: DongsaExerciseLevel1(),
-                icon: Icons.nordic_walking_outlined,
                 label: AppLocalizations.of(context)!.verbs,
-                hanLabel: '동사',
+                transLabel: '동사',
               ),
             ],
           ),
         ),
-        AdCard(),
       ],
     );
   }
