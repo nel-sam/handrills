@@ -50,40 +50,37 @@ class VerbChart extends StatelessWidget {
       appBar: Nrs.NrsAppBar(title: dongsa.infinitive, context: context),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const AdCard(),
             SingleChildScrollView(
-              child: Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(28.0),
-                  child: Column(
-                    children: [
-                      ChartRow(
-                        label: AppLocalizations.of(context)!.present,
-                        conj: dongsa.banmar.present,
-                      ),
-                      ChartRow(
-                        label: AppLocalizations.of(context)!.past,
-                        conj: dongsa.banmar.past,
-                      ),
-                      ChartRow(
-                        label: AppLocalizations.of(context)!.future,
-                        conj: '${dongsa.banmar.futureStem} 거야',
-                      ),
-                      ChartRow(
-                        label: AppLocalizations.of(context)!.conditional,
-                        conj: '${dongsa.stem}겠어',
-                      ),
-                      ChartRow(
-                        label: AppLocalizations.of(context)!.propositive,
-                        conj: '${dongsa.stem}자',
-                      ),
-                    ],
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: Column(
+                  children: [
+                    ChartRow(
+                      label: AppLocalizations.of(context)!.present,
+                      conj: dongsa.banmar.present,
+                    ),
+                    ChartRow(
+                      label: AppLocalizations.of(context)!.past,
+                      conj: dongsa.banmar.past,
+                    ),
+                    ChartRow(
+                      label: AppLocalizations.of(context)!.future,
+                      conj: '${dongsa.banmar.futureStem} 거야',
+                    ),
+                    ChartRow(
+                      label: AppLocalizations.of(context)!.conditional,
+                      conj: '${dongsa.stem}겠어',
+                    ),
+                    ChartRow(
+                      label: AppLocalizations.of(context)!.propositive,
+                      conj: '${dongsa.stem}자',
+                    ),
+                  ],
                 ),
               ),
             ),
-            AdCard(),
           ],
         ),
       ),

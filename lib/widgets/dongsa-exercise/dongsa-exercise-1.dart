@@ -7,7 +7,6 @@ import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-chart.dart';
 import 'package:handrills/widgets/dongsa-exercise/verb-input.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
-import 'package:handrills/widgets/shared/home-button-wrapper.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
@@ -42,22 +41,23 @@ class DongsaExerciseLevel1 extends StatelessWidget {
               ),
             ),
             persistentFooterButtons: [
-              NFooterMenu(buttons: [
-                HomeButtonWrapper(),
-                NFooterButton(
-                  text: AppLocalizations.of(context)!.verbChart,
-                  icon: Icons.list,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            VerbChart(dongsa: navNotifier.getActive().dongsa),
-                      ),
-                    );
-                  },
-                ),
-              ])
+              NFooterMenu(
+                buttons: [
+                  NFooterButton(
+                    text: AppLocalizations.of(context)!.verbChart,
+                    icon: Icons.list,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              VerbChart(dongsa: navNotifier.getActive().dongsa),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
         ),

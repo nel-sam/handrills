@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
+import 'package:handrills/widgets/shared/hd-footer-menu.dart';
 import 'package:handrills/widgets/suja-exercise/age/age-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/counting.dart/counting-exercise.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/sigan-exercise.dart';
@@ -17,15 +18,15 @@ class NumbersMenu extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: Nrs.NrsAppBar(context: context),
       body: Center(
-        child: Column(
-          children: [
-            const AdCard(),
-            NMenuHeader(
-                icon: Icons.widgets_outlined,
-                transLabel: AppLocalizations.of(context)!.numbers,
-                label: '수자'),
-            Expanded(
-              child: Column(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const AdCard(),
+              NMenuHeader(
+                  icon: Icons.widgets_outlined,
+                  transLabel: AppLocalizations.of(context)!.numbers,
+                  label: '수자'),
+              Column(
                 children: [
                   NMenuButton(
                     destination: SiganExercise(),
@@ -44,10 +45,11 @@ class NumbersMenu extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+      persistentFooterButtons: [HDMenuFooter(activeIndex: 1)],
     );
   }
 }
