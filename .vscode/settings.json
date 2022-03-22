@@ -1,5 +1,10 @@
 {
   "cSpell.words": [
     "handrills"
-  ]
+  ],
+  "editor.tabSize": 2,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs":"active",
+  "eslint.alwaysShowStatus": true,
+  "editor.formatOnSave": true
 }
