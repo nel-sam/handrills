@@ -1,10 +1,20 @@
 {
   "cSpell.words": [
-    "handrills"
+    "banmar",
+    "cupertino",
+    "dongsa",
+    "handrills",
+    "Propositive",
+    "sigan",
+    "Sino",
+    "suja",
+    "unfocus",
+    "unstarted"
   ],
   "editor.tabSize": 2,
   "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs":"active",
+  "editor.guides.bracketPairs": "active",
   "eslint.alwaysShowStatus": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.language": "en,kr"
 }

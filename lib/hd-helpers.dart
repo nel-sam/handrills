@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/lang_data/numbers.dart';
+import 'package:localization/localization.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
@@ -64,5 +65,9 @@ class HD {
     }
 
     return HanNumber(digit: digit, written: written);
+  }
+
+  static String t(String key, {List<String> inserts = const []}) {
+    return key.i18n(inserts);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/age/age-notifier.dart';
@@ -10,9 +10,9 @@ import 'package:handrills/widgets/shared/question-free-form.dart';
 import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
 import 'package:provider/provider.dart';
 
 class AgeExercise extends StatelessWidget {
@@ -77,7 +77,7 @@ class AgeExercise extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: Nrs.NrsAppBar(
-            title: AppLocalizations.of(context)!.numbers, context: context),
+            title: HD.t('numbers'), context: context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +91,7 @@ class AgeExercise extends StatelessWidget {
           NFooterMenu(buttons: [
             HomeButtonWrapper(),
             NFooterButton(
-              text: AppLocalizations.of(context)!.numberChart,
+              text: HD.t('numberChart'),
               icon: Icons.list,
               onPressed: () {
                 Navigator.push(

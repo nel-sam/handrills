@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/widgets/menus/main-menu.dart';
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: APP_NAME,
         localizationsDelegates: [
-          AppLocalizations.delegate,
+          LocalJsonLocalization.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

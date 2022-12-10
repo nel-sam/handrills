@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/suja/count/count-exercise-state.dart';
@@ -18,8 +17,7 @@ class CountGenerator {
           return CountExerciseState(
             isSino: true,
             icon: Icons.calendar_month_outlined,
-            getLabel: (BuildContext context) =>
-                AppLocalizations.of(context)!.months,
+            label: HD.t('months'),
             count: sinoNumb.digit,
             correctAnswer: sinoNumb.alternate,
             counter: '월',
@@ -29,8 +27,7 @@ class CountGenerator {
           return CountExerciseState(
             isSino: true,
             icon: Icons.calendar_today_outlined,
-            getLabel: (BuildContext context) =>
-                AppLocalizations.of(context)!.days,
+            label: HD.t('days'),
             count: sinoNumb.digit,
             correctAnswer: sinoNumb.alternate,
             counter: '일',
@@ -40,8 +37,7 @@ class CountGenerator {
           return CountExerciseState(
             isSino: true,
             icon: Icons.wb_twighlight,
-            getLabel: (BuildContext context) =>
-                AppLocalizations.of(context)!.years,
+            label: HD.t('years'),
             count: sinoNumb.digit,
             correctAnswer: sinoNumb.alternate,
             counter: '년',
@@ -57,8 +53,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.person,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.people,
+          label: HD.t('people'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '명',
@@ -68,8 +63,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.pets,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.animals,
+          label: HD.t('animals'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '마리',
@@ -79,8 +73,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.wine_bar,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.bottles,
+          label: HD.t('bottles'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '병',
@@ -90,8 +83,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.bike_scooter,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.things,
+          label: HD.t('things'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '개',
@@ -101,8 +93,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.book_outlined,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.books,
+          label: HD.t('books'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '권',
@@ -112,8 +103,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.local_pizza_outlined,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.slices,
+          label: HD.t('slices'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '조각',
@@ -123,8 +113,7 @@ class CountGenerator {
         return CountExerciseState(
           isSino: false,
           icon: Icons.car_rental_outlined,
-          getLabel: (BuildContext context) =>
-              AppLocalizations.of(context)!.cars_machines,
+          label: HD.t('cars_machines'),
           count: hanNumb.digit,
           correctAnswer: hanNumb.alternate,
           counter: '대',

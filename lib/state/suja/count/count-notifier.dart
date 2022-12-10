@@ -11,7 +11,7 @@ class CountNotifier with ChangeNotifier {
     _getStateItem = getStateItem;
   }
 
-  deboucedNotifyListeners() {
+  debouncedNotifyListeners() {
     if (!_debounce.isActive) {
       _debounce.cancel();
     }
@@ -26,6 +26,6 @@ class CountNotifier with ChangeNotifier {
 
   updateCount(String userInput) {
     _getStateItem().userInput = userInput;
-    deboucedNotifyListeners();
+    debouncedNotifyListeners();
   }
 }

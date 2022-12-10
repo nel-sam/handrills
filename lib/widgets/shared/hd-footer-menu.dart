@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
 import 'package:handrills/widgets/menus/numbers-menu.dart';
 import 'package:handrills/widgets/shared/home-button-wrapper.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
 
 class HDMenuFooter extends StatelessWidget {
   final int activeIndex;
@@ -21,7 +21,7 @@ class HDMenuFooter extends StatelessWidget {
       buttons: [
         HomeButtonWrapper(),
         NFooterButton(
-          text: AppLocalizations.of(context)!.numbers,
+          text: HD.t('numbers'),
           icon: HDIcons.numbers,
           onPressed: () {
             Navigator.push(
@@ -33,7 +33,7 @@ class HDMenuFooter extends StatelessWidget {
           },
         ),
         NFooterButton(
-          text: AppLocalizations.of(context)!.verbs,
+          text: HD.t('verbs'),
           icon: HDIcons.verbs,
           onPressed: () {
             Navigator.push(

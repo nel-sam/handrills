@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/dongsa/dongsa-notifier.dart';
 import 'package:handrills/state/enums.dart';
@@ -10,9 +9,9 @@ import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-menu.dart';
-import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 import 'package:provider/provider.dart';
 
 class DongsaExerciseLevel1 extends StatelessWidget {
@@ -28,7 +27,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
           builder: (context, navNotifier, child) => Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: Nrs.NrsAppBar(
-                title: '${AppLocalizations.of(context)!.verbs} 1 (반말)',
+                title: '${HD.t('verbs')} 1 (반말)',
                 context: context),
             body: Center(
               child: Column(
@@ -44,7 +43,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
               NFooterMenu(
                 buttons: [
                   NFooterButton(
-                    text: AppLocalizations.of(context)!.verbChart,
+                    text: HD.t('verbChart'),
                     icon: Icons.list,
                     onPressed: () {
                       Navigator.push(
@@ -93,7 +92,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 VerbInput(
                   dongsa: dongsa,
                   activeValue: dongsaNotifier.getUserInput(0),
-                  label: AppLocalizations.of(context)!.present,
+                  label: HD.t('present'),
                   correctValue: dongsa.banmar.present,
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(0, newValue),
@@ -101,7 +100,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 VerbInput(
                   dongsa: dongsa,
                   activeValue: dongsaNotifier.getUserInput(1),
-                  label: AppLocalizations.of(context)!.past,
+                  label: HD.t('past'),
                   correctValue: dongsa.banmar.past,
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(1, newValue),
@@ -109,7 +108,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 VerbInput(
                   activeValue: dongsaNotifier.getUserInput(2),
                   dongsa: dongsa,
-                  label: AppLocalizations.of(context)!.future,
+                  label: HD.t('future'),
                   correctValue: '${dongsa.banmar.futureStem} 거야',
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(2, newValue),
@@ -117,7 +116,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 VerbInput(
                   activeValue: dongsaNotifier.getUserInput(3),
                   dongsa: dongsa,
-                  label: AppLocalizations.of(context)!.conditional,
+                  label: HD.t('conditional'),
                   correctValue: '${dongsa.stem}겠어',
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(3, newValue),
@@ -125,7 +124,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 VerbInput(
                   activeValue: dongsaNotifier.getUserInput(4),
                   dongsa: dongsa,
-                  label: AppLocalizations.of(context)!.propositive,
+                  label: HD.t('propositive'),
                   correctValue: '${dongsa.stem}자',
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(4, newValue),

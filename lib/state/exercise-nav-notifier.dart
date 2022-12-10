@@ -40,10 +40,10 @@ class ExerciseNavNotifier extends ChangeNotifier {
 
   void clearInput() {
     _states[_activeIndex].clear();
-    deboucedNotifyListeners();
+    debouncedNotifyListeners();
   }
 
-  deboucedNotifyListeners() {
+  debouncedNotifyListeners() {
     if (!_debounce.isActive) {
       _debounce.cancel();
     }
@@ -56,8 +56,8 @@ class ExerciseNavNotifier extends ChangeNotifier {
     return _states[_activeIndex];
   }
 
-  String getCounter() {
-    return '${_activeIndex + 1}/$_maxIndex';
+  double getProgressPercentage() {
+    return (_activeIndex / _maxIndex) * 100;
   }
 
   setNext() {
@@ -71,7 +71,7 @@ class ExerciseNavNotifier extends ChangeNotifier {
       this._states.add(this.createExercise(this._activeIndex));
     }
 
-    deboucedNotifyListeners();
+    debouncedNotifyListeners();
   }
 
   setPrevious() {
@@ -83,6 +83,6 @@ class ExerciseNavNotifier extends ChangeNotifier {
       _activeIndex--;
     }
 
-    deboucedNotifyListeners();
+    debouncedNotifyListeners();
   }
 }

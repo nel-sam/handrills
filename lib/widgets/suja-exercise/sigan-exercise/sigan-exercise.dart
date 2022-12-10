@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/sigan/sigan-notifier.dart';
@@ -11,10 +11,10 @@ import 'package:handrills/widgets/suja-exercise/number-chart.dart';
 import 'package:handrills/widgets/suja-exercise/sigan-exercise/clock.dart';
 import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n-answer-status-icon.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-button.dart';
-import 'package:nrs_flutter_lib/widgets/n-footer-menu.dart';
-import 'package:nrs_flutter_lib/widgets/n-info-button.dart';
+import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
+import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_info_button.dart';
 import 'package:provider/provider.dart';
 
 class SiganExercise extends StatelessWidget {
@@ -26,8 +26,7 @@ class SiganExercise extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: Nrs.NrsAppBar(
-            title: AppLocalizations.of(context)!.numbers, context: context),
+        appBar: Nrs.NrsAppBar(title: HD.t('numbers'), context: context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +40,7 @@ class SiganExercise extends StatelessWidget {
           NFooterMenu(buttons: [
             HomeButtonWrapper(),
             NFooterButton(
-              text: AppLocalizations.of(context)!.numberChart,
+              text: HD.t('numberChart'),
               icon: Icons.list,
               onPressed: () {
                 Navigator.push(
@@ -72,9 +71,9 @@ class SiganExercise extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(AppLocalizations.of(context)!.typeTheTime),
+                    Text(HD.t('typeTheTime')),
                     NInfoButton(
-                      text: AppLocalizations.of(context)!.timeDesc,
+                      text: HD.t('timeDesc'),
                     ),
                   ],
                 ),

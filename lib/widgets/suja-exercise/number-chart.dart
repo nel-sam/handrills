@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n-sub-header.dart';
+import 'package:nrs_flutter_lib/widgets/n_sub_header.dart';
 
 class NumberChart extends StatelessWidget {
   final TextStyle boldStyle = TextStyle(fontWeight: FontWeight.bold);
@@ -12,7 +11,7 @@ class NumberChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: Nrs.NrsAppBar(
-            title: AppLocalizations.of(context)!.numberChart, context: context),
+            title: HD.t('numberChart'), context: context),
         body: Padding(
           padding: EdgeInsets.all(18),
           child: SingleChildScrollView(
@@ -33,7 +32,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              NSubHeader(AppLocalizations.of(context)!.nativeNumbers),
+              NSubHeader(HD.t('nativeNumbers)')),
             ],
           ),
           Row(
@@ -82,7 +81,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              NSubHeader(AppLocalizations.of(context)!.sinoNumbers),
+              NSubHeader(HD.t('sinoNumbers)')),
             ],
           ),
           Row(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/constants.dart';
+import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
 import 'package:handrills/widgets/menus/numbers-menu.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n-menu-button.dart';
+import 'package:nrs_flutter_lib/widgets/n_menu_button.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -44,12 +44,12 @@ class MainMenu extends StatelessWidget {
             children: [
               NMenuButton(
                 destination: NumbersMenu(),
-                label: AppLocalizations.of(context)!.numbersExercise,
+                label: HD.t('numbersExercise'),
                 transLabel: '수자',
               ),
               NMenuButton(
                 destination: DongsaExerciseLevel1(),
-                label: AppLocalizations.of(context)!.verbs,
+                label: HD.t('verbs'),
                 transLabel: '동사',
               ),
             ],

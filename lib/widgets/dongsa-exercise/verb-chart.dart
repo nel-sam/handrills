@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:handrills/hd-helpers.dart';
 import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n-text-span.dart';
+import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 
 class ChartRow extends StatelessWidget {
   final String label;
@@ -58,23 +57,23 @@ class VerbChart extends StatelessWidget {
                 child: Column(
                   children: [
                     ChartRow(
-                      label: AppLocalizations.of(context)!.present,
+                      label: HD.t('present'),
                       conj: dongsa.banmar.present,
                     ),
                     ChartRow(
-                      label: AppLocalizations.of(context)!.past,
+                      label: HD.t('past'),
                       conj: dongsa.banmar.past,
                     ),
                     ChartRow(
-                      label: AppLocalizations.of(context)!.future,
+                      label: HD.t('future'),
                       conj: '${dongsa.banmar.futureStem} 거야',
                     ),
                     ChartRow(
-                      label: AppLocalizations.of(context)!.conditional,
+                      label: HD.t('conditional'),
                       conj: '${dongsa.stem}겠어',
                     ),
                     ChartRow(
-                      label: AppLocalizations.of(context)!.propositive,
+                      label: HD.t('propositive'),
                       conj: '${dongsa.stem}자',
                     ),
                   ],

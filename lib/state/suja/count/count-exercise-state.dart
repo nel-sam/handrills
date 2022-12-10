@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CountExerciseState {
   final IconData icon;
-  final String Function(BuildContext context) getLabel;
+  final String label;
   final int count;
   final String correctAnswer;
   final String counter;
@@ -11,18 +11,18 @@ class CountExerciseState {
 
   CountExerciseState({
     required this.icon,
-    required this.getLabel,
+    required this.label,
     required this.isSino,
     required this.count,
     required this.counter,
     required this.correctAnswer,
   });
 
-  bool getIsCorrect() {
-    return this.userInput == this.correctAnswer;
-  }
-
   clear() {
     return this.userInput = '';
+  }
+
+  bool getIsCorrect() {
+    return this.userInput == this.correctAnswer;
   }
 }

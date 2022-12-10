@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:nrs_flutter_lib/widgets/n-home-button.dart';
+import 'package:handrills/hd-helpers.dart';
+import 'package:nrs_flutter_lib/widgets/n_home_button.dart';
 
 class HomeButtonWrapper extends StatelessWidget {
   final bool isActive;
@@ -12,7 +12,7 @@ class HomeButtonWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!.home;
+    final text = HD.t('home');
     return NHomeButton(
       homeLabel: text,
       isActive: isActive,
