@@ -27,8 +27,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
           builder: (context, navNotifier, child) => Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: Nrs.NrsAppBar(
-                title: '${HD.t('verbs')} 1 (반말)',
-                context: context),
+                title: '${HD.t('verbs')} 1 (반말)', context: context),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +85,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                       textAlign: TextAlign.end,
                     ),
                     SizedBox(width: FONT_SIZE),
-                    NTextSpan(dongsa.getTranslation(context)),
+                    NTextSpan(dongsa.translation),
                   ],
                 ),
                 VerbInput(
@@ -113,14 +112,14 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                   onChanged: (String newValue) =>
                       dongsaNotifier.updateUserInput(2, newValue),
                 ),
-                VerbInput(
-                  activeValue: dongsaNotifier.getUserInput(3),
-                  dongsa: dongsa,
-                  label: HD.t('conditional'),
-                  correctValue: '${dongsa.stem}겠어',
-                  onChanged: (String newValue) =>
-                      dongsaNotifier.updateUserInput(3, newValue),
-                ),
+                // VerbInput(
+                //   activeValue: dongsaNotifier.getUserInput(3),
+                //   dongsa: dongsa,
+                //   label: HD.t('conditional'),
+                //   correctValue: '${dongsa.stem}겠어',
+                //   onChanged: (String newValue) =>
+                //       dongsaNotifier.updateUserInput(3, newValue),
+                // ),
                 VerbInput(
                   activeValue: dongsaNotifier.getUserInput(4),
                   dongsa: dongsa,

@@ -68,10 +68,10 @@ class VerbChart extends StatelessWidget {
                       label: HD.t('future'),
                       conj: '${dongsa.banmar.futureStem} 거야',
                     ),
-                    ChartRow(
-                      label: HD.t('conditional'),
-                      conj: '${dongsa.stem}겠어',
-                    ),
+                    // ChartRow(
+                    //   label: HD.t('conditional'),
+                    //   conj: '${dongsa.stem}겠어',
+                    // ),
                     ChartRow(
                       label: HD.t('propositive'),
                       conj: '${dongsa.stem}자',
