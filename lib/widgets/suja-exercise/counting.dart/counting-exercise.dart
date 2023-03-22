@@ -111,7 +111,7 @@ class CountingExercise extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               getContent(context),
-              AdCard(),
+           //   AdCard(),
             ],
           ),
         ),

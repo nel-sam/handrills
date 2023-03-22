@@ -15,7 +15,7 @@ class HintButton extends StatelessWidget {
       message: "Hint: $text",
       triggerMode: TooltipTriggerMode.tap,
       preferBelow: false,
-      child: Icon(Icons.lightbulb, color: ACCENT_COLOR),
+      child: Icon(Icons.lightbulb_circle),
     );
   }
 }

@@ -34,7 +34,7 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                 children: [
                   NavHeaderWrapper(navNotifier: navNotifier),
                   Expanded(child: getExercises(context, navNotifier)),
-                  AdCard(),
+//AdCard(),
                 ],
               ),
             ),
