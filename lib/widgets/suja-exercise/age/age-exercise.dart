@@ -38,25 +38,7 @@ class AgeExercise extends StatelessWidget {
                     child: Consumer<AgeNotifier>(
                       builder: (context, ageNotifier, child) {
                         var s = ageNotifier.getStateItem();
-                        var hintText = '';
-
-                        if (s.userInput == '') {
-                          hintText = s.correctAnswer[0];
-                        } else if (s.userInput == s.correctAnswer) {
-                          hintText = 'Good job!';
-                        } else {
-                          for (var i = 0;
-                              i < s.correctAnswer.length &&
-                                  i < s.userInput.length;
-                              i++) {
-                            if (s.correctAnswer[i] == s.userInput[i] &&
-                                i < s.correctAnswer.length - 1) {
-                              hintText = s.correctAnswer[i + 1];
-                            } else
-                              hintText = s.correctAnswer[i];
-                          }
-                        }
-
+                        
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -66,7 +48,7 @@ class AgeExercise extends StatelessWidget {
                                     ? CorrectStatus.correct
                                     : CorrectStatus.unstarted),
                             s.correctAnswer.length != s.userInput.length
-                                ? HintButton(text: hintText)
+                                ? HintButton(userInput: s.userInput, correctAnswer: s.correctAnswer)
                                 : Container(),
                             Container(
                               width: 150,
