@@ -7,6 +7,7 @@ import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 class QuestionFreeForm extends StatelessWidget {
   final String hintValue;
   final String activeValue;
+  final int maxLength;
   final List<String> correctValues;
   final Function(String) onChanged;
   final controller = TextEditingController();
@@ -17,6 +18,7 @@ class QuestionFreeForm extends StatelessWidget {
     required this.onChanged,
     required this.activeValue,
     required this.correctValues,
+    required this.maxLength,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class QuestionFreeForm extends StatelessWidget {
       child: Container(
         width: 100,
         child: TextField(
+          maxLength: maxLength,
           key: key,
           controller: controller,
           textInputAction: TextInputAction.next,

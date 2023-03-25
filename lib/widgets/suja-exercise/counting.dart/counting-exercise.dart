@@ -76,6 +76,7 @@ class CountingExercise extends StatelessWidget {
                             Container(
                               width: 80,
                               child: QuestionFreeForm(
+                                maxLength: s.correctAnswer.length,
                                 activeValue: s.userInput,
                                 hintValue: '',
                                 onChanged: (String newVal) =>
