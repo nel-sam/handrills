@@ -102,6 +102,7 @@ class SiganExercise extends StatelessWidget {
                               Container(
                                 width: textFieldWidth,
                                 child: QuestionFreeForm(
+                                  isActive: false,
                                   maxLength: s.correctHour.length,
                                   activeValue: s.userHour,
                                   hintValue: '',
@@ -122,6 +123,7 @@ class SiganExercise extends StatelessWidget {
                               Container(
                                 width: textFieldWidth,
                                 child: QuestionFreeForm(
+                                  isActive: false,
                                   maxLength: s.correctMin.length,
                                   activeValue: s.userMin,
                                   hintValue: '',
@@ -142,6 +144,7 @@ class SiganExercise extends StatelessWidget {
                               Container(
                                 width: textFieldWidth,
                                 child: QuestionFreeForm(
+                                  isActive: false,
                                   maxLength: s.correctSec.length,
                                   activeValue: s.userSec,
                                   hintValue: '',

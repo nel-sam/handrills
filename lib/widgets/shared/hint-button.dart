@@ -6,19 +6,21 @@ class HintButton extends StatelessWidget {
   final String userInput;
   final String correctAnswer;
   final Function(String) onHintUpdate;
+  final Function(bool) onHintActive;
 
   const HintButton({
     Key? key,
     required this.userInput,
     required this.correctAnswer,
     required this.onHintUpdate,
+    required this.onHintActive,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.lightbulb),
-      onPressed: () => getHint(context),
+      onPressed: () => {getHint(context), onHintActive(true)},
     );
   }
 

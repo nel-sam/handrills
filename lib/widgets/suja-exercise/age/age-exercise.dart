@@ -25,7 +25,7 @@ class AgeExercise extends StatelessWidget {
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) {
             var s = navNotifier.getActive();
-
+            bool isHintActive = false;
             return Padding(
               padding: EdgeInsets.all(24),
               child: Column(
@@ -38,7 +38,6 @@ class AgeExercise extends StatelessWidget {
                     child: Consumer<AgeNotifier>(
                       builder: (context, ageNotifier, child) {
                         var s = ageNotifier.getStateItem();
-
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -49,15 +48,18 @@ class AgeExercise extends StatelessWidget {
                                     : CorrectStatus.unstarted),
                             s.correctAnswer != s.userInput
                                 ? HintButton(
+                                    onHintActive: (bool onHintActive) => isHintActive = onHintActive,
                                     userInput: s.userInput,
                                     correctAnswer: s.correctAnswer,
                                     onHintUpdate: (String hint) => {
-                                      ageNotifier.updateAge(hint),
-                                    })
+                                          ageNotifier.updateAge(hint),
+                                        })
                                 : Container(),
-                            Container(
+                                s.correctAnswer != s.userInput
+                            ? Container(
                               width: 150,
                               child: QuestionFreeForm(
+                                isActive: isHintActive,
                                 maxLength: s.correctAnswer.length,
                                 activeValue: s.userInput,
                                 correctValues: [s.correctAnswer],
@@ -65,7 +67,8 @@ class AgeExercise extends StatelessWidget {
                                 onChanged: (String newVal) =>
                                     ageNotifier.updateAge(newVal),
                               ),
-                            ),
+                            )
+                            : Text(s.correctAnswer),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('살', style: TextStyle(fontSize: 28)),
