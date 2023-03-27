@@ -4,6 +4,7 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise-nav-notifier.dart';
 import 'package:handrills/state/suja/age/age-notifier.dart';
 import 'package:handrills/widgets/shared/ad-card.dart';
+import 'package:handrills/widgets/shared/hint-button.dart';
 import 'package:handrills/widgets/shared/home-button-wrapper.dart';
 import 'package:handrills/widgets/shared/nav-header-wrapper.dart';
 import 'package:handrills/widgets/shared/question-free-form.dart';
@@ -24,7 +25,7 @@ class AgeExercise extends StatelessWidget {
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) {
             var s = navNotifier.getActive();
-
+            bool isHintActive = false;
             return Padding(
               padding: EdgeInsets.all(24),
               child: Column(
@@ -45,16 +46,29 @@ class AgeExercise extends StatelessWidget {
                                 status: s.getIsCorrect()
                                     ? CorrectStatus.correct
                                     : CorrectStatus.unstarted),
-                            Container(
+                            s.correctAnswer != s.userInput
+                                ? HintButton(
+                                    onHintActive: (bool onHintActive) => isHintActive = onHintActive,
+                                    userInput: s.userInput,
+                                    correctAnswer: s.correctAnswer,
+                                    onHintUpdate: (String hint) => {
+                                          ageNotifier.updateAge(hint),
+                                        })
+                                : Container(),
+                                s.correctAnswer != s.userInput
+                            ? Container(
                               width: 150,
                               child: QuestionFreeForm(
+                                isActive: isHintActive,
+                                maxLength: s.correctAnswer.length,
                                 activeValue: s.userInput,
                                 correctValues: [s.correctAnswer],
                                 hintValue: '',
                                 onChanged: (String newVal) =>
                                     ageNotifier.updateAge(newVal),
                               ),
-                            ),
+                            )
+                            : Text(s.correctAnswer),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('살', style: TextStyle(fontSize: 28)),
@@ -76,8 +90,7 @@ class AgeExercise extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: Nrs.NrsAppBar(
-            title: HD.t('numbers'), context: context),
+        appBar: Nrs.NrsAppBar(title: HD.t('numbers'), context: context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
