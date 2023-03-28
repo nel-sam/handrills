@@ -68,7 +68,7 @@ class AgeExercise extends StatelessWidget {
                                     ageNotifier.updateAge(newVal),
                               ),
                             )
-                            : Text(s.correctAnswer),
+                            : Text(s.correctAnswer, style: TextStyle(fontSize: 28)),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('살', style: TextStyle(fontSize: 28)),
