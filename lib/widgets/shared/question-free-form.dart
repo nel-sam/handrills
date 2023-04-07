@@ -34,6 +34,7 @@ class QuestionFreeForm extends StatelessWidget {
       child: Container(
         width: 100,
         child: TextField(
+          autofocus: true,
           maxLength: isActive ? maxLength : null,
           key: key,
           controller: controller,
