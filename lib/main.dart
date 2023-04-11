@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/widgets/menus/main-menu.dart';
+import 'package:handrills/widgets/menus/main_menu.dart';
 
 void main() {
   runApp(MyApp());

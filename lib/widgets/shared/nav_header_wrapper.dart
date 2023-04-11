@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/state/exercise-nav-notifier.dart';
+import 'package:handrills/hd_helpers.dart';
+import 'package:handrills/state/exercise_nav_notifier.dart';
 import 'package:nrs_flutter_lib/widgets/n_navigation_header.dart';
 
 class NavHeaderWrapper extends StatelessWidget {

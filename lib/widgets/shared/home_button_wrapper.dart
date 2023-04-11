@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:handrills/hd_helpers.dart';
 import 'package:nrs_flutter_lib/widgets/n_home_button.dart';
 
 class HomeButtonWrapper extends StatelessWidget {

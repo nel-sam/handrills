@@ -1,5 +1,5 @@
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/state/dongsa/dongsa-exercise-state.dart';
+import 'package:handrills/state/dongsa/dongsa_exercise_state.dart';
 
 class DongsaGenerator {
   static createExercise(int index) {

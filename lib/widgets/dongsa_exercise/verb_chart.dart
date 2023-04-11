@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/widgets/shared/ad-card.dart';
+import 'package:handrills/widgets/shared/ad_card.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 

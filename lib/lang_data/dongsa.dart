@@ -1,4 +1,4 @@
-import 'package:handrills/hd-helpers.dart';
+import 'package:handrills/hd_helpers.dart';
 
 var dongsaBank = [
   Dongsa(
