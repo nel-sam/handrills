@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/widgets/shared/question-free-form.dart';
+import 'package:handrills/widgets/shared/question_free_form.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 

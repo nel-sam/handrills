@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:handrills/state/dongsa/dongs-generator.dart';
+import 'package:handrills/state/dongsa/dongs_generator.dart';
 import 'package:handrills/state/enums.dart';
-import 'package:handrills/state/suja/age/age-generator.dart';
-import 'package:handrills/state/suja/count/count-generator.dart';
-import 'package:handrills/state/suja/sigan/sigan-generator.dart';
+import 'package:handrills/state/suja/age/age_generator.dart';
+import 'package:handrills/state/suja/count/count_generator.dart';
+import 'package:handrills/state/suja/sigan/sigan_generator.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 
 class ExerciseNavNotifier extends ChangeNotifier {

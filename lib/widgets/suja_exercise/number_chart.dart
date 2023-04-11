@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd-helpers.dart';
+import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_sub_header.dart';

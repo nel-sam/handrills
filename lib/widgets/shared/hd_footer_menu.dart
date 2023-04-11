@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/hd-helpers.dart';
-import 'package:handrills/widgets/dongsa-exercise/dongsa-exercise-1.dart';
-import 'package:handrills/widgets/menus/numbers-menu.dart';
-import 'package:handrills/widgets/shared/home-button-wrapper.dart';
+import 'package:handrills/hd_helpers.dart';
+import 'package:handrills/widgets/dongsa_exercise/dongsa_exercise_1.dart';
+import 'package:handrills/widgets/menus/numbers_menu.dart';
+import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
 
