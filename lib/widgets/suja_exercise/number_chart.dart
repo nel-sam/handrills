@@ -10,8 +10,7 @@ class NumberChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Nrs.NrsAppBar(
-            title: HD.t('numberChart'), context: context),
+        appBar: Nrs.NrsAppBar(title: HD.t('numberChart'), context: context),
         body: Padding(
           padding: EdgeInsets.all(18),
           child: SingleChildScrollView(
@@ -32,7 +31,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              NSubHeader(HD.t('nativeNumbers)')),
+              NSubHeader(HD.t('nativeNumbers')),
             ],
           ),
           Row(
@@ -81,7 +80,7 @@ class NumberChart extends StatelessWidget {
         children: [
           Row(
             children: [
-              NSubHeader(HD.t('sinoNumbers)')),
+              NSubHeader(HD.t('sinoNumbers')),
             ],
           ),
           Row(
