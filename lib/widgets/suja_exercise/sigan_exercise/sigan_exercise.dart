@@ -4,6 +4,7 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
 import 'package:handrills/state/suja/sigan/sigan_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
+import 'package:handrills/widgets/shared/hint_button.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
 import 'package:handrills/widgets/shared/question_free_form.dart';
@@ -61,6 +62,7 @@ class SiganExercise extends StatelessWidget {
       child: Consumer<ExerciseNavNotifier>(
         builder: (context, navNotifier, child) {
           var s = navNotifier.getActive();
+          bool isHintActive = false;
 
           return Padding(
             padding: const EdgeInsets.only(left: 24, right: 24),
@@ -99,18 +101,31 @@ class SiganExercise extends StatelessWidget {
                           Column(
                             children: [
                               NAnswerStatusIcon(status: isHourCorrect),
-                              Container(
-                                width: textFieldWidth,
-                                child: QuestionFreeForm(
-                                  isActive: false,
-                                  maxLength: s.correctHour.length,
-                                  activeValue: s.userHour,
-                                  hintValue: '',
-                                  correctValues: [s.correctHour],
-                                  onChanged: (String newVal) =>
-                                      siganNotifier.updateHour(newVal),
-                                ),
-                              ),
+                              s.correctHour != s.userHour
+                                  ? HintButton(
+                                      onHintActive: (bool onHintActive) =>
+                                          isHintActive = onHintActive,
+                                      userInput: s.userHour,
+                                      correctAnswer: s.correctHour,
+                                      onHintUpdate: (String hint) => {
+                                            siganNotifier.updateHour(hint),
+                                          })
+                                  : Container(),
+                              s.correctHour != s.userHour
+                                  ? Container(
+                                      width: textFieldWidth,
+                                      child: QuestionFreeForm(
+                                        isActive: isHintActive,
+                                        maxLength: s.correctHour.length,
+                                        activeValue: s.userHour,
+                                        hintValue: '',
+                                        correctValues: [s.correctHour],
+                                        onChanged: (String newVal) =>
+                                            siganNotifier.updateHour(newVal),
+                                      ),
+                                    )
+                                  : Text(s.correctHour,
+                                      style: TextStyle(fontSize: 28)),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text('시'),
@@ -120,18 +135,31 @@ class SiganExercise extends StatelessWidget {
                           Column(
                             children: [
                               NAnswerStatusIcon(status: isMinCorrect),
-                              Container(
-                                width: textFieldWidth,
-                                child: QuestionFreeForm(
-                                  isActive: false,
-                                  maxLength: s.correctMin.length,
-                                  activeValue: s.userMin,
-                                  hintValue: '',
-                                  correctValues: [s.correctMin],
-                                  onChanged: (String newVal) =>
-                                      siganNotifier.updateMin(newVal),
-                                ),
-                              ),
+                              s.correctMin != s.userMin
+                                  ? HintButton(
+                                      onHintActive: (bool onHintActive) =>
+                                          isHintActive = onHintActive,
+                                      userInput: s.userMin,
+                                      correctAnswer: s.correctMin,
+                                      onHintUpdate: (String hint) => {
+                                            siganNotifier.updateMin(hint),
+                                          })
+                                  : Container(),
+                              s.correctMin != s.userMin
+                                  ? Container(
+                                      width: textFieldWidth,
+                                      child: QuestionFreeForm(
+                                        isActive: isHintActive,
+                                        maxLength: s.correctMin.length,
+                                        activeValue: s.userMin,
+                                        hintValue: '',
+                                        correctValues: [s.correctMin],
+                                        onChanged: (String newVal) =>
+                                            siganNotifier.updateMin(newVal),
+                                      ),
+                                    )
+                                  : Text(s.correctMin,
+                                      style: TextStyle(fontSize: 28)),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text('분'),
@@ -141,18 +169,31 @@ class SiganExercise extends StatelessWidget {
                           Column(
                             children: [
                               NAnswerStatusIcon(status: isSecCorrect),
-                              Container(
-                                width: textFieldWidth,
-                                child: QuestionFreeForm(
-                                  isActive: false,
-                                  maxLength: s.correctSec.length,
-                                  activeValue: s.userSec,
-                                  hintValue: '',
-                                  correctValues: [s.correctSec],
-                                  onChanged: (String newVal) =>
-                                      siganNotifier.updateSec(newVal),
-                                ),
-                              ),
+                              s.correctSec != s.userSec
+                                  ? HintButton(
+                                      onHintActive: (bool onHintActive) =>
+                                          isHintActive = onHintActive,
+                                      userInput: s.userSec,
+                                      correctAnswer: s.correctSec,
+                                      onHintUpdate: (String hint) => {
+                                            siganNotifier.updateSec(hint),
+                                          })
+                                  : Container(),
+                              s.correctSec != s.userSec
+                                  ? Container(
+                                      width: textFieldWidth,
+                                      child: QuestionFreeForm(
+                                        isActive: isHintActive,
+                                        maxLength: s.correctSec.length,
+                                        activeValue: s.userSec,
+                                        hintValue: '',
+                                        correctValues: [s.correctSec],
+                                        onChanged: (String newVal) =>
+                                            siganNotifier.updateSec(newVal),
+                                      ),
+                                    )
+                                  : Text(s.correctSec,
+                                      style: TextStyle(fontSize: 28)),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text('초'),

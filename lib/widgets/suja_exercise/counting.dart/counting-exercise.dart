@@ -4,6 +4,7 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
 import 'package:handrills/state/suja/count/count_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
+import 'package:handrills/widgets/shared/hint_button.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
 import 'package:handrills/widgets/shared/question_free_form.dart';
@@ -26,7 +27,8 @@ class CountingExercise extends StatelessWidget {
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) {
             var activeItem = navNotifier.getActive();
-            var label = activeItem.label(context);
+            bool isHintActive = false;
+            var label = activeItem.label;
 
             var infoText =
                 activeItem.isSino ? HD.t('use_sino') : HD.t('use_native');
@@ -73,7 +75,17 @@ class CountingExercise extends StatelessWidget {
                                 child: NAnswerStatusIcon(
                               status: isCorrect,
                             )),
-                            Container(
+                            s.correctAnswer != s.userInput
+                                ? HintButton(
+                                    onHintActive: (bool onHintActive) => isHintActive = onHintActive,
+                                    userInput: s.userInput,
+                                    correctAnswer: s.correctAnswer,
+                                    onHintUpdate: (String hint) => {
+                                          countNotifier.updateCount(hint)
+                                        })
+                                : Container(),
+                                s.correctAnswer != s.userInput
+                            ? Container(
                               width: 80,
                               child: QuestionFreeForm(
                                 isActive: false,
@@ -84,7 +96,8 @@ class CountingExercise extends StatelessWidget {
                                     countNotifier.updateCount(newVal),
                                 correctValues: [s.correctAnswer],
                               ),
-                            ),
+                            )
+                            :  Text(s.correctAnswer, style: TextStyle(fontSize: 28)),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(navNotifier.getActive().counter,
