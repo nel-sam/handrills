@@ -4,7 +4,6 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
 import 'package:handrills/state/suja/age/age_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
-import 'package:handrills/widgets/shared/hint_button.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
 import 'package:handrills/widgets/shared/question_free_form.dart';
@@ -14,6 +13,7 @@ import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_hint_button.dart';
 import 'package:provider/provider.dart';
 
 class AgeExercise extends StatelessWidget {
@@ -41,34 +41,35 @@ class AgeExercise extends StatelessWidget {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // TODO: Make 3d
                             NAnswerStatusIcon(
                                 status: s.getIsCorrect()
                                     ? CorrectStatus.correct
                                     : CorrectStatus.unstarted),
                             s.correctAnswer != s.userInput
-                                ? HintButton(
-                                    onHintActive: (bool onHintActive) => isHintActive = onHintActive,
+                                ? NHintButton(
+                                    onHintActive: (bool onHintActive) =>
+                                        isHintActive = onHintActive,
                                     userInput: s.userInput,
                                     correctAnswer: s.correctAnswer,
                                     onHintUpdate: (String hint) => {
                                           ageNotifier.updateAge(hint),
                                         })
                                 : Container(),
-                                s.correctAnswer != s.userInput
-                            ? Container(
-                              width: 150,
-                              child: QuestionFreeForm(
-                                isActive: isHintActive,
-                                maxLength: s.correctAnswer.length,
-                                activeValue: s.userInput,
-                                correctValues: [s.correctAnswer],
-                                hintValue: '',
-                                onChanged: (String newVal) =>
-                                    ageNotifier.updateAge(newVal),
-                              ),
-                            )
-                            : Text(s.correctAnswer, style: TextStyle(fontSize: 28)),
+                            s.correctAnswer != s.userInput
+                                ? Container(
+                                    width: 150,
+                                    child: QuestionFreeForm(
+                                      isActive: isHintActive,
+                                      maxLength: s.correctAnswer.length,
+                                      activeValue: s.userInput,
+                                      correctValues: [s.correctAnswer],
+                                      hintValue: '',
+                                      onChanged: (String newVal) =>
+                                          ageNotifier.updateAge(newVal),
+                                    ),
+                                  )
+                                : Text(s.correctAnswer,
+                                    style: TextStyle(fontSize: 28)),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('살', style: TextStyle(fontSize: 28)),

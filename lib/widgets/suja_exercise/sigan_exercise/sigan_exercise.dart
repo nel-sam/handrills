@@ -4,7 +4,6 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
 import 'package:handrills/state/suja/sigan/sigan_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
-import 'package:handrills/widgets/shared/hint_button.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
 import 'package:handrills/widgets/shared/question_free_form.dart';
@@ -15,6 +14,7 @@ import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_hint_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_info_button.dart';
 import 'package:provider/provider.dart';
 
@@ -84,7 +84,6 @@ class SiganExercise extends StatelessWidget {
                   child: Consumer<SiganNotifier>(
                     builder: (context, siganNotifier, child) {
                       var s = siganNotifier.getStateItem();
-                      // TODO: Make status 3d
                       var isHourCorrect = s.correctHour == s.userHour
                           ? CorrectStatus.correct
                           : CorrectStatus.unstarted;
@@ -102,7 +101,7 @@ class SiganExercise extends StatelessWidget {
                             children: [
                               NAnswerStatusIcon(status: isHourCorrect),
                               s.correctHour != s.userHour
-                                  ? HintButton(
+                                  ? NHintButton(
                                       onHintActive: (bool onHintActive) =>
                                           isHintActive = onHintActive,
                                       userInput: s.userHour,
@@ -136,7 +135,7 @@ class SiganExercise extends StatelessWidget {
                             children: [
                               NAnswerStatusIcon(status: isMinCorrect),
                               s.correctMin != s.userMin
-                                  ? HintButton(
+                                  ? NHintButton(
                                       onHintActive: (bool onHintActive) =>
                                           isHintActive = onHintActive,
                                       userInput: s.userMin,
@@ -170,7 +169,7 @@ class SiganExercise extends StatelessWidget {
                             children: [
                               NAnswerStatusIcon(status: isSecCorrect),
                               s.correctSec != s.userSec
-                                  ? HintButton(
+                                  ? NHintButton(
                                       onHintActive: (bool onHintActive) =>
                                           isHintActive = onHintActive,
                                       userInput: s.userSec,

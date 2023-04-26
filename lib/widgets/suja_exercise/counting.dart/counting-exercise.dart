@@ -4,7 +4,6 @@ import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
 import 'package:handrills/state/suja/count/count_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
-import 'package:handrills/widgets/shared/hint_button.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
 import 'package:handrills/widgets/shared/question_free_form.dart';
@@ -14,6 +13,7 @@ import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
+import 'package:nrs_flutter_lib/widgets/n_hint_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_info_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +27,6 @@ class CountingExercise extends StatelessWidget {
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) {
             var activeItem = navNotifier.getActive();
-            bool isHintActive = false;
             var label = activeItem.label;
 
             var infoText =
@@ -63,7 +62,6 @@ class CountingExercise extends StatelessWidget {
                     child: Consumer<CountNotifier>(
                       builder: (context, countNotifier, child) {
                         var s = countNotifier.getStateItem();
-                        // TODO: Make 3d
                         var isCorrect = s.getIsCorrect()
                             ? CorrectStatus.correct
                             : CorrectStatus.unstarted;
@@ -76,28 +74,29 @@ class CountingExercise extends StatelessWidget {
                               status: isCorrect,
                             )),
                             s.correctAnswer != s.userInput
-                                ? HintButton(
-                                    onHintActive: (bool onHintActive) => isHintActive = onHintActive,
+                                ? NHintButton(
+                                    onHintActive: (bool onHintActive) =>
+                                        {}, // TODO: Can this be removed?
                                     userInput: s.userInput,
                                     correctAnswer: s.correctAnswer,
-                                    onHintUpdate: (String hint) => {
-                                          countNotifier.updateCount(hint)
-                                        })
+                                    onHintUpdate: (String hint) =>
+                                        {countNotifier.updateCount(hint)})
                                 : Container(),
-                                s.correctAnswer != s.userInput
-                            ? Container(
-                              width: 80,
-                              child: QuestionFreeForm(
-                                isActive: false,
-                                maxLength: s.correctAnswer.length,
-                                activeValue: s.userInput,
-                                hintValue: '',
-                                onChanged: (String newVal) =>
-                                    countNotifier.updateCount(newVal),
-                                correctValues: [s.correctAnswer],
-                              ),
-                            )
-                            :  Text(s.correctAnswer, style: TextStyle(fontSize: 28)),
+                            s.correctAnswer != s.userInput
+                                ? Container(
+                                    width: 80,
+                                    child: QuestionFreeForm(
+                                      isActive: false,
+                                      maxLength: s.correctAnswer.length,
+                                      activeValue: s.userInput,
+                                      hintValue: '',
+                                      onChanged: (String newVal) =>
+                                          countNotifier.updateCount(newVal),
+                                      correctValues: [s.correctAnswer],
+                                    ),
+                                  )
+                                : Text(s.correctAnswer,
+                                    style: TextStyle(fontSize: 28)),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(navNotifier.getActive().counter,

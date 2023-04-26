@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/widgets/menus/main_menu.dart';
+import 'package:localization/localization.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,12 +30,11 @@ class MyApp extends StatelessWidget {
           primarySwatch: primaryColor,
         ),
         darkTheme: ThemeData(
-          primarySwatch: primaryColor,
-          primaryColor: Colors.black,
-          brightness: Brightness.dark,
-          backgroundColor: const Color(0xFF212121),
-          dividerColor: Colors.black12,
-        ),
+            primarySwatch: primaryColor,
+            primaryColor: Colors.black,
+            brightness: Brightness.dark,
+            dividerColor: Colors.black12,
+            colorScheme: ColorScheme.dark(background: const Color(0xFF212121))),
         home: MyHomePage());
   }
 }
