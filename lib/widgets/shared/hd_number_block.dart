@@ -45,13 +45,15 @@ class HDNumberBlock extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                Text(
-                  numberList[1],
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
-                ),
+                numberList[1] != '' && numberList[0] != numberList[1]
+                    ? Text(
+                        numberList[1],
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      )
+                    : Container(),
               ]),
         ),
       ),

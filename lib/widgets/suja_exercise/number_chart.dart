@@ -40,9 +40,9 @@ class NumberChart extends StatelessWidget {
 
     for (int i = 0; i <= maxNum; i++) {
       var hn = HD.getSinoNumber(i);
-      var written = hn.alternate == hn.written ? hn.written : '${hn.written}';
-      var kanji = hn.alternate == hn.alternate ? hn.alternate : '${hn.alternate}';
-      numbers.add(HanNumber(digit: hn.digit, written: written, alternate: kanji));
+      var written = hn.written == hn.written ? hn.written : '${hn.written}';
+      var alternate = hn.alternate == hn.alternate ? hn.alternate : '${hn.alternate}';
+      numbers.add(HanNumber(digit: hn.digit, written: written, alternate: alternate));
     }
     return Center(
       child: GridView.extent(
@@ -52,8 +52,8 @@ class NumberChart extends StatelessWidget {
         mainAxisSpacing: 3,
         maxCrossAxisExtent: 130.0,
         children: <Widget>[
-          ...nativeNumberBank.getRange(1, 11).map((e) => HDNumberBlock(
-              digit: e.digit, numberList: [e.alternate,e.written]))
+          ...nativeNumberBank.getRange(1, 100).map((e) => HDNumberBlock(
+              digit: e.digit, numberList: [e.written, e.alternate]))
         ],
       ),
     );
@@ -66,8 +66,8 @@ class NumberChart extends StatelessWidget {
     for (int i = 0; i <= maxNum; i++) {
       var hn = HD.getSinoNumber(i);
       var written = hn.alternate == hn.written ? hn.written : '${hn.written}';
-      var kanji = hn.alternate == hn.alternate ? hn.alternate : '${hn.alternate}';
-      numbers.add(HanNumber(digit: hn.digit, written: written, alternate: kanji));
+      var alternate = hn.alternate == hn.alternate ? hn.alternate : '${hn.alternate}';
+      numbers.add(HanNumber(digit: hn.digit, written: written, alternate: alternate));
     }
 
     return Center(
@@ -79,7 +79,7 @@ class NumberChart extends StatelessWidget {
         maxCrossAxisExtent: 130.0,
         children: <Widget>[
           ...numbers.getRange(0, 101).map((e) => HDNumberBlock(
-              digit: e.digit, numberList: [e.alternate, e.written]))
+              digit: e.digit, numberList: [e.written, ""]))
         ],
       ),
     );
