@@ -6,14 +6,11 @@ import 'package:handrills/state/suja/count/count_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
-import 'package:handrills/widgets/shared/question_free_form.dart';
+import 'package:handrills/widgets/suja_exercise/counting.dart/counting_exercise_state_area.dart';
 import 'package:handrills/widgets/suja_exercise/number_chart.dart';
-import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
-import 'package:nrs_flutter_lib/widgets/n_hint_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_info_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +30,7 @@ class CountingExercise extends StatelessWidget {
                 activeItem.isSino ? HD.t('use_sino') : HD.t('use_native');
 
             infoText +=
-                ' ${label.toLowerCase()}: ${activeItem.correctAnswer}${activeItem.isSino ? '' : ' '}${activeItem.counter}';
+                ' ${label.toLowerCase()}: ${activeItem.correctAnswers}${activeItem.isSino ? '' : ' '}${activeItem.counter}';
 
             return Padding(
               padding: const EdgeInsets.all(24),
@@ -62,48 +59,7 @@ class CountingExercise extends StatelessWidget {
                     child: Consumer<CountNotifier>(
                       builder: (context, countNotifier, child) {
                         var s = countNotifier.getStateItem();
-                        var isCorrect = s.getIsCorrect()
-                            ? CorrectStatus.correct
-                            : CorrectStatus.unstarted;
-
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                                child: NAnswerStatusIcon(
-                              status: isCorrect,
-                            )),
-                            s.correctAnswer != s.userInput
-                                ? NHintButton(
-                                    onHintActive: (bool onHintActive) =>
-                                        {}, // TODO: Can this be removed?
-                                    userInput: s.userInput,
-                                    correctAnswer: s.correctAnswer,
-                                    onHintUpdate: (String hint) =>
-                                        {countNotifier.updateCount(hint)})
-                                : Container(),
-                            s.correctAnswer != s.userInput
-                                ? Container(
-                                    width: 80,
-                                    child: QuestionFreeForm(
-                                      isActive: false,
-                                      maxLength: s.correctAnswer.length,
-                                      activeValue: s.userInput,
-                                      hintValue: '',
-                                      onChanged: (String newVal) =>
-                                          countNotifier.updateCount(newVal),
-                                      correctValues: [s.correctAnswer],
-                                    ),
-                                  )
-                                : Text(s.correctAnswer,
-                                    style: TextStyle(fontSize: 28)),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(navNotifier.getActive().counter,
-                                  style: TextStyle(fontSize: 28)),
-                            ),
-                          ],
-                        );
+                        return CountingExerciseStateArea(state: s);
                       },
                     ),
                   ),

@@ -18,9 +18,9 @@ class SiganGenerator {
       hour: hour.digit < 10 ? '0${hour.digit}' : hour.digit.toString(),
       min: min.digit < 10 ? '0${min.digit}' : min.digit.toString(),
       sec: sec.digit < 10 ? '0${sec.digit}' : sec.digit.toString(),
-      correctHour: hour.alternate,
-      correctMin: min.written,
-      correctSec: sec.written,
+      correctHours: [hour.written, hour.alternate],
+      correctMins: [hour.written, hour.alternate],
+      correctSecs: [sec.written, sec.alternate]
     );
   }
 

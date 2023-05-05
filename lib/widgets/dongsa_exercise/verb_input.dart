@@ -1,65 +1,39 @@
+
 import 'package:flutter/material.dart';
 import 'package:handrills/lang_data/dongsa.dart';
-import 'package:handrills/widgets/shared/question_free_form.dart';
-import 'package:nrs_flutter_lib/constants.dart';
-import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
+import 'package:handrills/widgets/shared/hd_free_form_entry_wrapper.dart';
+import 'package:nrs_flutter_lib/widgets/n_free_form_entry.dart';
 
 class VerbInput extends StatelessWidget {
   final Dongsa dongsa;
+  final String hintValue;
 
-  final String label;
   final String correctValue;
   final String activeValue;
-  final Function(String) onChanged;
+  final Function(String) onSubmitted;
+  final Function onCorrect;
+
   const VerbInput({
     Key? key,
     required this.dongsa,
-    required this.label,
     required this.correctValue,
     required this.activeValue,
-    required this.onChanged,
+    required this.onSubmitted,
+    required this.onCorrect,
+    required this.hintValue,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var isCorrect = activeValue == correctValue;
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: NTextSpan(
-            label,
-            textAlign: TextAlign.end,
-          ),
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: QuestionFreeForm(
-                isActive: false,
-                maxLength: correctValue.length,
-                activeValue: activeValue,
-                hintValue: dongsa.infinitive,
-                correctValues: [correctValue],
-                onChanged: (String newValue) {
-                  onChanged(newValue);
-                },
-              ),
-            ),
-            isCorrect
-                ? Icon(
-                    CORRECT_ANSWER_ICON,
-                    color: CORRECT_COLOR,
-                  )
-                : Icon(
-                    Icons.circle_outlined,
-                    color: Colors.grey,
-                  ),
-          ],
-        ),
-      ],
+    return HdFreeFormEntryWrapper(
+      widthType: NFreeFormWidths.half,
+      hintValue: hintValue,
+      onChanged: (String newValue) {
+        onSubmitted(newValue);
+      },
+      initialValue: activeValue,
+      correctValues: [correctValue],
+      onCorrect: onCorrect,
     );
   }
 }

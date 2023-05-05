@@ -6,15 +6,12 @@ import 'package:handrills/state/suja/sigan/sigan_notifier.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
 import 'package:handrills/widgets/shared/home_button_wrapper.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
-import 'package:handrills/widgets/shared/question_free_form.dart';
 import 'package:handrills/widgets/suja_exercise/number_chart.dart';
 import 'package:handrills/widgets/suja_exercise/sigan_exercise/clock.dart';
-import 'package:nrs_flutter_lib/enums.dart';
+import 'package:handrills/widgets/suja_exercise/sigan_exercise/sigan_exercise_state_area.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
-import 'package:nrs_flutter_lib/widgets/n_answer_status_icon.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
-import 'package:nrs_flutter_lib/widgets/n_hint_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_info_button.dart';
 import 'package:provider/provider.dart';
 
@@ -62,8 +59,6 @@ class SiganExercise extends StatelessWidget {
       child: Consumer<ExerciseNavNotifier>(
         builder: (context, navNotifier, child) {
           var s = navNotifier.getActive();
-          bool isHintActive = false;
-
           return Padding(
             padding: const EdgeInsets.only(left: 24, right: 24),
             child: Column(
@@ -84,123 +79,7 @@ class SiganExercise extends StatelessWidget {
                   child: Consumer<SiganNotifier>(
                     builder: (context, siganNotifier, child) {
                       var s = siganNotifier.getStateItem();
-                      var isHourCorrect = s.correctHour == s.userHour
-                          ? CorrectStatus.correct
-                          : CorrectStatus.unstarted;
-                      var isMinCorrect = s.correctMin == s.userMin
-                          ? CorrectStatus.correct
-                          : CorrectStatus.unstarted;
-                      var isSecCorrect = s.correctSec == s.userSec
-                          ? CorrectStatus.correct
-                          : CorrectStatus.unstarted;
-
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              NAnswerStatusIcon(status: isHourCorrect),
-                              s.correctHour != s.userHour
-                                  ? NHintButton(
-                                      onHintActive: (bool onHintActive) =>
-                                          isHintActive = onHintActive,
-                                      userInput: s.userHour,
-                                      correctAnswer: s.correctHour,
-                                      onHintUpdate: (String hint) => {
-                                            siganNotifier.updateHour(hint),
-                                          })
-                                  : Container(),
-                              s.correctHour != s.userHour
-                                  ? Container(
-                                      width: textFieldWidth,
-                                      child: QuestionFreeForm(
-                                        isActive: isHintActive,
-                                        maxLength: s.correctHour.length,
-                                        activeValue: s.userHour,
-                                        hintValue: '',
-                                        correctValues: [s.correctHour],
-                                        onChanged: (String newVal) =>
-                                            siganNotifier.updateHour(newVal),
-                                      ),
-                                    )
-                                  : Text(s.correctHour,
-                                      style: TextStyle(fontSize: 28)),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('시'),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              NAnswerStatusIcon(status: isMinCorrect),
-                              s.correctMin != s.userMin
-                                  ? NHintButton(
-                                      onHintActive: (bool onHintActive) =>
-                                          isHintActive = onHintActive,
-                                      userInput: s.userMin,
-                                      correctAnswer: s.correctMin,
-                                      onHintUpdate: (String hint) => {
-                                            siganNotifier.updateMin(hint),
-                                          })
-                                  : Container(),
-                              s.correctMin != s.userMin
-                                  ? Container(
-                                      width: textFieldWidth,
-                                      child: QuestionFreeForm(
-                                        isActive: isHintActive,
-                                        maxLength: s.correctMin.length,
-                                        activeValue: s.userMin,
-                                        hintValue: '',
-                                        correctValues: [s.correctMin],
-                                        onChanged: (String newVal) =>
-                                            siganNotifier.updateMin(newVal),
-                                      ),
-                                    )
-                                  : Text(s.correctMin,
-                                      style: TextStyle(fontSize: 28)),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('분'),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              NAnswerStatusIcon(status: isSecCorrect),
-                              s.correctSec != s.userSec
-                                  ? NHintButton(
-                                      onHintActive: (bool onHintActive) =>
-                                          isHintActive = onHintActive,
-                                      userInput: s.userSec,
-                                      correctAnswer: s.correctSec,
-                                      onHintUpdate: (String hint) => {
-                                            siganNotifier.updateSec(hint),
-                                          })
-                                  : Container(),
-                              s.correctSec != s.userSec
-                                  ? Container(
-                                      width: textFieldWidth,
-                                      child: QuestionFreeForm(
-                                        isActive: isHintActive,
-                                        maxLength: s.correctSec.length,
-                                        activeValue: s.userSec,
-                                        hintValue: '',
-                                        correctValues: [s.correctSec],
-                                        onChanged: (String newVal) =>
-                                            siganNotifier.updateSec(newVal),
-                                      ),
-                                    )
-                                  : Text(s.correctSec,
-                                      style: TextStyle(fontSize: 28)),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('초'),
-                              ),
-                            ],
-                          ),
-                        ],
-                      );
+                      return SiganExerciseStateArea(state: s);
                     },
                   ),
                 ),

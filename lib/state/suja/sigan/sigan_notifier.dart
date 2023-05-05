@@ -13,10 +13,10 @@ class SiganNotifier extends ChangeNotifier {
 
   void clearInput() {
     _getStateItem().clear();
-    deboucedNotifyListeners();
+    debouncedNotifyListeners();
   }
 
-  deboucedNotifyListeners() {
+  debouncedNotifyListeners() {
     if (!_debounce.isActive) {
       _debounce.cancel();
     }
@@ -27,23 +27,5 @@ class SiganNotifier extends ChangeNotifier {
 
   getStateItem() {
     return _getStateItem();
-  }
-
-  updateHour(String input) {
-    var active = _getStateItem();
-    active.userHour = input;
-    deboucedNotifyListeners();
-  }
-
-  updateMin(String input) {
-    var active = _getStateItem();
-    active.userMin = input;
-    deboucedNotifyListeners();
-  }
-
-  updateSec(String input) {
-    var active = _getStateItem();
-    active.userSec = input;
-    deboucedNotifyListeners();
   }
 }

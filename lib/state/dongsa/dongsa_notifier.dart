@@ -13,10 +13,10 @@ class DongsaNotifier with ChangeNotifier {
 
   clearInput() {
     _getStateItem().userInput.clear();
-    deboucedNotifyListeners();
+    debouncedNotifyListeners();
   }
 
-  deboucedNotifyListeners() {
+  debouncedNotifyListeners() {
     if (!_debounce.isActive) {
       _debounce.cancel();
     }
@@ -27,14 +27,5 @@ class DongsaNotifier with ChangeNotifier {
 
   getActive() {
     return _getStateItem();
-  }
-
-  getUserInput(int index) {
-    return _getStateItem().getUserInput(index);
-  }
-
-  updateUserInput(int index, String newValue) {
-    _getStateItem().updateUserInput(index, newValue);
-    deboucedNotifyListeners();
-  }
+  } 
 }

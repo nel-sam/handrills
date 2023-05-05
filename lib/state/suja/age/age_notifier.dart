@@ -11,7 +11,7 @@ class AgeNotifier extends ChangeNotifier {
     _getStateItem = getStateItem;
   }
 
-  deboucedNotifyListeners() {
+  debouncedNotifyListeners() {
     if (!_debounce.isActive) {
       _debounce.cancel();
     }
@@ -22,10 +22,5 @@ class AgeNotifier extends ChangeNotifier {
 
   getStateItem() {
     return _getStateItem();
-  }
-
-  void updateAge(String newVal) {
-    _getStateItem().userInput = newVal;
-    deboucedNotifyListeners();
   }
 }

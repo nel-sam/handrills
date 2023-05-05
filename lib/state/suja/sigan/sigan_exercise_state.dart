@@ -1,9 +1,9 @@
 class SiganExerciseState {
-  String correctHour;
+  List<String> correctHours;
   String userHour = '';
-  String correctMin;
+  List<String> correctMins;
   String userMin = '';
-  String correctSec;
+  List<String> correctSecs;
   String userSec = '';
   String hour;
   String min;
@@ -13,20 +13,32 @@ class SiganExerciseState {
     required this.hour,
     required this.min,
     required this.sec,
-    required this.correctHour,
-    required this.correctMin,
-    required this.correctSec,
+    required this.correctHours,
+    required this.correctMins,
+    required this.correctSecs,
   });
-
-  bool getIsCorrect() {
-    return this.userHour == this.correctHour &&
-        this.userMin == this.correctMin &&
-        this.userSec == this.correctSec;
-  }
 
   clear() {
     this.userHour = '';
     this.userMin = '';
     this.userSec = '';
+  }
+
+  bool getIsCorrect() {
+    return this.correctHours.contains(this.userHour) &&
+        this.correctMins.contains(this.userMin) &&
+        this.correctSecs.contains(this.userSec);
+  }
+
+  updateHour(String input) {
+    this..userHour = input;
+  }
+
+  updateMin(String input) {
+    this.userMin = input;
+  }
+
+  updateSec(String input) {
+    this..userSec = input;
   }
 }

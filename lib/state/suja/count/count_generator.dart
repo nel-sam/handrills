@@ -19,7 +19,7 @@ class CountGenerator {
             icon: Icons.calendar_month_outlined,
             label: HD.t('months'),
             count: sinoNumb.digit,
-            correctAnswer: sinoNumb.alternate,
+            correctAnswers: [sinoNumb.written, sinoNumb.alternate],
             counter: '월',
           );
 
@@ -29,7 +29,7 @@ class CountGenerator {
             icon: Icons.calendar_today_outlined,
             label: HD.t('days'),
             count: sinoNumb.digit,
-            correctAnswer: sinoNumb.alternate,
+            correctAnswers: [sinoNumb.written, sinoNumb.alternate],
             counter: '일',
           );
 
@@ -39,7 +39,7 @@ class CountGenerator {
             icon: Icons.wb_twighlight,
             label: HD.t('years'),
             count: sinoNumb.digit,
-            correctAnswer: sinoNumb.alternate,
+            correctAnswers: [sinoNumb.written, sinoNumb.alternate],
             counter: '년',
           );
       }
@@ -55,7 +55,7 @@ class CountGenerator {
           icon: Icons.person,
           label: HD.t('people'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '명',
         );
 
@@ -65,7 +65,7 @@ class CountGenerator {
           icon: Icons.pets,
           label: HD.t('animals'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '마리',
         );
 
@@ -75,7 +75,7 @@ class CountGenerator {
           icon: Icons.wine_bar,
           label: HD.t('bottles'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '병',
         );
 
@@ -85,7 +85,7 @@ class CountGenerator {
           icon: Icons.bike_scooter,
           label: HD.t('things'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '개',
         );
 
@@ -95,7 +95,7 @@ class CountGenerator {
           icon: Icons.book_outlined,
           label: HD.t('books'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '권',
         );
 
@@ -105,7 +105,7 @@ class CountGenerator {
           icon: Icons.local_pizza_outlined,
           label: HD.t('slices'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '조각',
         );
 
@@ -115,7 +115,7 @@ class CountGenerator {
           icon: Icons.car_rental_outlined,
           label: HD.t('cars_machines'),
           count: hanNumb.digit,
-          correctAnswer: hanNumb.alternate,
+          correctAnswers: [hanNumb.written, hanNumb.alternate],
           counter: '대',
         );
     }

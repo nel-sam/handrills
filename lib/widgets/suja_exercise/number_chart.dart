@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
+import 'package:handrills/widgets/shared/hd_number_block.dart';
+
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_sub_header.dart';
 
@@ -9,54 +11,49 @@ class NumberChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = Nrs.getScreenHeight();
+
     return Scaffold(
         appBar: Nrs.NrsAppBar(title: HD.t('numberChart'), context: context),
-        body: Padding(
-          padding: EdgeInsets.all(18),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                getNativeNumberChart(context),
-                getSinoNumberChart(context),
-              ],
+        body: Column(
+          children: <Widget>[
+            NSubHeader(HD.t('nativeNumbers')),
+            SizedBox(
+              height: screenHeight * 0.25,
+              child: getNativeNumberChart(context),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: NSubHeader(HD.t('sinoNumbers')),
+            ),
+            SizedBox(
+              height: screenHeight * 0.4,
+              child: getSinoNumberChart(context),
+            )
+          ],
         ));
   }
 
   getNativeNumberChart(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              NSubHeader(HD.t('nativeNumbers')),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...nativeNumberBank.getRange(1, 34).map((e) => Text(
-                      '${e.digit} ${e.written}',
-                      style: boldStyle,
-                    ))
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...nativeNumberBank
-                    .getRange(34, 67)
-                    .map((e) => Text('${e.digit} ${e.written}'))
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...nativeNumberBank.getRange(67, 100).map((e) => Text(
-                      '${e.digit} ${e.written}',
-                      style: boldStyle,
-                    ))
-              ]),
-            ],
-          ),
+    List<HanNumber> numbers = [];
+    var maxNum = 100;
+
+    for (int i = 0; i <= maxNum; i++) {
+      var hn = HD.getSinoNumber(i);
+      var written = hn.alternate == hn.written ? hn.written : '${hn.written}';
+      var kanji = hn.alternate == hn.alternate ? hn.alternate : '${hn.alternate}';
+      numbers.add(HanNumber(digit: hn.digit, written: written, alternate: kanji));
+    }
+    return Center(
+      child: GridView.extent(
+        primary: false,
+        padding: const EdgeInsets.all(16),
+        crossAxisSpacing: 3,
+        mainAxisSpacing: 3,
+        maxCrossAxisExtent: 130.0,
+        children: <Widget>[
+          ...nativeNumberBank.getRange(1, 11).map((e) => HDNumberBlock(
+              digit: e.digit, numberList: [e.alternate,e.written]))
         ],
       ),
     );
@@ -68,44 +65,21 @@ class NumberChart extends StatelessWidget {
 
     for (int i = 0; i <= maxNum; i++) {
       var hn = HD.getSinoNumber(i);
-      var written = hn.alternate == hn.written
-          ? hn.written
-          : '${hn.written}/${hn.alternate}';
-      numbers.add(HanNumber(digit: hn.digit, written: written));
+      var written = hn.alternate == hn.written ? hn.written : '${hn.written}';
+      var kanji = hn.alternate == hn.alternate ? hn.alternate : '${hn.alternate}';
+      numbers.add(HanNumber(digit: hn.digit, written: written, alternate: kanji));
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              NSubHeader(HD.t('sinoNumbers')),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...numbers.getRange(0, 34).map((e) => Text(
-                      '${e.digit} ${e.written}',
-                      style: boldStyle,
-                    ))
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...numbers
-                    .getRange(34, 67)
-                    .map((e) => Text('${e.digit} ${e.written}'))
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                ...numbers.getRange(67, 101).map((e) => Text(
-                      '${e.digit} ${e.written}',
-                      style: boldStyle,
-                    ))
-              ]),
-            ],
-          ),
+    return Center(
+      child: GridView.extent(
+        primary: false,
+        padding: const EdgeInsets.all(16),
+        crossAxisSpacing: 3,
+        mainAxisSpacing: 3,
+        maxCrossAxisExtent: 130.0,
+        children: <Widget>[
+          ...numbers.getRange(0, 101).map((e) => HDNumberBlock(
+              digit: e.digit, numberList: [e.alternate, e.written]))
         ],
       ),
     );

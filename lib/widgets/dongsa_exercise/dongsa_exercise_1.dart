@@ -3,15 +3,13 @@ import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/state/dongsa/dongsa_notifier.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
+import 'package:handrills/widgets/dongsa_exercise/dongsa_exercise_state_area.dart';
 import 'package:handrills/widgets/dongsa_exercise/verb_chart.dart';
-import 'package:handrills/widgets/dongsa_exercise/verb_input.dart';
 import 'package:handrills/widgets/shared/ad_card.dart';
 import 'package:handrills/widgets/shared/nav_header_wrapper.dart';
-import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_button.dart';
 import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
-import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
 import 'package:provider/provider.dart';
 
 class DongsaExerciseLevel1 extends StatelessWidget {
@@ -72,64 +70,8 @@ class DongsaExerciseLevel1 extends StatelessWidget {
         create: (context) => DongsaNotifier(navNotifier.getActive),
         child: Consumer<DongsaNotifier>(
           builder: (context, dongsaNotifier, child) {
-            var dongsa = dongsaNotifier.getActive().dongsa;
-
-            return Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    NTextSpan(
-                      dongsa.infinitive,
-                      textStyle: HD.fontStyleBold(context),
-                      textAlign: TextAlign.end,
-                    ),
-                    SizedBox(width: FONT_SIZE),
-                    NTextSpan(dongsa.translation),
-                  ],
-                ),
-                VerbInput(
-                  dongsa: dongsa,
-                  activeValue: dongsaNotifier.getUserInput(0),
-                  label: HD.t('present'),
-                  correctValue: dongsa.banmar.present,
-                  onChanged: (String newValue) =>
-                      dongsaNotifier.updateUserInput(0, newValue),
-                ),
-                VerbInput(
-                  dongsa: dongsa,
-                  activeValue: dongsaNotifier.getUserInput(1),
-                  label: HD.t('past'),
-                  correctValue: dongsa.banmar.past,
-                  onChanged: (String newValue) =>
-                      dongsaNotifier.updateUserInput(1, newValue),
-                ),
-                VerbInput(
-                  activeValue: dongsaNotifier.getUserInput(2),
-                  dongsa: dongsa,
-                  label: HD.t('future'),
-                  correctValue: '${dongsa.banmar.futureStem} 거야',
-                  onChanged: (String newValue) =>
-                      dongsaNotifier.updateUserInput(2, newValue),
-                ),
-                // VerbInput(
-                //   activeValue: dongsaNotifier.getUserInput(3),
-                //   dongsa: dongsa,
-                //   label: HD.t('conditional'),
-                //   correctValue: '${dongsa.stem}겠어',
-                //   onChanged: (String newValue) =>
-                //       dongsaNotifier.updateUserInput(3, newValue),
-                // ),
-                VerbInput(
-                  activeValue: dongsaNotifier.getUserInput(4),
-                  dongsa: dongsa,
-                  label: HD.t('propositive'),
-                  correctValue: '${dongsa.stem}자',
-                  onChanged: (String newValue) =>
-                      dongsaNotifier.updateUserInput(4, newValue),
-                ),
-              ],
-            );
+            var dongsa = dongsaNotifier.getActive();
+            return DongsaExerciseStateArea(state: dongsa);
           },
         ),
       ),
