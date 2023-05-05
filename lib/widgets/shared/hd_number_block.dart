@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class HDNumberBlock extends StatelessWidget {
   final int digit;
@@ -35,14 +36,14 @@ class HDNumberBlock extends StatelessWidget {
                   digit.toString(),
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
+                    color: Nrs.getPrimaryColor(context),
                   ),
                 ),
                 Text(
                   numberList[0],
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
+                    color: Nrs.getPrimaryColor(context),
                   ),
                 ),
                 numberList[1] != '' && numberList[0] != numberList[1]
@@ -50,7 +51,7 @@ class HDNumberBlock extends StatelessWidget {
                         numberList[1],
                         style: TextStyle(
                           fontSize: 18,
-                          color: Colors.white,
+                          color: Nrs.getPrimaryColor(context),
                         ),
                       )
                     : Container(),

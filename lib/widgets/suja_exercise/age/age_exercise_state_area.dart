@@ -17,20 +17,17 @@ class AgeExerciseStateArea extends StatefulWidget {
 class _AgeExerciseStateAreaState extends State<AgeExerciseStateArea> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 250,
-      child: HdFreeFormEntryWrapper(
-        widthType: NFreeFormWidths.half,
-        hintValue: HD.t('age'),
-        onChanged: (String newValue) {
-          widget.state.updateAge(newValue);
-        },
-        initialValue: widget.state.userInput,
-        correctValues: widget.state.correctAnswers,
-        onCorrect: () {
-          setState(() {});
-        },
-      ),
+    return HdFreeFormEntryWrapper(
+      widthType: NFreeFormWidths.half,
+      hintValue: HD.t('age'),
+      onChanged: (String newValue) {
+        widget.state.updateAge(newValue);
+      },
+      initialValue: widget.state.userInput,
+      correctValues: widget.state.correctAnswers,
+      onCorrect: () {
+        setState(() {});
+      },
     );
   }
 }

@@ -17,18 +17,15 @@ class CountingExerciseStateArea extends StatefulWidget {
 
 class _CountingExerciseStateAreaState extends State<CountingExerciseStateArea> {
   Widget build(BuildContext context) {
-    return Container(
-      width: 250,
-      child: HdFreeFormEntryWrapper(
-        widthType: NFreeFormWidths.half,
-        hintValue: HD.t('counter'),
-        onChanged: (String newValue) => widget.state.updateCount(newValue),
-        initialValue: widget.state.userInput,
-        correctValues: widget.state.correctAnswers,
-        onCorrect: () {
-          setState(() {});
-        },
-      ),
+    return HdFreeFormEntryWrapper(
+      widthType: NFreeFormWidths.half,
+      hintValue: HD.t('counter'),
+      onChanged: (String newValue) => widget.state.updateCount(newValue),
+      initialValue: widget.state.userInput,
+      correctValues: widget.state.correctAnswers,
+      onCorrect: () {
+        setState(() {});
+      },
     );
   }
 }
