@@ -62,18 +62,13 @@ class DongsaExerciseLevel1 extends StatelessWidget {
   }
 
   Widget getExercises(BuildContext context, ExerciseNavNotifier navNotifier) {
-    var width = Nrs.getScreenWidth(halfWidth: true) + 80;
-
-    return Container(
-      width: width,
-      child: ChangeNotifierProvider<DongsaNotifier>(
-        create: (context) => DongsaNotifier(navNotifier.getActive),
-        child: Consumer<DongsaNotifier>(
-          builder: (context, dongsaNotifier, child) {
-            var dongsa = dongsaNotifier.getActive();
-            return DongsaExerciseStateArea(state: dongsa);
-          },
-        ),
+    return ChangeNotifierProvider<DongsaNotifier>(
+      create: (context) => DongsaNotifier(navNotifier.getActive),
+      child: Consumer<DongsaNotifier>(
+        builder: (context, dongsaNotifier, child) {
+          var dongsa = dongsaNotifier.getActive();
+          return DongsaExerciseStateArea(state: dongsa);
+        },
       ),
     );
   }

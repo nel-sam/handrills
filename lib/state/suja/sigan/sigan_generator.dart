@@ -15,13 +15,21 @@ class SiganGenerator {
     var sec = HD.getRandomSinoNumber(min: 1, max: 59);
 
     return SiganExerciseState(
-      hour: hour.digit < 10 ? '0${hour.digit}' : hour.digit.toString(),
-      min: min.digit < 10 ? '0${min.digit}' : min.digit.toString(),
-      sec: sec.digit < 10 ? '0${sec.digit}' : sec.digit.toString(),
-      correctHours: [hour.written, hour.alternate],
-      correctMins: [hour.written, hour.alternate],
-      correctSecs: [sec.written, sec.alternate]
-    );
+        hour: hour.digit < 10 ? '0${hour.digit}' : hour.digit.toString(),
+        min: min.digit < 10 ? '0${min.digit}' : min.digit.toString(),
+        sec: sec.digit < 10 ? '0${sec.digit}' : sec.digit.toString(),
+        correctHours: [
+          hour.written + '시',
+          hour.alternate + '시',
+        ],
+        correctMins: [
+          hour.written + '분',
+          hour.alternate + '분',
+        ],
+        correctSecs: [
+          sec.written + '초',
+          sec.alternate + '초',
+        ]);
   }
 
   static int getMaxIndex() {

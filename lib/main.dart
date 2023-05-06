@@ -8,6 +8,13 @@ void main() {
   runApp(MyApp());
 }
 
+class HandDrillsHomePage extends StatefulWidget {
+  HandDrillsHomePage({Key? key}) : super(key: key);
+
+  @override
+  _HandDrillsHomePageState createState() => _HandDrillsHomePageState();
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -31,24 +38,20 @@ class MyApp extends StatelessWidget {
           primarySwatch: primaryColor,
         ),
         darkTheme: ThemeData(
-          primarySwatch: primaryColor,
           primaryColor: Colors.black,
           brightness: Brightness.dark,
+          colorScheme: ColorScheme.dark(
+              primary: primaryColor,
+              background: const Color(0xFF212121),
+              onPrimary: Colors.white),
           dividerColor: Colors.black12,
-          colorScheme: ColorScheme.dark(background: const Color(0xFF212121)),
         ),
-        home: MyHomePage());
+        themeMode: ThemeMode.system,
+        home: HandDrillsHomePage());
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _HandDrillsHomePageState extends State<HandDrillsHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

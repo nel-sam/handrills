@@ -20,17 +20,20 @@ class _DongsaExerciseStateAreaState extends State<DongsaExerciseStateArea> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            NTextSpan(
-              widget.state.dongsa.infinitive,
-              textStyle: HD.fontStyleBold(context),
-              textAlign: TextAlign.end,
-            ),
-            SizedBox(width: FONT_SIZE),
-            NTextSpan(widget.state.dongsa.translation),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(top: FONT_SIZE),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NTextSpan(
+                widget.state.dongsa.infinitive,
+                textStyle: HD.fontStyleBold(context),
+                textAlign: TextAlign.end,
+              ),
+              SizedBox(width: FONT_SIZE),
+              NTextSpan(widget.state.dongsa.translation),
+            ],
+          ),
         ),
         Padding(
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),

@@ -17,7 +17,7 @@ class HdFreeFormEntryWrapper extends StatelessWidget {
     required this.initialValue,
     required this.correctValues,
     required this.widthType,
-    required this.hintValue,
+    this.hintValue = '',
   }) : super(key: key);
 
   @override

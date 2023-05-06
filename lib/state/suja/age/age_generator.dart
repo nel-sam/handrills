@@ -7,10 +7,10 @@ class AgeGenerator {
   static createExercise(int index) {
     HanNumber number = HD.getRandomNativeNumber();
 
-    return AgeExerciseState(
-      age: number.digit,
-      correctAnswers: [number.written, number.alternate]
-    );
+    return AgeExerciseState(age: number.digit, correctAnswers: [
+      number.written + '살',
+      number.alternate + '살',
+    ]);
   }
 
   static int getMaxIndex() {
