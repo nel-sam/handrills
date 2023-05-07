@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/enums.dart';
 import 'package:nrs_flutter_lib/extensions.dart';
-import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class QuestionFreeForm extends StatelessWidget {
   final String hintValue;
@@ -75,7 +74,7 @@ class QuestionFreeForm extends StatelessWidget {
         color = Colors.grey;
         break;
       case CorrectStatus.inprogressCorrect:
-        color = Nrs.getPrimaryColor(context);
+        color = Theme.of(context).colorScheme.primary;
         break;
     }
 
