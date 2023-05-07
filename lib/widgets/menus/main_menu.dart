@@ -3,39 +3,18 @@ import 'package:handrills/constants.dart';
 import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/widgets/dongsa_exercise/dongsa_exercise_1.dart';
 import 'package:handrills/widgets/menus/numbers_menu.dart';
-import 'package:nrs_flutter_lib/constants.dart';
+import 'package:nrs_flutter_lib/widgets/n_hero_banner.dart';
 import 'package:nrs_flutter_lib/widgets/n_menu_button.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 250,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/banners/stairs.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: FONT_SIZE * 2, left: FONT_SIZE),
-            child: Row(
-              children: [
-                Text(
-                  APP_NAME,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
+        NHeroBanner(
+          imagePath: 'assets/banners/stairs.jpg',
+          appName: APP_NAME,
         ),
         Expanded(
           child: Column(
