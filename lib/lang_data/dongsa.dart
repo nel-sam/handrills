@@ -3,8 +3,8 @@ import 'package:handrills/hd_helpers.dart';
 var dongsaBank = [
   Dongsa(
     stem: '걸',
-    isIrregular: true,
-    infinitive: '걸다',
+    isIrregular: false,
+    infinitive: '걷다',
     translation: HD.t('keodda'),
     banmar: DongsaConj(
       present: '걸어',
