@@ -1,7 +1,7 @@
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
-import 'package:handrills/state/suja/sigan/sigan_exercise_state.dart';
+import 'package:handrills/state/susja/sigan/sigan_exercise_state.dart';
 import 'package:nrs_flutter_lib/nrs_flutter_lib.dart';
 
 class SiganGenerator {

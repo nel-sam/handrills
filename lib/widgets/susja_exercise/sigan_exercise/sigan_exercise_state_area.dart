@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd_helpers.dart';
-import 'package:handrills/state/suja/sigan/sigan_exercise_state.dart';
+import 'package:handrills/state/susja/sigan/sigan_exercise_state.dart';
 import 'package:handrills/widgets/shared/hd_free_form_entry_wrapper.dart';
 import 'package:nrs_flutter_lib/widgets/n_free_form_entry.dart';
 

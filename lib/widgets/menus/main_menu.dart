@@ -22,7 +22,7 @@ class MainMenu extends StatelessWidget {
               NMenuButton(
                 destination: NumbersMenu(),
                 label: HD.t('numbersExercise'),
-                transLabel: '수자',
+                transLabel: '숫자',
               ),
               NMenuButton(
                 destination: DongsaExerciseLevel1(),

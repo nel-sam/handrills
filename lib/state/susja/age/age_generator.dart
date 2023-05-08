@@ -1,7 +1,7 @@
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/lang_data/numbers.dart';
-import 'package:handrills/state/suja/age/age_exercise_state.dart';
+import 'package:handrills/state/susja/age/age_exercise_state.dart';
 
 class AgeGenerator {
   static createExercise(int index) {
