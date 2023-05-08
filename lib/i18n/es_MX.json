@@ -46,5 +46,11 @@
   "future": "Futuro",
   "conditional": "Condicional",
   "propositive": "Propositivo",
-  "exercise": "Ejercicio"
+  "exercise": "Ejercicio",
+  "welcome_to_handrills": "Bienvenidos a HanDrills",
+  "japanese_keyboard_needed": "Para usar HanDrills, necesitarás configurar el teclado a coreano",
+  "instructions": "Instrucciones",
+  "continue": "Continuar",
+  "negative": "Negativo",
+  "negativePast": "Negativo del pasado"
 }

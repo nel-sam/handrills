@@ -10,29 +10,33 @@ class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        NHeroBanner(
-          imagePath: 'assets/banners/stairs.jpg',
-          appName: APP_NAME,
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              NMenuButton(
-                destination: NumbersMenu(),
-                label: HD.t('numbersExercise'),
-                transLabel: '숫자',
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            NHeroBanner(
+              imagePath: 'assets/banners/stairs.jpg',
+              appName: APP_NAME,
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  NMenuButton(
+                    destination: NumbersMenu(),
+                    label: HD.t('numbersExercise'),
+                    transLabel: '숫자',
+                  ),
+                  NMenuButton(
+                    destination: DongsaExerciseLevel1(),
+                    label: HD.t('verbs'),
+                    transLabel: '동사',
+                  ),
+                ],
               ),
-              NMenuButton(
-                destination: DongsaExerciseLevel1(),
-                label: HD.t('verbs'),
-                transLabel: '동사',
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
