@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:handrills/constants.dart';
-import 'package:handrills/widgets/Settings/keyboard_message.dart';
+import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/widgets/menus/main_menu.dart';
 import 'package:localization/localization.dart';
 import 'package:nrs_flutter_lib/widgets/n_spinner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:nrs_flutter_lib/widgets/n_keyboard_message.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Colors.pink;
 
-      final textTheme = TextTheme(
+    final textTheme = TextTheme(
       titleLarge: TextStyle(fontSize: 42.0),
       titleMedium: TextStyle(fontSize: 39.0),
       titleSmall: TextStyle(fontSize: 22.0),
@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
       bodyMedium: TextStyle(fontSize: 18.0),
       bodySmall: TextStyle(fontSize: 16.0),
     );
-
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -67,7 +66,6 @@ class MyApp extends StatelessWidget {
               onPrimary: Colors.white),
           dividerColor: Colors.black12,
           textTheme: textTheme,
-
         ),
         themeMode: ThemeMode.system,
         home: HandDrillsHomePage());
@@ -82,7 +80,13 @@ class _HandDrillsHomePageState extends State<HandDrillsHomePage> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if ((snapshot.data as bool)) {
-              return KeyboardMessage();
+              return KeyboardMessage(
+                continueText: HD.t('continue'),
+                instructionsText: HD.t('instructions'),
+                keyboardNeededText: HD.t('japanese_keyboard_needed'),
+                mainMenu: MainMenu(),
+                welcomeText: HD.t('welcome_to_handrills'),
+              );
             } else {
               return MainMenu();
             }
