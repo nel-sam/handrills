@@ -90,6 +90,7 @@ class _HandDrillsHomePageState extends State<HandDrillsHomePage> {
                 detailsText: HD.t('korean_keyboard_needed'),
                 instructionsButtonText: HD.t('instructions'),
                 continueLinkText: HD.t('continue'),
+                imageUrl: 'assets/banners/slant_keyboard.png',
                 onContinue: () async {
                   await setFirstTimeSetting();
                   Navigator.push(
