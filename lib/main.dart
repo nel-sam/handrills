@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/widgets/menus/main_menu.dart';
@@ -9,7 +10,14 @@ import 'package:nrs_flutter_lib/widgets/n_spinner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+
+  final RequestConfiguration requestConfiguration = RequestConfiguration(
+      tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.yes);
+  MobileAds.instance.updateRequestConfiguration(requestConfiguration);
+
+  runApp(HandrillsApp());
 }
 
 Future<bool> getIsFirstTimeSetting() async {
@@ -30,7 +38,7 @@ class HandDrillsHomePage extends StatefulWidget {
   _HandDrillsHomePageState createState() => _HandDrillsHomePageState();
 }
 
-class MyApp extends StatelessWidget {
+class HandrillsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Colors.pink;
