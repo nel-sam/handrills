@@ -22,13 +22,14 @@ class _DongsaExerciseStateAreaState extends State<DongsaExerciseStateArea> {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: FONT_SIZE),
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               NTextSpan(
                 widget.state.dongsa.infinitive,
-                textStyle: HD.fontStyleBold(context),
-                textAlign: TextAlign.end,
+                textStyle: TextStyle(
+                    fontSize:
+                        Theme.of(context).textTheme.headlineMedium!.fontSize),
               ),
               SizedBox(width: FONT_SIZE),
               NTextSpan(widget.state.dongsa.translation),

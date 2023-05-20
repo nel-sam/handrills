@@ -23,8 +23,8 @@ class SiganGenerator {
           hour.alternate + '시',
         ],
         correctMins: [
-          hour.written + '분',
-          hour.alternate + '분',
+          min.written + '분',
+          min.alternate + '분',
         ],
         correctSecs: [
           sec.written + '초',

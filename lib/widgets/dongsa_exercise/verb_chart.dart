@@ -17,16 +17,34 @@ class ChartRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        NTextSpan(
-          label,
-          textAlign: TextAlign.end,
+        Container(
+          color: Theme.of(context).colorScheme.primary,
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: NTextSpan(
+                  label,
+                  textAlign: TextAlign.end,
+                  textStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                ),
+              ),
+            ],
+          ),
         ),
-        NTextSpan(
-          conj,
-          textStyle: HD.fontStyleBold(context),
+        Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 18),
+          child: NTextSpan(
+            conj,
+            textAlign: TextAlign.start,
+            textStyle: TextStyle(
+                fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize),
+          ),
         ),
       ],
     );

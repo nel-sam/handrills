@@ -23,16 +23,22 @@ class DongsaExerciseLevel1 extends StatelessWidget {
         create: (context) => ExerciseNavNotifier(ExerciseType.Dongsa),
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) => Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: Nrs.NrsAppBar(
-                title: '${HD.t('verbs')} 1 (반말)', context: context),
+            appBar:
+                Nrs.NrsAppBar(title: '${HD.t('verbs')} (반말)', context: context),
             body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  NavHeaderWrapper(navNotifier: navNotifier),
-                  Expanded(child: getExercises(context, navNotifier)),
-                  AdCard(),
+              child: CustomScrollView(
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NavHeaderWrapper(navNotifier: navNotifier),
+                        Expanded(child: getExercises(context, navNotifier)),
+                        AdCard(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
