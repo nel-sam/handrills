@@ -1,15 +1,3 @@
-class HanNumber {
-  final int digit;
-  final String written;
-  late String alternate;
-
-  HanNumber({required this.digit, required this.written, this.alternate = ''}) {
-    if (this.alternate.length == 0) {
-      this.alternate = this.written;
-    }
-  }
-}
-
 final List<HanNumber> nativeNumberBank = [
   HanNumber(digit: 0, written: '영'),
   HanNumber(digit: 1, written: '하나', alternate: '한'),
@@ -31,7 +19,7 @@ final List<HanNumber> nativeNumberBank = [
   HanNumber(digit: 17, written: '열일곱'),
   HanNumber(digit: 18, written: '열여덟'),
   HanNumber(digit: 19, written: '열아홉'),
-  HanNumber(digit: 20, written: '스물'),
+  HanNumber(digit: 20, written: '스물', alternate: '스무'),
   HanNumber(digit: 21, written: '스물하나', alternate: '스물한'),
   HanNumber(digit: 22, written: '스물둘', alternate: '스물두'),
   HanNumber(digit: 23, written: '스물셋', alternate: '스물세'),
@@ -128,3 +116,15 @@ final List<HanNumber> sinoNumberBank = [
   HanNumber(digit: 100, written: '백'),
   HanNumber(digit: 1000, written: '천'),
 ];
+
+class HanNumber {
+  final int digit;
+  final String written;
+  late String alternate;
+
+  HanNumber({required this.digit, required this.written, this.alternate = ''}) {
+    if (this.alternate.length == 0) {
+      this.alternate = this.written;
+    }
+  }
+}

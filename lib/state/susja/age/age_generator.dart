@@ -8,7 +8,6 @@ class AgeGenerator {
     HanNumber number = HD.getRandomNativeNumber();
 
     return AgeExerciseState(age: number.digit, correctAnswers: [
-      number.written + '살',
       number.alternate + '살',
     ]);
   }
