@@ -2,5 +2,5 @@ enum ExerciseType {
   Dongsa,
   Count,
   Age,
-  Sigan,
+  Sigan, Comic,
 }

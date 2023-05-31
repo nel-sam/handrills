@@ -13,6 +13,7 @@ class ExerciseNavNotifier extends ChangeNotifier {
   int _activeIndex = 0;
   int _maxIndex = 0;
   List _states = [];
+  Function onNextOrPrevious = () => {};
   late Function(int) createExercise;
 
   ExerciseNavNotifier(ExerciseType exerciseType) {
@@ -71,6 +72,7 @@ class ExerciseNavNotifier extends ChangeNotifier {
       this._states.add(this.createExercise(this._activeIndex));
     }
 
+    onNextOrPrevious();
     debouncedNotifyListeners();
   }
 
@@ -84,5 +86,6 @@ class ExerciseNavNotifier extends ChangeNotifier {
     }
 
     debouncedNotifyListeners();
+    onNextOrPrevious();
   }
 }
