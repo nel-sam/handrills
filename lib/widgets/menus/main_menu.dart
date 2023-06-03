@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/constants.dart';
 import 'package:handrills/hd_helpers.dart';
+import 'package:handrills/widgets/comic_exercise/comic_exercise.dart';
 import 'package:handrills/widgets/dongsa_exercise/dongsa_exercise_1.dart';
 import 'package:handrills/widgets/menus/numbers_menu.dart';
 import 'package:nrs_flutter_lib/widgets/n_hero_banner.dart';
@@ -30,6 +31,11 @@ class MainMenu extends StatelessWidget {
                     destination: DongsaExerciseLevel1(),
                     label: HD.t('verbs'),
                     transLabel: '동사',
+                  ),
+                  NMenuButton(
+                    destination: ComicExercise(),
+                    label: HD.t('comics'),
+                    transLabel: '만화',
                   ),
                 ],
               ),

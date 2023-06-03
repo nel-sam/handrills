@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:handrills/state/comic/comic_generator.dart';
 import 'package:handrills/state/dongsa/dongs_generator.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/susja/age/age_generator.dart';
@@ -33,6 +34,10 @@ class ExerciseNavNotifier extends ChangeNotifier {
       case ExerciseType.Sigan:
         this._maxIndex = SiganGenerator.getMaxIndex();
         this.createExercise = SiganGenerator.createExercise;
+        break;
+      case ExerciseType.Comic:
+        this._maxIndex = ComicsGenerator.getMaxIndex();
+        this.createExercise = ComicsGenerator.createExercise;
         break;
     }
 

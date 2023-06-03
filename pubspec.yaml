@@ -39,6 +39,7 @@ flutter:
   assets:
     - assets/button-bgs/
     - assets/banners/
+    - assets/comics/
     - lib/i18n/
 
 flutter_intl:

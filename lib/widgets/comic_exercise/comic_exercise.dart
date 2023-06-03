@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handrills/hd_helpers.dart';
 import 'package:handrills/state/comic/comic_notifier.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
@@ -20,7 +19,7 @@ class ComicExercise extends StatelessWidget {
         create: (context) => ExerciseNavNotifier(ExerciseType.Comic),
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) => Scaffold(
-            appBar: Nrs.NrsAppBar(title: '${HD.t('manhua')}', context: context),
+            appBar: Nrs.NrsAppBar(title: '만화', context: context),
             body: Center(
               child: CustomScrollView(slivers: [
                 SliverFillRemaining(

@@ -2,7 +2,7 @@ import 'package:handrills/lang_data/comics.dart';
 
 import 'comic_exercise_state.dart';
 
-class MangaGenerator {
+class ComicsGenerator {
   static createExercise(int index) {
     return ComicExerciseState(comicExerciseModel: comicWordsBank[index]);
   }
