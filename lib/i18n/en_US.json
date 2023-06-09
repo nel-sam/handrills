@@ -54,5 +54,13 @@
   "negative": "Negative",
   "negativePast": "Negative Past",
   "happy_birthday": "Happy Birthday",
-  "comics": "Comics"
+  "comics": "Comics",
+  "yeolda": "To open",
+  "dadda": "To close",
+  "sijakhada": "To start",
+  "kkeutnada": "To finish",
+  "milda": "To push",
+  "danggida": "To pull",
+  "kyeoda": "To turn on",
+  "kkeuda": "To turn off"
 }

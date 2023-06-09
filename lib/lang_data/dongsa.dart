@@ -1,6 +1,113 @@
 import 'package:handrills/hd_helpers.dart';
 
+// TODO: 열다 (open), 닫다 (close), 시작하다 (start), 끝나다 (end),
+// 밀다 (push), 당기다 (pull), 켜다 (turn on), 끄다 (turn off)
+
 var dongsaBank = [
+  Dongsa(
+    // 끄다
+    stem: '끄',
+    isIrregular: false,
+    infinitive: '끄다',
+    translation: HD.t('kkeuda'),
+    banmar: DongsaConj(
+      present: '끌어',
+      past: '끌었어',
+      futureStem: '끌',
+      pastStem: '끌었',
+    ),
+  ),
+  Dongsa(
+    // 켜다
+    stem: '켜',
+    isIrregular: false,
+    infinitive: '켜다',
+    translation: HD.t('kyeoda'),
+    banmar: DongsaConj(
+      present: '켜',
+      past: '켰어',
+      futureStem: '켤',
+      pastStem: '켰',
+    ),
+  ),
+  Dongsa(
+    // 당기다
+    stem: '당기',
+    isIrregular: false,
+    infinitive: '당기다',
+    translation: HD.t('danggida'),
+    banmar: DongsaConj(
+      present: '당겨',
+      past: '당겼어',
+      futureStem: '당길',
+      pastStem: '당겼',
+    ),
+  ),
+  Dongsa(
+    // 밀다
+    stem: '밀',
+    isIrregular: false,
+    infinitive: '밀다',
+    translation: HD.t('milda'),
+    banmar: DongsaConj(
+      present: '밀어',
+      past: '밀었어',
+      futureStem: '밀',
+      pastStem: '밀었',
+    ),
+  ),
+  Dongsa(
+    // 끝나다
+    stem: '끝나',
+    isIrregular: false,
+    infinitive: '끝나다',
+    translation: HD.t('kkeutnada'),
+    banmar: DongsaConj(
+      present: '끝나',
+      past: '끝났어',
+      futureStem: '끝낼',
+      pastStem: '끝났',
+    ),
+  ),
+  Dongsa(
+// 시작하다
+    stem: '시작하',
+    isIrregular: false,
+    infinitive: '시작하다',
+    translation: HD.t('sijakhada'),
+    banmar: DongsaConj(
+      present: '시작해',
+      past: '시작했어',
+      futureStem: '시작할',
+      pastStem: '시작했',
+    ),
+  ),
+  Dongsa(
+    // 닫다
+    stem: '닫',
+    isIrregular: false,
+    infinitive: '닫다',
+    translation: HD.t('dadda'),
+    banmar: DongsaConj(
+      present: '닫아',
+      past: '닫았어',
+      futureStem: '닫을',
+      pastStem: '닫았',
+    ),
+  ),
+  Dongsa(
+    // 열다
+    stem: '열',
+    isIrregular: false,
+    infinitive: '열다',
+    translation: HD.t('yeolda'),
+    banmar: DongsaConj(
+      present: '여',
+      past: '열었어',
+      futureStem: '열',
+      pastStem: '열었',
+    ),
+  ),
   Dongsa(
     stem: '걸',
     isIrregular: false,
