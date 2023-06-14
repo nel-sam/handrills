@@ -1,28 +1,18 @@
+import 'dart:collection';
+
 import 'package:handrills/lang_data/dongsa.dart';
 
 class DongsaExerciseState {
-  List<String> userInput = [];
+  HashMap<int, String> userInput = new HashMap<int, String>();
   Dongsa dongsa;
 
   DongsaExerciseState({required this.dongsa});
 
   getUserInput(int index) {
-    fillArray(index);
-    return userInput[index];
-  }
-
-  void fillArray(int index) {
-    if (userInput.length == 0) {
-      userInput.add('');
-    }
-
-    while (userInput.length <= index) {
-      userInput.add('');
-    }
+    return userInput[index] ?? '';
   }
 
   updateUserInput(int index, String newValue) {
-    fillArray(index);
     userInput[index] = newValue;
   }
 
