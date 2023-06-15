@@ -20,4 +20,22 @@ final comicWordsBank = [
       ),
     ],
   ),
+  ComicExerciseModel(
+    imageUrl: 'assets/comics/kimbap.jpeg',
+    phrases: [
+      Phrase(
+        // 생일 축하해
+        translation: HD.t('I_am_eating_kimbap'),
+        phraseParts: [
+          PhrasePart(text: '나는'),
+          PhrasePart(text: ' '),
+          PhrasePart(text: '김밥을 '),
+          PhrasePart(text: ' '),
+          PhrasePart(text: '먹고있다', isAnswerable: true),
+        ],
+        downPercentage: 68,
+        rightPercentage: 10,
+      ),
+    ],
+  ),
 ];

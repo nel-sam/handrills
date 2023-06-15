@@ -56,14 +56,15 @@ class SpeechBubble extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: 4, bottom: 0, left: 18, right: 18),
+                    top: 6, bottom: 6, left: 18, right: 18),
                 child: Wrap(
                   children: this.phrase.phraseParts.map((e) {
                     final isCorrect = getIsCorrect(e);
 
                     return e.isAnswerable && !isCorrect
                         ? Padding(
-                            padding: const EdgeInsets.all(11.0),
+                            padding: const EdgeInsets.only(
+                                top: 0, bottom: 0, left: 4, right: 4),
                             child: ElevatedButton(
                               onPressed: () => onButtonTap(e),
                               child: Row(
@@ -77,15 +78,12 @@ class SpeechBubble extends StatelessWidget {
                               ),
                             ),
                           )
-                        : Padding(
-                            padding: const EdgeInsets.only(bottom: 15.0),
-                            child: Text(e.text,
-                                style: TextStyle(
-                                  color: e.isAnswerable
-                                      ? Theme.of(context).primaryColor
-                                      : Colors.black,
-                                )),
-                          );
+                        : Text(e.text,
+                            style: TextStyle(
+                              color: e.isAnswerable
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.black,
+                            ));
                   }).toList(),
                 ),
               ),
