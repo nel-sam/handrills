@@ -24,14 +24,11 @@ final comicWordsBank = [
     imageUrl: 'assets/comics/kimbap.jpeg',
     phrases: [
       Phrase(
-        // 생일 축하해
-        translation: HD.t('I_am_eating_kimbap'),
+        // 김밥이 진짜 맛있어
+        translation: HD.t('kimbap_is_really_delicious'),
         phraseParts: [
-          PhrasePart(text: '나는'),
-          PhrasePart(text: ' '),
-          PhrasePart(text: '김밥을 '),
-          PhrasePart(text: ' '),
-          PhrasePart(text: '먹고있다', isAnswerable: true),
+          PhrasePart(text: '김밥이 진짜 '),
+          PhrasePart(text: '맛있어', isAnswerable: true),
         ],
         downPercentage: 68,
         rightPercentage: 10,
