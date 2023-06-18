@@ -15,36 +15,47 @@ class ComicExercise extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: ChangeNotifierProvider<ExerciseNavNotifier>(
-        create: (context) => ExerciseNavNotifier(ExerciseType.Comic),
-        child: Consumer<ExerciseNavNotifier>(
-          builder: (context, navNotifier, child) => Scaffold(
-            appBar: Nrs.NrsAppBar(title: '만화', context: context),
-            body: Center(
-              child: CustomScrollView(slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      NavHeaderWrapper(navNotifier: navNotifier),
-                      ChangeNotifierProvider<ComicNotifier>(
-                        create: (context) =>
-                            ComicNotifier(navNotifier.getActive),
-                        child: Consumer<ComicNotifier>(
-                          builder: (context, ComicNotifier, child) =>
-                              ComicExerciseStateArea(
-                            state: ComicNotifier.getActive(),
-                            navNotifier: navNotifier,
-                          ),
-                        ),
+      child: Scaffold(
+        appBar: Nrs.NrsAppBar(title: '만화', context: context),
+        body: Center(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ChangeNotifierProvider<ExerciseNavNotifier>(
+                      create: (context) =>
+                          ExerciseNavNotifier(ExerciseType.Comic),
+                      child: Consumer<ExerciseNavNotifier>(
+                        builder: (context, navNotifier, child) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              NavHeaderWrapper(navNotifier: navNotifier),
+                              ChangeNotifierProvider<ComicNotifier>(
+                                create: (context) =>
+                                    ComicNotifier(navNotifier.getActive),
+                                child: Consumer<ComicNotifier>(
+                                  builder: (context, comicNotifier, child) {
+                                    return ComicExerciseStateArea(
+                                      state: comicNotifier.getActive(),
+                                      navNotifier: navNotifier,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
-                      AdCard(),
-                    ],
-                  ),
+                    ),
+                    AdCard(),
+                  ],
                 ),
-              ]),
-            ),
+              ),
+            ],
           ),
         ),
       ),

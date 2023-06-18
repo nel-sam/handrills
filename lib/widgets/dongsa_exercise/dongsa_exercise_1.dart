@@ -17,64 +17,71 @@ class DongsaExerciseLevel1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ExerciseNavNotifier nav = ExerciseNavNotifier(ExerciseType.Dongsa);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: ChangeNotifierProvider<ExerciseNavNotifier>(
-        create: (context) => ExerciseNavNotifier(ExerciseType.Dongsa),
-        child: Consumer<ExerciseNavNotifier>(
-          builder: (context, navNotifier, child) => Scaffold(
-            appBar:
-                Nrs.NrsAppBar(title: '${HD.t('verbs')} (반말)', context: context),
-            body: Center(
-              child: CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        NavHeaderWrapper(navNotifier: navNotifier),
-                        Expanded(child: getExercises(context, navNotifier)),
-                        AdCard(),
-                      ],
+      child: Scaffold(
+        appBar: Nrs.NrsAppBar(title: '${HD.t('verbs')} (반말)', context: context),
+        body: Center(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ChangeNotifierProvider<ExerciseNavNotifier>(
+                      create: (context) => ExerciseNavNotifier(
+                        ExerciseType.Dongsa,
+                      ),
+                      child: Consumer<ExerciseNavNotifier>(
+                        builder: (context, navNotifier, child) {
+                          nav = navNotifier;
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              NavHeaderWrapper(navNotifier: navNotifier),
+                              ChangeNotifierProvider<DongsaNotifier>(
+                                create: (context) =>
+                                    DongsaNotifier(navNotifier.getActive),
+                                child: Consumer<DongsaNotifier>(
+                                  builder: (context, dongsaNotifier, child) {
+                                    return DongsaExerciseStateArea(
+                                        state: dongsaNotifier.getActive());
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            persistentFooterButtons: [
-              NFooterMenu(
-                buttons: [
-                  NFooterButton(
-                    text: HD.t('verbChart'),
-                    icon: Icons.list,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              VerbChart(dongsa: navNotifier.getActive().dongsa),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                    AdCard(),
+                  ],
+                ),
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget getExercises(BuildContext context, ExerciseNavNotifier navNotifier) {
-    return ChangeNotifierProvider<DongsaNotifier>(
-      create: (context) => DongsaNotifier(navNotifier.getActive),
-      child: Consumer<DongsaNotifier>(
-        builder: (context, dongsaNotifier, child) {
-          var dongsa = dongsaNotifier.getActive();
-          return DongsaExerciseStateArea(state: dongsa);
-        },
+        persistentFooterButtons: [
+          NFooterMenu(
+            buttons: [
+              NFooterButton(
+                text: HD.t('verbChart'),
+                icon: Icons.list,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          VerbChart(dongsa: nav.getActive().dongsa),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
