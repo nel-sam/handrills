@@ -76,7 +76,7 @@ class _ComicExerciseStateAreaState extends State<ComicExerciseStateArea> {
                     padding: const EdgeInsets.all(padding),
                     child: NFreeFormEntry(
                       widthType: NFreeFormWidths.half,
-                      labelText: '',
+                      hintValue: '',
                       onChanged: (String newValue) {
                         widget.state
                             .updateUserInput(activePhrasePart, newValue);

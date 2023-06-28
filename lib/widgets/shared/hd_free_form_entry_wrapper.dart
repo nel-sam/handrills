@@ -24,7 +24,7 @@ class HdFreeFormEntryWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return NFreeFormEntry(
       widthType: NFreeFormWidths.half,
-      labelText: hintValue,
+      hintValue: hintValue,
       onChanged: (String newValue) {
         this.onChanged(newValue);
       },
