@@ -1,8 +1,5 @@
 import 'package:handrills/hd_helpers.dart';
 
-// TODO: 열다 (open), 닫다 (close), 시작하다 (start), 끝나다 (end),
-// 밀다 (push), 당기다 (pull), 켜다 (turn on), 끄다 (turn off)
-
 var dongsaBank = [
   Dongsa(
     // 끄다
@@ -109,7 +106,7 @@ var dongsaBank = [
     ),
   ),
   Dongsa(
-    stem: '걸',
+    stem: '걷',
     isIrregular: false,
     infinitive: '걷다',
     translation: HD.t('keodda'),
