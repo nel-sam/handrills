@@ -241,6 +241,22 @@ class Dongsa {
     required this.translation,
     required this.isIrregular,
   });
+
+  Map<String, dynamic> toJson() => {
+        'stem': stem,
+        'infinitive': infinitive,
+        'banmar': banmar.toJson(),
+        'isIrregular': isIrregular,
+        'translation': translation,
+      };
+
+  factory Dongsa.fromJson(Map<String, dynamic> json) => Dongsa(
+        stem: json['stem'],
+        infinitive: json['infinitive'],
+        banmar: DongsaConj.fromJson(json['banmar']),
+        isIrregular: json['isIrregular'],
+        translation: json['translation'],
+      );
 }
 
 class DongsaConj {
@@ -255,4 +271,18 @@ class DongsaConj {
     required this.futureStem,
     required this.pastStem,
   });
+
+  Map<String, dynamic> toJson() => {
+        'present': present,
+        'past': past,
+        'futureStem': futureStem,
+        'pastStem': pastStem,
+      };
+
+  factory DongsaConj.fromJson(Map<String, dynamic> json) => DongsaConj(
+        present: json['present'],
+        past: json['past'],
+        futureStem: json['futureStem'],
+        pastStem: json['pastStem'],
+      );
 }

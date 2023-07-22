@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handrills/hd_helpers.dart';
+import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/state/dongsa/dongsa_notifier.dart';
 import 'package:handrills/state/enums.dart';
 import 'package:handrills/state/exercise_nav_notifier.dart';
@@ -13,11 +14,18 @@ import 'package:nrs_flutter_lib/widgets/n_footer_menu.dart';
 import 'package:provider/provider.dart';
 
 class DongsaExerciseLevel1 extends StatelessWidget {
-  const DongsaExerciseLevel1({Key? key}) : super(key: key);
+  final bool verbShuffle;
+  final List<Dongsa> selectedVerbs;
+
+  DongsaExerciseLevel1(
+      {required this.verbShuffle, required this.selectedVerbs});
 
   @override
   Widget build(BuildContext context) {
-    ExerciseNavNotifier nav = ExerciseNavNotifier(ExerciseType.Dongsa);
+    ExerciseNavNotifier nav = ExerciseNavNotifier(
+        exerciseType: ExerciseType.Dongsa,
+        shuffle: verbShuffle,
+        selectedVerbs: selectedVerbs);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -32,8 +40,9 @@ class DongsaExerciseLevel1 extends StatelessWidget {
                   children: [
                     ChangeNotifierProvider<ExerciseNavNotifier>(
                       create: (context) => ExerciseNavNotifier(
-                        ExerciseType.Dongsa,
-                      ),
+                          exerciseType: ExerciseType.Dongsa,
+                          shuffle: verbShuffle,
+                          selectedVerbs: selectedVerbs),
                       child: Consumer<ExerciseNavNotifier>(
                         builder: (context, navNotifier, child) {
                           nav = navNotifier;

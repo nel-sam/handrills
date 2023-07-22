@@ -9,7 +9,6 @@
   "dudda": "Oír",
   "turda": "Levantar/Cargar",
   "keodda": "Caminar",
-
   "days": "Días",
   "months": "Meses",
   "years": "Años",
@@ -55,7 +54,7 @@
   "negativePast": "Negativo del pasado",
   "happy_birthday": "Feliz Cumpleaños",
   "kimbap_is_really_delicious": "El kimbap es muy delicioso",
-
+  
   "comics": "Comics",
   "yeolda ": "Abrir",
   "dadda": "Cerrar",
@@ -64,5 +63,9 @@
   "milda": "Empujar",
   "danggida": "Tirar/jalar",
   "kyeoda": "Prender/encender",
-  "kkeuda": "Apagar"
+  "kkeuda": "Apagar",
+  "shuffle": "Orden aleatorio",
+  "settings": "Ajustes",
+  "dongsa": "Verbos",
+  "start": "Comenzar"
 }

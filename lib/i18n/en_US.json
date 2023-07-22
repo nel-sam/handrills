@@ -9,7 +9,6 @@
   "dudda": "To listen",
   "turda": "To carry/to hold",
   "keodda": "To walk",
-
   "days": "Days",
   "months": "Months",
   "years": "Years",
@@ -55,7 +54,7 @@
   "negativePast": "Negative Past",
   "happy_birthday": "Happy Birthday",
   "kimbap_is_really_delicious": "Kimbap is really delicious",
-
+  
   "comics": "Comics",
   "yeolda": "To open",
   "dadda": "To close",
@@ -64,5 +63,10 @@
   "milda": "To push",
   "danggida": "To pull",
   "kyeoda": "To turn on",
-  "kkeuda": "To turn off"
+  "kkeuda": "To turn off",
+  "shuffle": "Random order",
+  "settings": "Settings",
+  "dongsa": "Verbs",
+  "start": "Start"
+
 }

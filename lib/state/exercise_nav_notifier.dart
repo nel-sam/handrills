@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/state/comic/comic_generator.dart';
 import 'package:handrills/state/dongsa/dongs_generator.dart';
 import 'package:handrills/state/enums.dart';
@@ -17,11 +18,15 @@ class ExerciseNavNotifier extends ChangeNotifier {
   Function onNextOrPrevious = () => {};
   late Function(int) createExercise;
 
-  ExerciseNavNotifier(ExerciseType exerciseType) {
+  ExerciseNavNotifier(
+      {required ExerciseType exerciseType,
+      List<Dongsa>? selectedVerbs,
+      bool shuffle = false}) {
     switch (exerciseType) {
       case ExerciseType.Dongsa:
-        this._maxIndex = DongsaGenerator.getMaxIndex();
-        this.createExercise = DongsaGenerator.createExercise;
+        this._maxIndex = selectedVerbs!.length - 1;
+        this.createExercise =
+            new DongsaGenerator(shuffle, selectedVerbs).createExercise;
         break;
       case ExerciseType.Count:
         this._maxIndex = CountGenerator.getMaxIndex();

@@ -20,7 +20,8 @@ class CountingExercise extends StatelessWidget {
   Widget build(BuildContext context) {
     getContent(BuildContext context) {
       return ChangeNotifierProvider<ExerciseNavNotifier>(
-        create: (context) => ExerciseNavNotifier(ExerciseType.Count),
+        create: (context) =>
+            ExerciseNavNotifier(exerciseType: ExerciseType.Count),
         child: Consumer<ExerciseNavNotifier>(
           builder: (context, navNotifier, child) {
             var activeItem = navNotifier.getActive();

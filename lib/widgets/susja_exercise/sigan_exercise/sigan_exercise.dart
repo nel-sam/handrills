@@ -55,7 +55,8 @@ class SiganExercise extends StatelessWidget {
 
   getContent(BuildContext context) {
     return ChangeNotifierProvider<ExerciseNavNotifier>(
-      create: (context) => ExerciseNavNotifier(ExerciseType.Sigan),
+      create: (context) =>
+          ExerciseNavNotifier(exerciseType: ExerciseType.Sigan),
       child: Consumer<ExerciseNavNotifier>(
         builder: (context, navNotifier, child) {
           var s = navNotifier.getActive();

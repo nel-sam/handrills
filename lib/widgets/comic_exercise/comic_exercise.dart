@@ -27,7 +27,7 @@ class ComicExercise extends StatelessWidget {
                   children: [
                     ChangeNotifierProvider<ExerciseNavNotifier>(
                       create: (context) =>
-                          ExerciseNavNotifier(ExerciseType.Comic),
+                          ExerciseNavNotifier(exerciseType: ExerciseType.Comic),
                       child: Consumer<ExerciseNavNotifier>(
                         builder: (context, navNotifier, child) {
                           return Column(
