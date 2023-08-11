@@ -4,6 +4,7 @@ import 'package:handrills/state/dongsa/dongsa_exercise_state.dart';
 import 'package:handrills/widgets/dongsa_exercise/verb_input.dart';
 import 'package:nrs_flutter_lib/constants.dart';
 import 'package:nrs_flutter_lib/widgets/n_text_span.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DongsaExerciseStateArea extends StatefulWidget {
   final DongsaExerciseState state;
@@ -17,9 +18,56 @@ class DongsaExerciseStateArea extends StatefulWidget {
 }
 
 class _DongsaExerciseStateAreaState extends State<DongsaExerciseStateArea> {
+  bool showVerbTranslations = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadSettings();
+  }
+
+  void loadSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      showVerbTranslations = prefs.getBool('showVerbTranslations') ?? true;
+    });
+  }
+
+  void saveSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('showVerbTranslations', showVerbTranslations);
+  }
+
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Tooltip(
+                    message: HD.t('translation'),
+                    child: Icon(
+                      Icons.translate,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  Switch(
+                      value: showVerbTranslations,
+                      onChanged: (value) {
+                        setState(() {
+                          showVerbTranslations = value;
+                          saveSettings();
+                        });
+                      })
+                ],
+              ),
+            ),
+          ],
+        ),
         Padding(
           padding: const EdgeInsets.only(top: FONT_SIZE),
           child: Column(
@@ -32,7 +80,8 @@ class _DongsaExerciseStateAreaState extends State<DongsaExerciseStateArea> {
                         Theme.of(context).textTheme.headlineMedium!.fontSize),
               ),
               SizedBox(width: FONT_SIZE),
-              NTextSpan(widget.state.dongsa.translation),
+              NTextSpan(
+                  showVerbTranslations ? widget.state.dongsa.translation : ''),
             ],
           ),
         ),

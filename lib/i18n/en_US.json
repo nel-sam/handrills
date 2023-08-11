@@ -71,5 +71,6 @@
   "start": "Start",
   "hour": "Hrs",
   "minute": "Mins",
-  "second": "Secs"
+  "second": "Secs",
+  "translation": "Translation"
 }
