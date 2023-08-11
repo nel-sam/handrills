@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:handrills/lang_data/dongsa.dart';
 import 'package:handrills/widgets/shared/hd_free_form_entry_wrapper.dart';
@@ -26,6 +25,7 @@ class VerbInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HdFreeFormEntryWrapper(
+      showBoxLabel: true,
       widthType: NFreeFormWidths.half,
       hintValue: hintValue,
       onChanged: (String newValue) {

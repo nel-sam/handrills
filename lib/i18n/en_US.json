@@ -68,6 +68,8 @@
   "settings": "Settings",
   "selectall": "Select all",
   "dongsa": "Verbs",
-  "start": "Start"
-
+  "start": "Start",
+  "hour": "Hrs",
+  "minute": "Mins",
+  "second": "Secs"
 }

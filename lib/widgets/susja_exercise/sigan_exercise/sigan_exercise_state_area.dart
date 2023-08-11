@@ -19,6 +19,7 @@ class _SiganExerciseStateAreaState extends State<SiganExerciseStateArea> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         HdFreeFormEntryWrapper(
+          showBoxLabel: true,
           widthType: NFreeFormWidths.full,
           hintValue: HD.t('hour'),
           onCorrect: () {
@@ -29,6 +30,7 @@ class _SiganExerciseStateAreaState extends State<SiganExerciseStateArea> {
           correctValues: widget.state.correctHours,
         ),
         HdFreeFormEntryWrapper(
+          showBoxLabel: true,
           widthType: NFreeFormWidths.full,
           hintValue: HD.t('minute'),
           onChanged: (String newValue) => widget.state.updateMin(newValue),
@@ -39,6 +41,7 @@ class _SiganExerciseStateAreaState extends State<SiganExerciseStateArea> {
           },
         ),
         HdFreeFormEntryWrapper(
+          showBoxLabel: true,
           widthType: NFreeFormWidths.full,
           hintValue: HD.t('second'),
           onChanged: (String newValue) => widget.state.updateSec(newValue),

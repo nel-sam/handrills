@@ -9,6 +9,7 @@ class HdFreeFormEntryWrapper extends StatelessWidget {
   final List<String> correctValues;
   final NFreeFormWidths widthType;
   final String hintValue;
+  final bool showBoxLabel;
 
   HdFreeFormEntryWrapper({
     Key? key,
@@ -18,11 +19,13 @@ class HdFreeFormEntryWrapper extends StatelessWidget {
     required this.correctValues,
     required this.widthType,
     this.hintValue = '',
+    this.showBoxLabel = false
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return NFreeFormEntry(
+      showBoxLabel: showBoxLabel,
       widthType: NFreeFormWidths.half,
       hintValue: hintValue,
       onChanged: (String newValue) {

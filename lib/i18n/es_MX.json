@@ -68,5 +68,8 @@
   "settings": "Ajustes",
   "selectall": "Selecccionar todos",
   "dongsa": "Verbos",
-  "start": "Comenzar"
+  "start": "Comenzar",
+  "hour": "Horas",
+  "minute": "Minutos",
+  "second": "Segundos"
 }
