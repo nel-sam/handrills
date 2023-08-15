@@ -2,7 +2,7 @@ name: handrills
 description: A new Flutter project.
 
 publish_to: 'none'
-version: 1.2.0+1.2.0
+version: 1.2.1+1.2.1
 
 environment:
   sdk: '>=2.16.0 <3.0.0'
