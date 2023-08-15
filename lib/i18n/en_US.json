@@ -72,5 +72,8 @@
   "hour": "Hrs",
   "minute": "Mins",
   "second": "Secs",
-  "translation": "Translation"
+  "translation": "Translation",
+  "clearall": "Clear all",
+  "selectedverbs": "Selected verbs",
+  "select": "Select"
 }

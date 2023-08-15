@@ -72,5 +72,8 @@
   "hour": "Horas",
   "minute": "Minutos",
   "second": "Segundos",
-  "translation": "Traducción"
+  "translation": "Traducción",
+  "clearall": "Deseleccionar todos",
+  "selectedverbs": "Verbos seleccionados",
+  "select": "Selecciona los"
 }

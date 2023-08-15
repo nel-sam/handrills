@@ -17,9 +17,10 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  List<Dongsa> selectedVerbs = [];
+  List<Dongsa> selectedVerbs = List<Dongsa>.from(dongsaBank);
   bool verbShuffle = false;
-  bool selectAllVerbs = false;
+  bool selectAllVerbs = true;
+  bool isExpandedVerbs = false;
 
   @override
   void initState() {
@@ -31,9 +32,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(HD.t(widget.exerciseType.name.toString().toLowerCase()) +
-              ' ' +
-              HD.t('settings')),
+          title: Text(
+              '${HD.t('select')} ${HD.t(widget.exerciseType.name.toString().toLowerCase())}'),
         ),
         body: allSettings(widget.exerciseType));
   }
@@ -51,8 +51,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void loadSettings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      selectAllVerbs = prefs.getBool('selectAllVerbs') ?? false;
+      selectAllVerbs = prefs.getBool('selectAllVerbs') ?? true;
       verbShuffle = prefs.getBool('verbShuffle') ?? false;
+      isExpandedVerbs = prefs.getBool('isExpandedVerbs') ?? false;
 
       String jsonVerbs = prefs.getString('verbs') ?? '';
       if (jsonVerbs.isNotEmpty) {
@@ -69,6 +70,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     await prefs.setBool('selectAllVerbs', selectAllVerbs);
     await prefs.setBool('verbShuffle', verbShuffle);
+    await prefs.setBool('isExpandedVerbs', isExpandedVerbs);
+
     String jsonVerbs =
         jsonEncode(selectedVerbs.map((e) => e.toJson()).toList());
     await prefs.setString('verbs', jsonVerbs);
@@ -85,27 +88,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
             children: [
               Row(
                 children: [
-                  Tooltip(
-                    message: HD.t('selectall'),
-                    child: Icon(
-                      Icons.select_all,
-                      color: Theme.of(context).colorScheme.primary,
+                  Icon(
+                    selectAllVerbs ? Icons.deselect : Icons.select_all,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectAllVerbs = !selectAllVerbs;
+                        if (selectAllVerbs) {
+                          selectedVerbs = List<Dongsa>.from(dongsaBank);
+                        } else {
+                          selectedVerbs.clear();
+                          selectedVerbs.add(dongsaBank.first);
+                          isExpandedVerbs = true;
+                        }
+                        saveSettings();
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        selectAllVerbs ? HD.t('clearall') : HD.t('selectall'),
+                        style: TextStyle(
+                          fontSize: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .fontSize!,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
                     ),
                   ),
-                  Switch(
-                      value: selectAllVerbs,
-                      onChanged: (value) {
-                        setState(() {
-                          selectAllVerbs = value;
-                          if (selectAllVerbs) {
-                            selectedVerbs = List<Dongsa>.from(dongsaBank);
-                          } else {
-                            selectedVerbs.clear();
-                            selectedVerbs.add(dongsaBank.first);
-                          }
-                          saveSettings();
-                        });
-                      })
                 ],
               ),
               Row(
@@ -130,75 +144,105 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
         ),
-        Expanded(
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 5,
-              childAspectRatio: 1,
-            ),
-            itemCount: dongsaBank.length,
-            itemBuilder: (BuildContext context, int index) {
-              final item = dongsaBank[index];
-              int i = selectedVerbs.indexWhere(
-                  (element) => element.infinitive == item.infinitive);
-              bool isSelected = i != -1;
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    if (isSelected) {
-                      if (!hasSelectedIItems)
-                        selectedVerbs.removeWhere(
-                            (element) => element.infinitive == item.infinitive);
-                    } else {
-                      selectedVerbs.add(item);
-                    }
-                    saveSettings();
-                  });
-                },
-                child: Container(
-                  margin: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? Theme.of(context).colorScheme.primary
-                        : null,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Stack(
-                    children: [
-                      Center(
-                        child: Text(
-                          item.infinitive,
-                          style: TextStyle(
-                              fontSize: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .fontSize!),
-                        ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Container(
-                            padding: EdgeInsets.all(4),
-                            child: isSelected
-                                ? Text(
-                                    (1 + i).toString(),
-                                    style: TextStyle(
-                                        fontSize: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall!
-                                            .fontSize!,
-                                        color: Colors.white),
-                                  )
-                                : Container()),
-                      ),
-                    ],
-                  ),
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                icon: Icon(
+                  isExpandedVerbs ? Icons.expand_less : Icons.expand_more,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-              );
-            },
+                onPressed: () {
+                  setState(() {
+                    isExpandedVerbs = !isExpandedVerbs;
+                  });
+                  saveSettings();
+                },
+              ),
+              Text(
+                selectedVerbs.length == dongsaBank.length
+                    ? '${HD.t('selectedverbs')} (all)'
+                    : '${HD.t('selectedverbs')} (${selectedVerbs.length})',
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize:
+                        Theme.of(context).textTheme.titleMedium!.fontSize!),
+              )
+            ],
           ),
         ),
+        if (isExpandedVerbs)
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                childAspectRatio: 1,
+              ),
+              itemCount: dongsaBank.length,
+              itemBuilder: (BuildContext context, int index) {
+                final item = dongsaBank[index];
+                int i = selectedVerbs.indexWhere(
+                    (element) => element.infinitive == item.infinitive);
+                bool isSelected = i != -1;
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (isSelected) {
+                        if (!hasSelectedIItems)
+                          selectedVerbs.removeWhere((element) =>
+                              element.infinitive == item.infinitive);
+                      } else {
+                        selectedVerbs.add(item);
+                      }
+                      saveSettings();
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Text(
+                            item.infinitive,
+                            style: TextStyle(
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .fontSize!),
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Container(
+                              padding: EdgeInsets.all(4),
+                              child: isSelected
+                                  ? Text(
+                                      (1 + i).toString(),
+                                      style: TextStyle(
+                                          fontSize: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall!
+                                              .fontSize!,
+                                          color: Colors.white),
+                                    )
+                                  : Container()),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         SizedBox(height: 20),
         NMenuButton(
           destination: DongsaExerciseLevel1(
