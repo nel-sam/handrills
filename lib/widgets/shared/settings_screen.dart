@@ -56,12 +56,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       isExpandedVerbs = prefs.getBool('isExpandedVerbs') ?? false;
 
       String jsonVerbs = prefs.getString('verbs') ?? '';
-      if (jsonVerbs.isNotEmpty) {
-        List<dynamic> jsonList = jsonDecode(jsonVerbs);
-        selectedVerbs = jsonList.map((e) => Dongsa.fromJson(e)).toList();
-      } else {
-        selectedVerbs.add(dongsaBank.first);
-      }
+      List<dynamic> jsonVerbList = jsonDecode(jsonVerbs);
+      selectedVerbs = jsonVerbList.map((e) => Dongsa.fromJson(e)).toList();
     });
   }
 
