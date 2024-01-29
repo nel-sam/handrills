@@ -2,7 +2,7 @@ name: handrills
 description: An app for learning Korean.
 
 publish_to: 'none'
-version: 1.2.2+1.2.2
+version: 1.2.3+1.2.3
 
 environment:
   sdk: '>=2.16.0 <3.0.0'
